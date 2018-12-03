@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/txtMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:id="@+id/cbStackTrace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Print StackTrace"/>
+
+    <Button
+        android:id="@+id/btnPrintInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Print Info Log"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btnPrintDebug"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Print Debug Log"/>
+
+    <Button
+        android:id="@+id/btnPrintWarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Print Warning Log"/>
+
+    <Button
+        android:id="@+id/btnPrintError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Print Error Log"/>
+
+</LinearLayout>
