@@ -3,24 +3,18 @@ package ru.pocketbyte.hydra.log
 import kotlinx.cinterop.*
 import platform.Foundation.*
 
-class IosLogger(
-        level: LogLevel? = null,
-        tags: Set<String?>? = null
-): AbsFilteredLogger(level, tags) {
-
-    override fun printLog(level: LogLevel, tag: String?, function: () -> String) {
-        throw RuntimeException("This method shouldn't be called")
+class IosLogger: Logger {
+    
+    override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
+        NSLog(merge(level, tag, format(message, *arguments), null))
     }
 
-    override fun printLog(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
-        if (arguments.isEmpty())
-            NSLog(merge(level, tag, message, null))
-        else
-            NSLog(merge(level, tag, format(message, *arguments), null))
-    }
-
-    override fun printLog(level: LogLevel, tag: String?, exception: Throwable) {
+    override fun log(level: LogLevel, tag: String?, exception: Throwable) {
         NSLog(merge(level, tag, null, exception))
+    }
+
+    override fun log(level: LogLevel, tag: String?, function: () -> String) {
+        log(level, tag, function())
     }
 
     private fun merge(level: LogLevel, tag: String?, message: String?,

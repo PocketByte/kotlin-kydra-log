@@ -1,17 +1,19 @@
 package ru.pocketbyte.hydra.log
 
-import kotlin.test.*
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 abstract class LoggerSetTest {
 
     @Test
-    fun testSet() {
+    fun testLogMessage() {
         val logger1 = LoggerImpl()
         val logger2 = LoggerImpl()
         val loggerSet = LoggerSet(arrayOf(logger1, logger2))
 
-        var level = LogLevel.DEBUG
-        var tag = "TEST_1"
+        val level = LogLevel.DEBUG
+        val tag = "TEST_1"
         val message = "Some message!"
 
         assertNull(logger1.calledMethod)
@@ -29,15 +31,19 @@ abstract class LoggerSetTest {
         assertEquals(message, logger2.message)
         assertNull(logger1.exception)
         assertNull(logger2.exception)
-        assertNull(logger1.function)
-        assertNull(logger2.function)
 
-        level = LogLevel.WARNING
-        tag = "TEST_2_WARN"
+    }
+
+    @Test
+    fun testLogException() {
+        val logger1 = LoggerImpl()
+        val logger2 = LoggerImpl()
+        val loggerSet = LoggerSet(arrayOf(logger1, logger2))
+
+        val level = LogLevel.WARNING
+        val tag = "TEST_2_WARN"
         val exception = RuntimeException("some msg", IllegalArgumentException())
 
-        logger1.reset()
-        logger2.reset()
         assertNull(logger1.calledMethod)
         assertNull(logger2.calledMethod)
 
@@ -53,16 +59,18 @@ abstract class LoggerSetTest {
         assertEquals(exception, logger2.exception)
         assertNull(logger1.message)
         assertNull(logger2.message)
-        assertNull(logger1.function)
-        assertNull(logger2.function)
+    }
 
+    @Test
+    fun testLogFunction() {
+        val logger1 = LoggerImpl()
+        val logger2 = LoggerImpl()
+        val loggerSet = LoggerSet(arrayOf(logger1, logger2), optimizeFunctions = false)
 
-        level = LogLevel.INFO
-        tag = "TEST_3_func"
+        val level = LogLevel.INFO
+        val tag = "TEST_3_func"
         val function = { "Result of function" }
 
-        logger1.reset()
-        logger2.reset()
         assertNull(logger1.calledMethod)
         assertNull(logger2.calledMethod)
 
@@ -76,10 +84,48 @@ abstract class LoggerSetTest {
         assertEquals(tag, logger2.tag)
         assertEquals(function, logger1.function)
         assertEquals(function, logger2.function)
-        assertNull(logger1.exception)
-        assertNull(logger2.exception)
         assertNull(logger1.message)
         assertNull(logger2.message)
+        assertNull(logger1.exception)
+        assertNull(logger2.exception)
+    }
+
+
+    @Test
+    fun testLogFunctionOptimization() {
+        val level = LogLevel.INFO
+        val tag = "TEST_4_func_optimization"
+        val function = { "Result of function" }
+        val functionResult = function()
+
+        var logger = LoggerImpl()
+        var loggerSet = LoggerSet(arrayOf(logger), optimizeFunctions = true)
+
+        assertNull(logger.calledMethod)
+
+        loggerSet.log(level, tag, function)
+
+        // Function must be calculated so MESSAGE method will called
+        assertEquals(Method.MESSAGE, logger.calledMethod)
+        assertEquals(level, logger.level)
+        assertEquals(tag, logger.tag)
+        assertEquals(functionResult, logger.message)
+        assertNull(logger.exception)
+        assertNull(logger.function)
+
+        logger = LoggerImpl()
+        loggerSet = LoggerSet(arrayOf(logger), optimizeFunctions = false)
+
+        assertNull(logger.calledMethod)
+
+        loggerSet.log(level, tag, function)
+
+        assertEquals(Method.FUNCTION, logger.calledMethod)
+        assertEquals(level, logger.level)
+        assertEquals(tag, logger.tag)
+        assertEquals(function, logger.function)
+        assertNull(logger.message)
+        assertNull(logger.exception)
     }
 
     private enum class Method {
@@ -132,15 +178,6 @@ abstract class LoggerSetTest {
             _level = level
             _tag = tag
             _function = function
-        }
-
-        fun reset() {
-            _calledMethod = null
-            _level = null
-            _tag = null
-            _message = null
-            _exception = null
-            _function = null
         }
 
     }

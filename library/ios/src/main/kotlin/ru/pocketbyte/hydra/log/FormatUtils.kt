@@ -8,6 +8,9 @@ import platform.Foundation.*
 // Taken from
 // https://github.com/JetBrains/kotlin-native/issues/1834#issuecomment-409837732
 internal fun format(format: String, vararg args: Any?): String {
+    if (args == null)
+        return format
+
     val cfString: CFStringRef = CFBridgingRetain(format)!!.reinterpret()
     try {
         val encodedArgs = args.map {

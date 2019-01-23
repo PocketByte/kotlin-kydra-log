@@ -5,25 +5,25 @@ package ru.pocketbyte.hydra.log
  */
 class LoggerSet(
         val loggers: Array<Logger>,
-        level: LogLevel? = null,
-        tags: Set<String?>? = null,
-        calculateFunctions: Boolean = false
-): AbsFilteredLogger(level, tags, calculateFunctions) {
+        val optimizeFunctions: Boolean = true
+): Logger {
 
-    override fun printLog(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
+    override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
         this.loggers.forEach {
             it.log(level, tag, message, arguments)
         }
     }
 
-    override fun printLog(level: LogLevel, tag: String?, exception: Throwable) {
+    override fun log(level: LogLevel, tag: String?, exception: Throwable) {
         this.loggers.forEach {
             it.log(level, tag, exception)
         }
     }
 
-    override fun printLog(level: LogLevel, tag: String?, function: () -> String) {
-        this.loggers.forEach {
+    override fun log(level: LogLevel, tag: String?, function: () -> String) {
+        if (optimizeFunctions)
+            log(level, tag, function())
+        else this.loggers.forEach {
             it.log(level, tag, function)
         }
     }
