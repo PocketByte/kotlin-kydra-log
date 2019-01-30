@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
 //
-//  Created by Dash on 27.05.2018.
-//  Copyright © 2018 PcketByte.ru. All rights reserved.
+//  Copyright © 2019 Denis Shurygin. All rights reserved.
+//  Licensed under the Apache License, Version 2.0
 //
 
 import UIKit

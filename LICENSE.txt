@@ -1,4 +1,4 @@
-Copyright © 2017 Denis Shurygin. All rights reserved.
+Copyright © 2019 Denis Shurygin. All rights reserved.
 Contacts: <mail@pocketbyte.ru>
 
 Licensed under the Apache License, Version 2.0 (the "License");

@@ -1,3 +1,7 @@
+/*
+ * Copyright © 2019 Denis Shurygin. All rights reserved.
+ * Licensed under the Apache License, Version 2.0
+ */
 
 import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.events.Event
