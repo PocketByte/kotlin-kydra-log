@@ -29,7 +29,7 @@ actual object HydraLog: Logger {
     private fun getOrInitLogger(): Logger {
         val logger = this.loggerRef.value
         if (logger == null) {
-            HydraLog.initDefault()
+            HydraLog.initDefaultIos()
             return getOrInitLogger()
         }
         return logger
