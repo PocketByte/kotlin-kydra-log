@@ -1,0 +1,34 @@
+apply plugin: 'kotlin-platform-js'
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+    compile project(':hydra-log:hydra-log-js')
+    expectedBy project(':example:common')
+}
+
+compileKotlin2Js.kotlinOptions.sourceMap = true
+compileKotlin2Js.kotlinOptions.outputFile = "${projectDir}/build/web/js/app.js"
+compileKotlin2Js.kotlinOptions.suppressWarnings = true
+compileKotlin2Js.kotlinOptions.verbose = true
+
+build.doLast {
+    // Copy kotlin.js and kotlin-meta.js from jar into web directory
+    configurations.compile.each { File file ->
+        copy {
+            includeEmptyDirs = false
+
+            from zipTree(file.absolutePath)
+            into "${projectDir}/build/web/js/lib"
+            include { fileTreeElement ->
+                def path = fileTreeElement.path
+                path.endsWith(".js") && (path.startsWith("META-INF/resources/") || !path.startsWith("META-INF/"))
+            }
+        }
+    }
+
+    copy {
+        includeEmptyDirs = false
+        from "${buildDir}/resources/main"
+        into "${projectDir}/build/web"
+    }
+}

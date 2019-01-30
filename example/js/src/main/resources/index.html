@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hydra Log</title>
+</head>
+<body>
+<div style="display:block">
+    <label for="message_id">Enter a log message:</label>
+    <input id="message_id" name="message" value="My Log message"/>
+</div>
+
+<div>
+    <input type="checkbox" id="cb_stacktrace_id" name="cb_stacktrace" >
+    <label for="cb_stacktrace_id">Print StackTrace</label>
+</div>
+
+<button id="button_info_id" type="button" style="display:block">Print Info Log</button>
+<button id="button_debug_id" type="button" style="display:block">Print Debug Log</button>
+<button id="button_warning_id" type="button" style="display:block">Print Warning Log</button>
+<button id="button_error_id" type="button" style="display:block">Print Error Log</button>
+
+<script type="text/javascript" src="js/lib/kotlin.js"></script>
+<script type="text/javascript" src="js/lib/hydra-log-js.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
