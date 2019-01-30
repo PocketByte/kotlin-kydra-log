@@ -4,7 +4,7 @@ package ru.pocketbyte.hydra.log
  * The set of loggers wrapped into single object
  */
 class LoggerSet(
-        val loggers: Array<Logger>,
+        val loggers: Set<Logger>,
         val optimizeFunctions: Boolean = true
 ): Logger {
 

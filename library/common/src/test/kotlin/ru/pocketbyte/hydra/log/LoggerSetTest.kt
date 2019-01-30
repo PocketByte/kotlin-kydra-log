@@ -10,7 +10,7 @@ abstract class LoggerSetTest {
     fun testLogMessage() {
         val logger1 = LoggerImpl()
         val logger2 = LoggerImpl()
-        val loggerSet = LoggerSet(arrayOf(logger1, logger2))
+        val loggerSet = LoggerSet(setOf(logger1, logger2))
 
         val level = LogLevel.DEBUG
         val tag = "TEST_1"
@@ -38,7 +38,7 @@ abstract class LoggerSetTest {
     fun testLogException() {
         val logger1 = LoggerImpl()
         val logger2 = LoggerImpl()
-        val loggerSet = LoggerSet(arrayOf(logger1, logger2))
+        val loggerSet = LoggerSet(setOf(logger1, logger2))
 
         val level = LogLevel.WARNING
         val tag = "TEST_2_WARN"
@@ -65,7 +65,7 @@ abstract class LoggerSetTest {
     fun testLogFunction() {
         val logger1 = LoggerImpl()
         val logger2 = LoggerImpl()
-        val loggerSet = LoggerSet(arrayOf(logger1, logger2), optimizeFunctions = false)
+        val loggerSet = LoggerSet(setOf(logger1, logger2), optimizeFunctions = false)
 
         val level = LogLevel.INFO
         val tag = "TEST_3_func"
@@ -99,7 +99,7 @@ abstract class LoggerSetTest {
         val functionResult = function()
 
         var logger = LoggerImpl()
-        var loggerSet = LoggerSet(arrayOf(logger), optimizeFunctions = true)
+        var loggerSet = LoggerSet(setOf(logger), optimizeFunctions = true)
 
         assertNull(logger.calledMethod)
 
@@ -114,7 +114,7 @@ abstract class LoggerSetTest {
         assertNull(logger.function)
 
         logger = LoggerImpl()
-        loggerSet = LoggerSet(arrayOf(logger), optimizeFunctions = false)
+        loggerSet = LoggerSet(setOf(logger), optimizeFunctions = false)
 
         assertNull(logger.calledMethod)
 
