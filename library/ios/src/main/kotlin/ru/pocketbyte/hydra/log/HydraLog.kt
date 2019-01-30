@@ -15,10 +15,7 @@ actual object HydraLog: Logger {
     }
 
     actual override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
-        if (arguments.isEmpty())
-            this.getOrInitLogger().log(level, tag, message)
-        else
-            this.getOrInitLogger().log(level, tag) { format(message, *arguments) }
+        this.getOrInitLogger().log(level, tag, message, *arguments)
     }
 
     actual override fun log(level: LogLevel, tag: String?, exception: Throwable) {

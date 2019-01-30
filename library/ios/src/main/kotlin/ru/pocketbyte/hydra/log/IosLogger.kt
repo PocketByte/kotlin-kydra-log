@@ -4,21 +4,21 @@ import kotlinx.cinterop.*
 import platform.Foundation.*
 
 class IosLogger: Logger {
-    
+
     override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
-        NSLog(merge(level, tag, format(message, *arguments), null))
+        NSLog(logToString(level, tag, format(message, *arguments), null))
     }
 
     override fun log(level: LogLevel, tag: String?, exception: Throwable) {
-        NSLog(merge(level, tag, null, exception))
+        NSLog(logToString(level, tag, null, exception))
     }
 
     override fun log(level: LogLevel, tag: String?, function: () -> String) {
         log(level, tag, function())
     }
 
-    private fun merge(level: LogLevel, tag: String?, message: String?,
-                      exception: Throwable?): String {
+    private fun logToString(level: LogLevel, tag: String?, message: String?,
+                            exception: Throwable?): String {
         val builder = StringBuilder()
 
         builder.append(
