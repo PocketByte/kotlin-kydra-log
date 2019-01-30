@@ -1,5 +1,8 @@
 package ru.pocketbyte.hydra.log
 
+/**
+ * The Logger interface.
+ */
 interface Logger {
 
     /**

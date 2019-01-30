@@ -2,6 +2,9 @@ package ru.pocketbyte.hydra.log
 
 import android.util.Log
 
+/**
+ * Android implementation of Logger that writes logs using LogCat.
+ */
 class AndroidLogger: Logger {
 
     override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {

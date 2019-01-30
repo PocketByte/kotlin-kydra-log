@@ -1,7 +1,7 @@
 package ru.pocketbyte.hydra.log
 
 /**
- * @author Shurygin Denis
+ * JavaScript implementation of Logger that writes logs using Console.
  */
 class JsLogger : Logger {
 

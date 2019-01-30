@@ -1,8 +1,5 @@
 package ru.pocketbyte.hydra.log
 
-/**
- * @author Shurygin Denis
- */
 actual object HydraLog: Logger {
 
     private var logger: Logger? = null

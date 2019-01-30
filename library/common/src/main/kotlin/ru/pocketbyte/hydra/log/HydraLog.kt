@@ -1,9 +1,13 @@
 package ru.pocketbyte.hydra.log
 
+/**
+ * Global logger instance.
+ * You should initialize it via [init] before usage.
+ */
 expect object HydraLog: Logger {
 
     /**
-     * Init Hydra Logger instance with provided Logger
+     * Init HydraLog instance with provided Logger
      * @param logger Logger that should be user for logging
      */
     fun init(logger: Logger)

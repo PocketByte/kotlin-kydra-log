@@ -1,7 +1,13 @@
 package ru.pocketbyte.hydra.log
 
 /**
- * The set of loggers wrapped into single object
+ * The set of loggers wrapped into single Logger object.
+ *
+ * @property loggers Set of loggers
+ * @property optimizeFunctions True if function should be calculated once for all loggers,
+ * false if each function should be handled by each logger independently.
+ *
+ * @constructor Creates Loggers set.
  */
 class LoggerSet(
         val loggers: Set<Logger>,

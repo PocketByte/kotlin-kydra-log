@@ -3,6 +3,9 @@ package ru.pocketbyte.hydra.log
 import kotlinx.cinterop.*
 import platform.Foundation.*
 
+/**
+ * iOS implementation of Logger that writes logs using NSLog.
+ */
 class IosLogger: Logger {
 
     override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
