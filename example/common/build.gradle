@@ -1,6 +1,79 @@
-apply plugin: 'kotlin-platform-common'
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'com.android.library'
+
+
+version = '0.1.1'
+group = 'ru.pocketbyte.hydra.log.example_lib'
+
+android {
+    compileSdkVersion project.android_sdk_compile
+    buildToolsVersion project.android_build_tool_version
+
+    defaultConfig {
+        minSdkVersion project.android_sdk_min
+        targetSdkVersion project.android_sdk_target
+        versionCode 1
+        versionName project.version
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+kotlin {
+    targets {
+        fromPreset(presets.android, 'android')
+        fromPreset(presets.js, 'js')
+
+        final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
+                              ? presets.iosArm64 : presets.iosX64
+
+        fromPreset(iOSTarget, 'ios') {
+            binaries {
+                framework('ios_app_framework')
+            }
+        }
+    }
+
+    sourceSets {
+        // Main Source Sets
+        commonMain {
+
+            kotlin.srcDir('src/main/kotlin')
+            
+            dependencies {
+                api 'org.jetbrains.kotlin:kotlin-stdlib-common'
+                api project(':hydra-log')
+            }
+        }
+
+        androidMain {
+            dependencies {
+                api 'org.jetbrains.kotlin:kotlin-stdlib'
+                api "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            }
+        }
+
+        jsMain {
+            dependencies {
+                api 'org.jetbrains.kotlin:kotlin-stdlib'
+                api "org.jetbrains.kotlin:kotlin-stdlib-js"
+            }
+        }
+
+        iosMain { }
+    }
+}
+
+// workaround for https://youtrack.jetbrains.com/issue/KT-27170
+configurations {
+    compileClasspath
+}
 
 dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
-    api project(':hydra-log:hydra-log-common')
+//    api project(':hydra-log:hydra-log-common')
 }

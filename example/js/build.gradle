@@ -2,8 +2,8 @@ apply plugin: 'kotlin-platform-js'
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-    compile project(':hydra-log:hydra-log-js')
-    expectedBy project(':example:common')
+    compile project(':hydra-log')
+    compile project(':example:common')
 }
 
 compileKotlin2Js.kotlinOptions.sourceMap = true

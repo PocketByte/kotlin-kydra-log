@@ -407,7 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PRJ_DIR=\"$SRCROOT/../..\";\nTASK_TARGET=\"$(tr '[:lower:]' '[:upper:]' <<< ${KOTLIN_TARGET:0:1})${KOTLIN_TARGET:1}\"\n\n\"${PRJ_DIR}/gradlew\" -p \"${PRJ_DIR}/\" \":example:${TARGET_NAME}:compile${CONFIGURATION}${TASK_TARGET}KotlinNative\" \\\n-Pkonan.configuration.build.dir=\"$CONFIGURATION_BUILD_DIR\" \\\n-Pkonan.debugging.symbols=\"$DEBUGGING_SYMBOLS\"             \\\n-Pkonan.optimizations.enable=\"$KONAN_ENABLE_OPTIMIZATIONS\"\n";
+			shellScript = "PRJ_DIR=\"$SRCROOT/../..\";\nTASK_TARGET=\"$(tr '[:lower:]' '[:upper:]' <<< ${KOTLIN_TARGET:0:1})${KOTLIN_TARGET:1}\"\n\n\"${PRJ_DIR}/gradlew\" -p \"${PRJ_DIR}/\" \":example:common:linkIos_app_framework${CONFIGURATION}FrameworkIos\" \\\n-Pkonan.configuration.build.dir=\"$CONFIGURATION_BUILD_DIR\" \\\n-Pkonan.debugging.symbols=\"$DEBUGGING_SYMBOLS\"             \\\n-Pkonan.optimizations.enable=\"$KONAN_ENABLE_OPTIMIZATIONS\"\n";
 		};
 		C8FA80F321973BE200C73A8E /* CopyFramevork */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -425,7 +425,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "BUILD_TYPE=\"$(tr '[:upper:]' '[:lower:]' <<< ${CONFIGURATION:0:1})${CONFIGURATION:1}\"\nSOURCE_DIR=\"$SRCROOT/../ios/build/lib/main/${BUILD_TYPE}/${KOTLIN_TARGET}\"\n\nmkdir -p \"$CONFIGURATION_BUILD_DIR\"\ncp -r \"${SOURCE_DIR}/.\" \"$CONFIGURATION_BUILD_DIR\"\n";
+			shellScript = "BUILD_TYPE=\"$(tr '[:upper:]' '[:lower:]' <<< ${CONFIGURATION:0:1})${CONFIGURATION:1}\"\nSOURCE_DIR=\"$SRCROOT/../common/build/bin/ios/${PRODUCT_NAME}${BUILD_TYPE}Framework/\"\n\nmkdir -p \"$CONFIGURATION_BUILD_DIR\"\ncp -r \"${SOURCE_DIR}/.\" \"$CONFIGURATION_BUILD_DIR\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

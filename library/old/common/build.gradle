@@ -1,0 +1,58 @@
+//==================================================================================================
+// Publication
+//==================================================================================================
+
+apply plugin: "maven-publish"
+apply plugin: 'com.jfrog.bintray'
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+
+task generateJavadocs(type: Javadoc) {
+    source {
+        sourceSets.main.allJava
+    }
+    failOnError = false
+}
+
+task sourceDoc(type: Jar, dependsOn: generateJavadocs) {
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            groupId project.group
+            artifactId 'hydra-log-common'
+            version project.version
+            artifact sourceJar {
+                classifier "sources"
+            }
+            artifact sourceDoc {
+                classifier "javadoc"
+            }
+        }
+    }
+}
+
+bintray {
+    user = project.hasProperty('bintray.publish.user') ? project.property('bintray.publish.user') : ''
+    key = project.hasProperty('bintray.publish.apikey') ? project.property('bintray.publish.apikey') : ''
+    publish = true
+    override = false
+
+    pkg {
+        repo = "maven"
+        name = "hydra-log-common"
+        userOrg = 'pocketbyte'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/PocketByte/'
+        version {
+            name = project.version
+            released  = new Date()
+        }
+    }
+    publications = ["maven"]
+}

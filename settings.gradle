@@ -2,23 +2,20 @@ enableFeaturePreview('GRADLE_METADATA')
 
 include ':hydra-log'
 project(':hydra-log').projectDir = new File(settingsDir, './library/')
-include ':hydra-log:hydra-log-common'
-project(':hydra-log:hydra-log-common').projectDir = new File(settingsDir, './library/common/')
-include ':hydra-log:hydra-log-jvm'
-project(':hydra-log:hydra-log-jvm').projectDir = new File(settingsDir, './library/jvm/')
-include ':hydra-log:hydra-log-android'
-project(':hydra-log:hydra-log-android').projectDir = new File(settingsDir, './library/android/')
-include ':hydra-log:hydra-log-ios'
-project(':hydra-log:hydra-log-ios').projectDir = new File(settingsDir, './library/ios/')
-include ':hydra-log:hydra-log-js'
-project(':hydra-log:hydra-log-js').projectDir = new File(settingsDir, './library/js/')
+//include ':hydra-log:hydra-log-common'
+//project(':hydra-log:hydra-log-common').projectDir = new File(settingsDir, './library/common/')
+//include ':hydra-log:hydra-log-jvm'
+//project(':hydra-log:hydra-log-jvm').projectDir = new File(settingsDir, './library/jvm/')
+//include ':hydra-log:hydra-log-android'
+//project(':hydra-log:hydra-log-android').projectDir = new File(settingsDir, './library/android/')
+//include ':hydra-log:hydra-log-ios'
+//project(':hydra-log:hydra-log-ios').projectDir = new File(settingsDir, './library/ios/')
+//include ':hydra-log:hydra-log-js'
+//project(':hydra-log:hydra-log-js').projectDir = new File(settingsDir, './library/js/')
 
 // Common
 include ':example'
 project(':example').projectDir = new File(settingsDir, './example/')
 include ':example:common'
-include ':example:jvm'
 include ':example:android'
 include ':example:js'
-include ':example:ios-app-framework'
-project(':example:ios-app-framework').projectDir = new File(settingsDir, './example/ios')

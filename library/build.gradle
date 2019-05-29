@@ -1,16 +1,116 @@
-buildscript {
+apply plugin: 'kotlin-multiplatform'
+apply plugin: 'com.android.library'
 
-    repositories {
-        maven { url "https://plugins.gradle.org/m2/" }
+version = '0.1.1'
+group = 'ru.pocketbyte.hydra.log'
+
+android {
+    compileSdkVersion project.android_sdk_compile
+    buildToolsVersion project.android_build_tool_version
+
+    defaultConfig {
+        minSdkVersion project.android_sdk_min
+        targetSdkVersion project.android_sdk_target
+        versionCode 1
+        versionName project.version
     }
-
-    dependencies {
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
 }
 
-allprojects {
-    version = '0.1.1'
-    group = 'ru.pocketbyte.hydra.log'
+kotlin {
+    
+    targets {
+        fromPreset(presets.jvm, 'jvm')
+        fromPreset(presets.android, 'android')
+        fromPreset(presets.js, 'js')
+        
+        final def nativeCInterops = {
+            ns_format {
+                defFile project.file("src/nativeInterop/ns_format.def")
+            }
+        }
+
+        macosX64('macosX64') {
+            compilations.main.cinterops(nativeCInterops)
+        }
+
+        iosArm64('iosArm32') {
+            compilations.main.cinterops(nativeCInterops)
+        }
+
+        iosArm64('iosArm64') {
+            compilations.main.cinterops(nativeCInterops)
+        }
+
+        iosX64('iosX64') {
+            compilations.main.cinterops(nativeCInterops)
+        }
+    }
+
+    sourceSets {
+        // Main Source Sets
+        commonMain.dependencies {
+            api 'org.jetbrains.kotlin:kotlin-stdlib-common'
+
+        }
+
+        jvmMain {
+            dependencies {
+                api 'org.jetbrains.kotlin:kotlin-stdlib'
+            }
+        }
+
+        androidMain {
+            dependencies {
+                api 'org.jetbrains.kotlin:kotlin-stdlib'
+                api "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+            }
+        }
+
+        jsMain {
+            dependencies {
+                api 'org.jetbrains.kotlin:kotlin-stdlib'
+                api "org.jetbrains.kotlin:kotlin-stdlib-js"
+            }
+        }
+
+        create("nativeMain")
+        macosX64Main { dependsOn(sourceSets["nativeMain"]) }
+        iosArm64Main { dependsOn(sourceSets["nativeMain"]) }
+        iosArm64Main { dependsOn(sourceSets["nativeMain"]) }
+        iosX64Main { dependsOn(sourceSets["nativeMain"]) }
+
+        // ==================
+        // Test Source Sets
+        commonTest {
+            dependsOn commonMain
+            dependencies {
+                api "org.jetbrains.kotlin:kotlin-test"
+                api "org.jetbrains.kotlin:kotlin-test-junit"
+            }
+        }
+        jvmTest {
+            dependsOn commonTest
+            dependsOn jvmMain
+        }
+        androidTest.dependsOn androidMain
+        jsTest {
+            dependsOn jsMain
+            dependencies {
+                api "org.jetbrains.kotlin:kotlin-test"
+                api "org.jetbrains.kotlin:kotlin-test-js"
+            }
+        }
+//        iosTest.dependsOn iosMain
+    }
+}
+
+// workaround for https://youtrack.jetbrains.com/issue/KT-27170
+configurations {
+    compileClasspath
 }
