@@ -7,7 +7,8 @@ package ru.pocketbyte.hydra.log
 
 actual object HydraLog: AbsLogger() {
 
-    actual override val logger = getOrInitLogger()
+    actual override val logger
+        get() = getOrInitLogger()
 
     private var innerLogger: Logger? = null
 

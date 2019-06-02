@@ -1,7 +1,7 @@
 apply plugin: 'kotlin-multiplatform'
 apply plugin: 'com.android.library'
 
-version = '0.1.1'
+version = '0.2.0'
 group = 'ru.pocketbyte.hydra.log'
 
 android {
@@ -35,7 +35,7 @@ kotlin {
             }
         }
 
-        macosX64('macosX64') {
+        macosX64('macos') {
             compilations.main.cinterops(nativeCInterops)
         }
 
@@ -79,11 +79,10 @@ kotlin {
             }
         }
 
-        create("nativeMain")
-        macosX64Main { dependsOn(sourceSets["nativeMain"]) }
-        iosArm64Main { dependsOn(sourceSets["nativeMain"]) }
-        iosArm64Main { dependsOn(sourceSets["nativeMain"]) }
-        iosX64Main { dependsOn(sourceSets["nativeMain"]) }
+        macosMain {}
+        iosArm64Main { dependsOn macosMain }
+        iosArm32Main { dependsOn macosMain }
+        iosX64Main { dependsOn macosMain }
 
         // ==================
         // Test Source Sets
@@ -95,10 +94,13 @@ kotlin {
             }
         }
         jvmTest {
-            dependsOn commonTest
             dependsOn jvmMain
+            dependsOn commonTest
         }
-        androidTest.dependsOn androidMain
+        androidTest {
+            dependsOn androidMain
+            dependsOn commonTest
+        }
         jsTest {
             dependsOn jsMain
             dependencies {
@@ -106,11 +108,51 @@ kotlin {
                 api "org.jetbrains.kotlin:kotlin-test-js"
             }
         }
-//        iosTest.dependsOn iosMain
+
+        macosTest {
+            dependsOn macosMain
+            dependsOn commonTest
+        }
+        iosArm64Test.dependsOn macosTest
+        iosArm32Test.dependsOn macosTest
+        iosX64Test.dependsOn macosTest
     }
 }
 
-// workaround for https://youtrack.jetbrains.com/issue/KT-27170
-configurations {
-    compileClasspath
+//==================================================================================================
+// Publication
+//==================================================================================================
+
+apply plugin: "maven-publish"
+apply plugin: 'com.jfrog.bintray'
+
+bintrayUpload.doFirst {
+    publications = []
+
+    def pubs = project.extensions.getByName("publishing").getPublications()
+
+    for(pub in pubs) {
+        publications += pub.name
+        println("groupId ${pub.groupId}, artifactId ${pub.artifactId}")
+    }
+}
+
+// FIXME common artifact doesn't upload
+bintray {
+    user = project.hasProperty('bintray.publish.user') ? project.property('bintray.publish.user') : ''
+    key = project.hasProperty('bintray.publish.apikey') ? project.property('bintray.publish.apikey') : ''
+    publish = true
+    override = false
+
+    pkg {
+        repo = "maven"
+        name = "hydra-log"
+        userOrg = 'pocketbyte'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/PocketByte/'
+        version {
+            name = project.version
+            released  = new Date()
+        }
+    }
 }

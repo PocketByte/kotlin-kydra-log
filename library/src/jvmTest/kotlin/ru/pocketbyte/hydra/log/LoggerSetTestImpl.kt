@@ -5,5 +5,4 @@
 
 package ru.pocketbyte.hydra.log
 
-//fixme
-//actual class LoggerSetTestImpl: LoggerSetTest()
+actual class LoggerSetTestImpl: LoggerSetTest()

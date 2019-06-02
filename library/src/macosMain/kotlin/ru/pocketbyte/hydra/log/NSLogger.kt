@@ -11,7 +11,7 @@ import ru.pocketbyte.hydra.log.format.*
 /**
  * iOS implementation of Logger that writes logs using NSLog.
  */
-class IosLogger: Logger {
+class NSLogger: Logger {
 
     override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
         NSLog(logToString(level, tag, format(message, *arguments), null))
@@ -62,36 +62,39 @@ class IosLogger: Logger {
     }
 
     private fun format(format: String, vararg arguments: Any): String {
+        val macOsFormat = format.replace("%s", "%@")
+
+        // Variadic function not supported yet. Temporary workaround
         return when(arguments.size) {
-            0 -> format
-            1 -> ns_format(format,
+            0 -> macOsFormat
+            1 -> ns_format(macOsFormat,
                     arguments[0])!!
-            2 -> ns_format(format,
+            2 -> ns_format(macOsFormat,
                     arguments[0],
                     arguments[1])!!
-            3 -> ns_format(format,
+            3 -> ns_format(macOsFormat,
                     arguments[0],
                     arguments[1],
                     arguments[2])!!
-            4 -> ns_format(format,
+            4 -> ns_format(macOsFormat,
                     arguments[0],
                     arguments[1],
                     arguments[2],
                     arguments[3])!!
-            5 -> ns_format(format,
+            5 -> ns_format(macOsFormat,
                     arguments[0],
                     arguments[1],
                     arguments[2],
                     arguments[3],
                     arguments[4])!!
-            6 -> ns_format(format,
+            6 -> ns_format(macOsFormat,
                     arguments[0],
                     arguments[1],
                     arguments[2],
                     arguments[3],
                     arguments[4],
                     arguments[5])!!
-            7 -> ns_format(format,
+            7 -> ns_format(macOsFormat,
                     arguments[0],
                     arguments[1],
                     arguments[2],
@@ -99,7 +102,7 @@ class IosLogger: Logger {
                     arguments[4],
                     arguments[5],
                     arguments[6])!!
-            8 -> ns_format(format,
+            8 -> ns_format(macOsFormat,
                     arguments[0],
                     arguments[1],
                     arguments[2],
@@ -108,7 +111,7 @@ class IosLogger: Logger {
                     arguments[5],
                     arguments[6],
                     arguments[7])!!
-            9 -> ns_format(format,
+            9 -> ns_format(macOsFormat,
                     arguments[0],
                     arguments[1],
                     arguments[2],
@@ -118,7 +121,7 @@ class IosLogger: Logger {
                     arguments[6],
                     arguments[7],
                     arguments[8])!!
-            else -> ns_format(format,
+            else -> ns_format(macOsFormat,
                     arguments[0],
                     arguments[1],
                     arguments[2],

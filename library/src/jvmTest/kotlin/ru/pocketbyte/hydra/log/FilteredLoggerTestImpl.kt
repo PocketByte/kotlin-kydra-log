@@ -5,5 +5,4 @@
 
 package ru.pocketbyte.hydra.log
 
-//fixme
-//actual open class FilteredLoggerTestImpl: FilteredLoggerTest()
+actual open class FilteredLoggerTestImpl: FilteredLoggerTest()

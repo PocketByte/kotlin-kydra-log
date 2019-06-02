@@ -72,8 +72,3 @@ kotlin {
 configurations {
     compileClasspath
 }
-
-dependencies {
-    api "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
-//    api project(':hydra-log:hydra-log-common')
-}

@@ -11,7 +11,7 @@ import kotlin.native.concurrent.freeze
 actual object HydraLog: AbsLogger() {
 
     actual override val logger
-            get() = getOrInitLogger()
+        get() = getOrInitLogger()
 
     private var loggerRef: AtomicReference<Logger?> = AtomicReference(null)
 

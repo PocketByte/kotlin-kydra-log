@@ -6,7 +6,7 @@
 package ru.pocketbyte.hydra.log
 
 actual fun HydraLog.initDefault(level: LogLevel?, tags: Set<String?>?) {
-    this.initDefaultIos(level, tags)
+    this.initDefaultNS(level, tags)
 }
 
 /**
@@ -16,9 +16,9 @@ actual fun HydraLog.initDefault(level: LogLevel?, tags: Set<String?>?) {
  * @param tags Set of tags that can be passed.
  * Null if filter by Tag shouldn't be used.
  */
-fun HydraLog.initDefaultIos(level: LogLevel? = null, tags: Set<String?>? = null) {
+fun HydraLog.initDefaultNS(level: LogLevel? = null, tags: Set<String?>? = null) {
     if (level == null && tags?.isNotEmpty() != true)
-        init(IosLogger())
+        init(NSLogger())
     else
-        init(FilteredLogger(IosLogger(), level, tags))
+        init(FilteredLogger(NSLogger(), level, tags))
 }

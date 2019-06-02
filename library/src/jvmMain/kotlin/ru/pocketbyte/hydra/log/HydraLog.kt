@@ -7,13 +7,13 @@ package ru.pocketbyte.hydra.log
 
 actual object HydraLog: AbsLogger() {
 
-    actual override val logger = getOrInitLogger()
+    actual override val logger
+        get() = getOrInitLogger()
 
     private var innerLogger: Logger? = null
-    private val LOCK = Object()
 
     actual fun init(logger: Logger) {
-        synchronized(this.LOCK) {
+        synchronized(this) {
             if (this.innerLogger != null)
                 throw IllegalStateException("HydraLog already initialized")
             this.innerLogger = logger
