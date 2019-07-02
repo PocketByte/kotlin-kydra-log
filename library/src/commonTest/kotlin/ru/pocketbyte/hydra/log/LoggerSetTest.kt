@@ -70,7 +70,7 @@ abstract class LoggerSetTest {
     fun testLogFunction() {
         val logger1 = LoggerImpl()
         val logger2 = LoggerImpl()
-        val loggerSet = LoggerSet(setOf(logger1, logger2), optimizeFunctions = false)
+        val loggerSet = LoggerSet(setOf(logger1, logger2), calcFunctions = false)
 
         val level = LogLevel.INFO
         val tag = "TEST_3_func"
@@ -97,14 +97,14 @@ abstract class LoggerSetTest {
 
 
     @Test
-    fun testLogFunctionOptimization() {
+    fun testLogFunctionCalculation() {
         val level = LogLevel.INFO
         val tag = "TEST_4_func_optimization"
         val function = { "Result of function" }
         val functionResult = function()
 
         var logger = LoggerImpl()
-        var loggerSet = LoggerSet(setOf(logger), optimizeFunctions = true)
+        var loggerSet = LoggerSet(setOf(logger), calcFunctions = true)
 
         assertNull(logger.calledMethod)
 
@@ -119,7 +119,7 @@ abstract class LoggerSetTest {
         assertNull(logger.function)
 
         logger = LoggerImpl()
-        loggerSet = LoggerSet(setOf(logger), optimizeFunctions = false)
+        loggerSet = LoggerSet(setOf(logger), calcFunctions = false)
 
         assertNull(logger.calledMethod)
 

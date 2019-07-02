@@ -9,14 +9,14 @@ package ru.pocketbyte.hydra.log
  * The set of loggers wrapped into single Logger object.
  *
  * @property loggers Set of loggers
- * @property optimizeFunctions True if function should be calculated once for all loggers,
+ * @property calcFunctions True if function should be calculated once for all loggers,
  * false if each function should be handled by each logger independently.
  *
  * @constructor Creates Loggers set.
  */
 class LoggerSet(
         val loggers: Set<Logger>,
-        val optimizeFunctions: Boolean = true
+        val calcFunctions: Boolean = true
 ): Logger {
 
     override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
@@ -32,7 +32,7 @@ class LoggerSet(
     }
 
     override fun log(level: LogLevel, tag: String?, function: () -> String) {
-        if (optimizeFunctions)
+        if (calcFunctions)
             log(level, tag, function())
         else this.loggers.forEach {
             it.log(level, tag, function)
