@@ -1,12 +1,12 @@
 # Kotlin Hydra Log
 Kotlin Hydra Log - Kotlin Multiplatform Library that allows to write logs in common module. The way how logs will written defines for each platform independently.
 
-##### How to use in Common module:
-First add common library as dependency in common **`build.gradle`**:
+##### How to use:
+Add common library as dependency in common **`build.gradle`**:
 ```gradle
 dependencies {
     ...
-    implementation 'ru.pocketbyte.hydra.log:hydra-log-common:0.1.1'
+    implementation 'ru.pocketbyte.hydra.log:hydra-log-common:1.0.0'
 }
 ```
 Then you able to use HydraLog in common code:
@@ -14,34 +14,6 @@ Then you able to use HydraLog in common code:
 HydraLog.debug("TEST_TAG", "Debug log message")
 HydraLog.info("TEST_TAG", "Info log message")
 ```
-
-##### How to use in Android module:
-To make it work in Android add following dependency into Android **`build.gradle`**:
-```gradle
-dependencies {
-    ...
-    implementation 'ru.pocketbyte.hydra.log:hydra-log-android:0.1.1'
-}
-```
-Then init HydraLog in Application class:
-```Kotlin
-class MyApplication: Application() {
-    override fun onCreate() {
-        super.onCreate()
-        HydraLog.initDefault()
-    }
-}
-```
-
-##### How to use in iOS module:
-To make it work in iOS add following dependency into iOS **`build.gradle`**:
-```gradle
-dependencies {
-    ...
-    implementation 'ru.pocketbyte.hydra.log:hydra-log-ios:0.1.1'
-}
-```
-No need to init HydraLog as it was done for Android, iOS library will do it automatically.
 
 ##### Custom loggers:
 If you want to implement your own custom logger you should implement interface **`ru.pocketbyte.hydra.log.Logger`**:
@@ -70,6 +42,7 @@ Then you should init HydraLog with your logger:
 ```Kotlin
 HydraLog.init(MyLogger())
 ```
+**NOTE:** Any logging will initialize HydraLog with default Logger. Re-initialization will lead to IllegalStateException.
 
 ## License
 ```

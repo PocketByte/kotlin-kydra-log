@@ -1,7 +1,8 @@
 apply plugin: 'kotlin-multiplatform'
 apply plugin: 'com.android.library'
 
-version = '0.2.0'
+
+version = '1.0.0'
 group = 'ru.pocketbyte.hydra.log'
 
 android {
@@ -29,27 +30,10 @@ kotlin {
         fromPreset(presets.android, 'android')
         fromPreset(presets.js, 'js')
         
-        final def nativeCInterops = {
-            ns_format {
-                defFile project.file("src/nativeInterop/ns_format.def")
-            }
-        }
-
-        macosX64('macos') {
-            compilations.main.cinterops(nativeCInterops)
-        }
-
-        iosArm64('iosArm32') {
-            compilations.main.cinterops(nativeCInterops)
-        }
-
-        iosArm64('iosArm64') {
-            compilations.main.cinterops(nativeCInterops)
-        }
-
-        iosX64('iosX64') {
-            compilations.main.cinterops(nativeCInterops)
-        }
+        macosX64('macos')
+        iosArm64('iosArm32')
+        iosArm64('iosArm64')
+        iosX64('iosX64')
     }
 
     sourceSets {
@@ -124,35 +108,40 @@ kotlin {
 //==================================================================================================
 
 apply plugin: "maven-publish"
-apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
 
-bintrayUpload.doFirst {
-    publications = []
-
-    def pubs = project.extensions.getByName("publishing").getPublications()
-
-    for(pub in pubs) {
-        publications += pub.name
-        println("groupId ${pub.groupId}, artifactId ${pub.artifactId}")
+publishing {
+    repositories {
+        maven {
+            url = "https://api.bintray.com/content/pocketbyte/maven/${project.name}/${project.version}"
+            credentials {
+                username project.hasProperty('bintray.publish.user') ? project.property('bintray.publish.user') : ''
+                password project.hasProperty('bintray.publish.apikey') ? project.property('bintray.publish.apikey') : ''
+            }
+        }
     }
 }
 
-// FIXME common artifact doesn't upload
-bintray {
-    user = project.hasProperty('bintray.publish.user') ? project.property('bintray.publish.user') : ''
-    key = project.hasProperty('bintray.publish.apikey') ? project.property('bintray.publish.apikey') : ''
-    publish = true
-    override = false
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                groupId project.group
+                artifactId "${project.name}-android"
+            }
+            withXml {
+                def root = asNode()
 
-    pkg {
-        repo = "maven"
-        name = "hydra-log"
-        userOrg = 'pocketbyte'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/PocketByte/'
-        version {
-            name = project.version
-            released  = new Date()
+                def dependencies = root.get('dependencies') ?: root.appendNode('dependencies')
+
+                // Add common dependency
+                def commonDependency = dependencies.appendNode('dependency')
+                commonDependency.appendNode('groupId', project.group)
+                commonDependency.appendNode('artifactId', "${project.name}-jvm")
+                commonDependency.appendNode('version', project.version)
+                commonDependency.appendNode('scope', 'runtime')
+            }
         }
     }
 }

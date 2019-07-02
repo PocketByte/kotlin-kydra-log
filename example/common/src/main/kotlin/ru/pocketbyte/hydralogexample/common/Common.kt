@@ -27,6 +27,14 @@ object Common {
         printLog(LogLevel.ERROR, message, stackTrace)
     }
 
+    fun print(message: String, arguments: String) {
+        HydraLog.info(
+                tag = LOG_TAG,
+                message= message,
+                arguments= *(arguments.split(",").map { it.trim() }.toTypedArray())
+        )
+    }
+
     private fun printLog(level: LogLevel, message: String, stackTrace: Boolean) {
         if (stackTrace)
             HydraLog.log(level, LOG_TAG, RuntimeException(message))

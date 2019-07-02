@@ -46,7 +46,7 @@ kotlin {
             
             dependencies {
                 api 'org.jetbrains.kotlin:kotlin-stdlib-common'
-                api project(':hydra-log')
+                api 'ru.pocketbyte.hydra.log:hydra-log:1.0.0'
             }
         }
 

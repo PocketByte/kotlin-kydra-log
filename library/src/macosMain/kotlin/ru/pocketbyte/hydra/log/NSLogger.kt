@@ -6,7 +6,6 @@
 package ru.pocketbyte.hydra.log
 
 import platform.Foundation.*
-import ru.pocketbyte.hydra.log.format.*
 
 /**
  * iOS implementation of Logger that writes logs using NSLog.
@@ -64,74 +63,94 @@ class NSLogger: Logger {
     private fun format(format: String, vararg arguments: Any): String {
         val macOsFormat = format.replace("%s", "%@")
 
-        // Variadic function not supported yet. Temporary workaround
+        // Variadic function not well supported yet. Temporary workaround
         return when(arguments.size) {
             0 -> macOsFormat
-            1 -> ns_format(macOsFormat,
-                    arguments[0])!!
-            2 -> ns_format(macOsFormat,
-                    arguments[0],
-                    arguments[1])!!
-            3 -> ns_format(macOsFormat,
-                    arguments[0],
-                    arguments[1],
-                    arguments[2])!!
-            4 -> ns_format(macOsFormat,
-                    arguments[0],
-                    arguments[1],
-                    arguments[2],
-                    arguments[3])!!
-            5 -> ns_format(macOsFormat,
-                    arguments[0],
-                    arguments[1],
-                    arguments[2],
-                    arguments[3],
-                    arguments[4])!!
-            6 -> ns_format(macOsFormat,
-                    arguments[0],
-                    arguments[1],
-                    arguments[2],
-                    arguments[3],
-                    arguments[4],
-                    arguments[5])!!
-            7 -> ns_format(macOsFormat,
-                    arguments[0],
-                    arguments[1],
-                    arguments[2],
-                    arguments[3],
-                    arguments[4],
-                    arguments[5],
-                    arguments[6])!!
-            8 -> ns_format(macOsFormat,
-                    arguments[0],
-                    arguments[1],
-                    arguments[2],
-                    arguments[3],
-                    arguments[4],
-                    arguments[5],
-                    arguments[6],
-                    arguments[7])!!
-            9 -> ns_format(macOsFormat,
-                    arguments[0],
-                    arguments[1],
-                    arguments[2],
-                    arguments[3],
-                    arguments[4],
-                    arguments[5],
-                    arguments[6],
-                    arguments[7],
-                    arguments[8])!!
-            else -> ns_format(macOsFormat,
-                    arguments[0],
-                    arguments[1],
-                    arguments[2],
-                    arguments[3],
-                    arguments[4],
-                    arguments[5],
-                    arguments[6],
-                    arguments[7],
-                    arguments[8],
-                    arguments[9])!!
+            1 -> NSString.create(format = macOsFormat,
+                    args = *arrayOf(
+                        arguments[0].toString() as NSString
+                    )) as String
+            2 -> NSString.create(format = macOsFormat,
+                    args = *arrayOf(
+                        arguments[0].toString() as NSString,
+                        arguments[1].toString() as NSString
+                    )) as String
+            3 -> NSString.create(format = macOsFormat,
+                    args = *arrayOf(
+                        arguments[0].toString() as NSString,
+                        arguments[1].toString() as NSString,
+                        arguments[2].toString() as NSString
+                    )) as String
+            4 -> NSString.create(format = macOsFormat,
+                    args = *arrayOf(
+                        arguments[0].toString() as NSString,
+                        arguments[1].toString() as NSString,
+                        arguments[2].toString() as NSString,
+                        arguments[3].toString() as NSString
+                    )) as String
+            5 -> NSString.create(format = macOsFormat,
+                    args = *arrayOf(
+                        arguments[0].toString() as NSString,
+                        arguments[1].toString() as NSString,
+                        arguments[2].toString() as NSString,
+                        arguments[3].toString() as NSString,
+                        arguments[4].toString() as NSString
+                    )) as String
+            6 -> NSString.create(format = macOsFormat,
+                    args = *arrayOf(
+                        arguments[0].toString() as NSString,
+                        arguments[1].toString() as NSString,
+                        arguments[2].toString() as NSString,
+                        arguments[3].toString() as NSString,
+                        arguments[4].toString() as NSString,
+                        arguments[5].toString() as NSString
+                    )) as String
+            7 -> NSString.create(format = macOsFormat,
+                    args = *arrayOf(
+                        arguments[0].toString() as NSString,
+                        arguments[1].toString() as NSString,
+                        arguments[2].toString() as NSString,
+                        arguments[3].toString() as NSString,
+                        arguments[4].toString() as NSString,
+                        arguments[5].toString() as NSString,
+                        arguments[6].toString() as NSString
+                    )) as String
+            8 -> NSString.create(format = macOsFormat,
+                    args = *arrayOf(
+                        arguments[0].toString() as NSString,
+                        arguments[1].toString() as NSString,
+                        arguments[2].toString() as NSString,
+                        arguments[3].toString() as NSString,
+                        arguments[4].toString() as NSString,
+                        arguments[5].toString() as NSString,
+                        arguments[6].toString() as NSString,
+                        arguments[7].toString() as NSString
+                    )) as String
+            9 -> NSString.create(format = macOsFormat,
+                    args = *arrayOf(
+                        arguments[0].toString() as NSString,
+                        arguments[1].toString() as NSString,
+                        arguments[2].toString() as NSString,
+                        arguments[3].toString() as NSString,
+                        arguments[4].toString() as NSString,
+                        arguments[5].toString() as NSString,
+                        arguments[6].toString() as NSString,
+                        arguments[7].toString() as NSString,
+                        arguments[8].toString() as NSString
+                    )) as String
+            else -> NSString.create(format = macOsFormat,
+                    args = *arrayOf(
+                        arguments[0].toString() as NSString,
+                        arguments[1].toString() as NSString,
+                        arguments[2].toString() as NSString,
+                        arguments[3].toString() as NSString,
+                        arguments[4].toString() as NSString,
+                        arguments[5].toString() as NSString,
+                        arguments[6].toString() as NSString,
+                        arguments[7].toString() as NSString,
+                        arguments[8].toString() as NSString,
+                        arguments[9].toString() as NSString
+                    )) as String
         }
     }
 

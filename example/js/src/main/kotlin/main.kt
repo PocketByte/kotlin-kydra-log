@@ -11,7 +11,7 @@ import kotlin.browser.window
 
 fun main(args: Array<String>) {
     window.onload = {
-        val input = document.getElementById("message_id") as HTMLInputElement
+        val inputMessage = document.getElementById("message_id") as HTMLInputElement
         val cbStacktrace = document.getElementById("cb_stacktrace_id") as HTMLInputElement
 
         val buttonInfo = document.getElementById("button_info_id")
@@ -20,16 +20,25 @@ fun main(args: Array<String>) {
         val buttonError = document.getElementById("button_error_id")
 
         buttonInfo?.addEventListener("click", fun(_: Event) {
-            Common.printInfo(input.value, cbStacktrace.checked)
+            Common.printInfo(inputMessage.value, cbStacktrace.checked)
         })
         buttonDebug?.addEventListener("click", fun(_: Event) {
-            Common.printDebug(input.value, cbStacktrace.checked)
+            Common.printDebug(inputMessage.value, cbStacktrace.checked)
         })
         buttonWarning?.addEventListener("click", fun(_: Event) {
-            Common.printWarning(input.value, cbStacktrace.checked)
+            Common.printWarning(inputMessage.value, cbStacktrace.checked)
         })
         buttonError?.addEventListener("click", fun(_: Event) {
-            Common.printError(input.value, cbStacktrace.checked)
+            Common.printError(inputMessage.value, cbStacktrace.checked)
+        })
+
+        val inputMessage2 = document.getElementById("message_2_id") as HTMLInputElement
+        val inputArguments2 = document.getElementById("arguments_2_id") as HTMLInputElement
+
+        val buttonPrint = document.getElementById("button_print_id")
+
+        buttonPrint?.addEventListener("click", fun(_: Event) {
+            Common.print(inputMessage2.value, inputArguments2.value)
         })
     }
 }
