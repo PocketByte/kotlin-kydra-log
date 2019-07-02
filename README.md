@@ -42,7 +42,7 @@ Then you should init HydraLog with your logger:
 ```Kotlin
 HydraLog.init(MyLogger())
 ```
-**NOTE:** Any logging will initialize HydraLog with default Logger. Re-initialization will lead to IllegalStateException.
+**NOTE:** Initialization can be called only once. Re-initialization will throw IllegalStateException. Any logging via not initialized HydraLog will call initialisation with default Logger.
 
 ## License
 ```
