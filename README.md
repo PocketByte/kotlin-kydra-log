@@ -4,6 +4,9 @@ Kotlin Hydra Log - Kotlin Multiplatform Library that allows to write logs in com
 ##### How to use:
 Add common library as dependency in common **`build.gradle`**:
 ```gradle
+repositories {
+    maven { url "https://dl.bintray.com/pocketbyte/maven/" }
+}
 dependencies {
     ...
     implementation 'ru.pocketbyte.hydra.log:hydra-log-common:1.0.0'
