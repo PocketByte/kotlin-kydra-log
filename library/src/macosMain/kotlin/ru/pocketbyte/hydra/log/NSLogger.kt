@@ -13,19 +13,18 @@ import platform.Foundation.*
 class NSLogger: Logger {
 
     override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
-        NSLog(logToString(level, tag, format(message, *arguments), null))
+        NSLog(logToString(level, tag, format(message, *arguments)))
     }
 
     override fun log(level: LogLevel, tag: String?, exception: Throwable) {
-        NSLog(logToString(level, tag, null, exception))
+        NSLog(logToString(level, tag, exceptionToString(exception)))
     }
 
     override fun log(level: LogLevel, tag: String?, function: () -> String) {
         log(level, tag, function())
     }
 
-    private fun logToString(level: LogLevel, tag: String?, message: String?,
-                            exception: Throwable?): String {
+    private fun logToString(level: LogLevel, tag: String?, message: String): String {
         val builder = StringBuilder()
 
         builder.append(
@@ -43,18 +42,21 @@ class NSLogger: Logger {
             builder.append(tag)
 
         builder.append(": ")
+        builder.append(message)
 
-        if (message?.isNotEmpty() == true)
-            builder.append(message)
-        else if(exception != null) {
-            builder.append(exception::class.qualifiedName)
+        return builder.toString()
+    }
 
-            if (exception.message != null)
-                builder.append(": ").append(exception.message!!)
+    private fun exceptionToString(exception: Throwable): String {
+        val builder = StringBuilder()
 
-            exception.getStackTrace().forEach {
-                builder.append("\n").append(it)
-            }
+        builder.append(exception::class.qualifiedName)
+
+        if (exception.message != null)
+            builder.append(": ").append(exception.message!!)
+
+        exception.getStackTrace().forEach {
+            builder.append("\n").append(it)
         }
 
         return builder.toString()
