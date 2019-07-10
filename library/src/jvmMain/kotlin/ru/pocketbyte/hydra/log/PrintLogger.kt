@@ -5,7 +5,7 @@
 
 package ru.pocketbyte.hydra.log
 
-import platform.Foundation.*
+import java.lang.String.format
 
 /**
  * iOS implementation of Logger that writes logs using NSLog.
@@ -21,7 +21,7 @@ class PrintLogger: Logger {
     }
 
     override fun log(level: LogLevel, tag: String?, function: () -> String) {
-        println(level, tag, function())
+        log(level, tag, function())
     }
 
     private fun logToString(level: LogLevel, tag: String?, message: String): String {
@@ -55,7 +55,7 @@ class PrintLogger: Logger {
         if (exception.message != null)
             builder.append(": ").append(exception.message!!)
 
-        exception.getStackTrace().forEach {
+        exception.stackTrace.forEach {
             builder.append("\n").append(it)
         }
 
