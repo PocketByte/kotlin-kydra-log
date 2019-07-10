@@ -10,11 +10,12 @@ import ios_app_framework
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var textMessage: UITextField?
-    @IBOutlet weak var switchStackTrace: UISwitch?
+    @IBOutlet weak var textMessage: UITextField!
+    @IBOutlet weak var switchStackTrace: UISwitch!
+    @IBOutlet weak var switchAsync: UISwitch!
     
-    @IBOutlet weak var textMessage2: UITextField?
-    @IBOutlet weak var textArguments2: UITextField?
+    @IBOutlet weak var textMessage2: UITextField!
+    @IBOutlet weak var textArguments2: UITextField!
     
     private let commonModule: Common = Common()
     
@@ -23,23 +24,67 @@ class ViewController: UIViewController {
     }
     
     @IBAction func actionPrintInfo(_ sender: Any?) {
-        commonModule.printInfo(message: self.textMessage?.text ?? "", stackTrace: self.switchStackTrace?.isOn ?? false)
+        if switchAsync.isOn {
+            DispatchQueue.global(qos: .background).async {
+                self.doPrintInfo()
+            }
+        } else {
+            doPrintInfo()
+        }
     }
     
     @IBAction func actionPrintDebug(_ sender: Any?) {
-        commonModule.printDebug(message: self.textMessage?.text ?? "", stackTrace: self.switchStackTrace?.isOn ?? false)
+        if switchAsync.isOn {
+            DispatchQueue.global(qos: .background).async {
+                self.doPrintDebug()
+            }
+        } else {
+            doPrintDebug()
+        }
     }
     
     @IBAction func actionPrintWarning(_ sender: Any?) {
-        commonModule.printWarning(message: self.textMessage?.text ?? "", stackTrace: self.switchStackTrace?.isOn ?? false)
+        if switchAsync.isOn {
+            DispatchQueue.global(qos: .background).async {
+                self.doPrintWarning()
+            }
+        } else {
+            doPrintWarning()
+        }
     }
     
     @IBAction func actionPrintError(_ sender: Any?) {
-        commonModule.printError(message: self.textMessage?.text ?? "", stackTrace: self.switchStackTrace?.isOn ?? false)
+        if switchAsync.isOn {
+            DispatchQueue.global(qos: .background).async {
+                self.doPrintError()
+            }
+        } else {
+            doPrintError()
+        }
     }
     
     @IBAction func actionPrint2(_ sender: Any?) {
-        commonModule.print(message: self.textMessage2?.text ?? "", arguments: self.textArguments2?.text ?? "")
+        doPrint2()
+    }
+    
+    private func doPrintInfo() {
+        commonModule.printInfo(message: self.textMessage.text ?? "", stackTrace: self.switchStackTrace.isOn)
+    }
+    
+    private func doPrintDebug() {
+        commonModule.printDebug(message: self.textMessage?.text ?? "", stackTrace: self.switchStackTrace.isOn)
+    }
+    
+    private func doPrintWarning() {
+        commonModule.printWarning(message: self.textMessage?.text ?? "", stackTrace: self.switchStackTrace.isOn)
+    }
+    
+    private func doPrintError() {
+        commonModule.printError(message: self.textMessage?.text ?? "", stackTrace: self.switchStackTrace.isOn)
+    }
+    
+    private func doPrint2() {
+        commonModule.print(message: self.textMessage2.text ?? "", arguments: self.textArguments2.text ?? "")
     }
 
 }
