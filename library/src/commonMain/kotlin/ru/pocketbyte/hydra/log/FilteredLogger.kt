@@ -14,10 +14,10 @@ package ru.pocketbyte.hydra.log
  *
  * @constructor Creates filtered logger depends on provided filter function.
  */
-class FilteredLogger(
-        val logger: Logger,
+open class FilteredLogger(
+        logger: Logger,
         val filter: (level: LogLevel, tag: String?) -> Boolean
-) : Logger {
+) : LoggerWrapper(logger) {
 
     /**
      * Creates filtered logger depends on provided log level and set of tags.
@@ -35,19 +35,19 @@ class FilteredLogger(
 
     override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
         if (filter(level, tag)) {
-            logger.log(level, tag, message, *arguments)
+            super.log(level, tag, message, *arguments)
         }
     }
 
     override fun log(level: LogLevel, tag: String?, exception: Throwable) {
         if (filter(level, tag)) {
-            logger.log(level, tag, exception)
+            super.log(level, tag, exception)
         }
     }
 
     override fun log(level: LogLevel, tag: String?, function: () -> String) {
         if (filter(level, tag)) {
-            logger.log(level, tag, function)
+            super.log(level, tag, function)
         }
     }
 }
