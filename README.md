@@ -14,8 +14,10 @@ dependencies {
 ```
 Then you able to use HydraLog in common code:
 ```Kotlin
-HydraLog.debug("TEST_TAG", "Debug log message")
-HydraLog.info("TEST_TAG", "Info log message")
+HydraLog.info("Info log message")
+HydraLog.debug("Debug log message")
+HydraLog.warn("Warning log message")
+HydraLog.error("Error log message")
 ```
 
 ##### Custom loggers:
