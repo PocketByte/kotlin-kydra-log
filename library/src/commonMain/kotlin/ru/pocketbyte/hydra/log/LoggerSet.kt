@@ -14,7 +14,7 @@ package ru.pocketbyte.hydra.log
  *
  * @constructor Creates Loggers set.
  */
-class LoggerSet(
+open class LoggerSet(
         val loggers: Set<Logger>,
         val calcFunctions: Boolean = true
 ): Logger {

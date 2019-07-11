@@ -10,7 +10,7 @@ import android.util.Log
 /**
  * Android implementation of Logger that writes logs using LogCat.
  */
-class AndroidLogger: Logger {
+open class AndroidLogger: Logger {
 
     override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
         val logMessage = String.format(message, *arguments)

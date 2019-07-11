@@ -8,7 +8,7 @@ package ru.pocketbyte.hydra.log
 /**
  * JavaScript implementation of Logger that writes logs using Console.
  */
-class JsLogger : Logger {
+open class JsLogger : Logger {
 
     override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
         when(level) {
@@ -37,7 +37,7 @@ class JsLogger : Logger {
         log(level, tag, function())
     }
 
-    private fun logToString(tag: String?, message: String): String {
+    protected open fun logToString(tag: String?, message: String): String {
         val builder = StringBuilder()
 
         if (tag?.isNotEmpty() == true)
