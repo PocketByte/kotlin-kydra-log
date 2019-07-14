@@ -24,6 +24,10 @@ open class PrintLogger: AbsPrintLogger() {
         return exception.stackTrace.joinToString("\n")
     }
 
+    override fun qualifiedName(exception: Throwable): String {
+        return exception::class.qualifiedName!!
+    }
+
     protected open fun timestamp(): String {
         return dateFormat.format(Date())
     }

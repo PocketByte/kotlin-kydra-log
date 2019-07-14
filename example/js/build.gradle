@@ -2,7 +2,7 @@ apply plugin: 'kotlin-platform-js'
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-    compile 'ru.pocketbyte.hydra.log:hydra-log:0.2.0'
+    compile project.hydra_log_dependency
     compile project(':example:common')
 }
 

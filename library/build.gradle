@@ -1,9 +1,8 @@
-apply plugin: 'kotlin-multiplatform'
-apply plugin: 'com.android.library'
+apply plugin: "com.android.library"
+apply plugin: "kotlin-multiplatform"
 
-
-version = '1.0.0'
-group = 'ru.pocketbyte.hydra.log'
+version = project.hydra_log_version
+group = "ru.pocketbyte.hydra"
 
 android {
     compileSdkVersion project.android_sdk_compile
@@ -24,23 +23,46 @@ android {
 }
 
 kotlin {
-    
+    android {
+        publishLibraryVariants("release")
+    }
+
     targets {
-        fromPreset(presets.jvm, 'jvm')
-        fromPreset(presets.android, 'android')
-        fromPreset(presets.js, 'js')
-        
-        macosX64('macos')
-        iosArm64('iosArm32')
-        iosArm64('iosArm64')
-        iosX64('iosX64')
+        jvm("jvm")
+        android("android")
+
+        js("js")
+
+        macosX64("macos")
+        iosX64("iosX64")
+        iosArm64("iosArm64")
+        iosArm32("iosArm32")
+
+        mingwX64("mingw")
     }
 
     sourceSets {
+        // =================================
         // Main Source Sets
         commonMain.dependencies {
             api 'org.jetbrains.kotlin:kotlin-stdlib-common'
+        }
 
+        commonTest {
+            dependsOn commonMain
+            dependencies {
+                api "org.jetbrains.kotlin:kotlin-test"
+                api "org.jetbrains.kotlin:kotlin-test-junit"
+            }
+        }
+
+        // =================================
+        // JVM based Source Sets
+        jvmCommonMain {
+            dependsOn commonMain
+            dependencies {
+                api 'org.jetbrains.kotlin:kotlin-stdlib'
+            }
         }
 
         jvmMain {
@@ -56,6 +78,28 @@ kotlin {
             }
         }
 
+        configure([jvmMain, androidMain]) {
+            dependsOn jvmCommonMain
+        }
+
+        // Tests
+        jvmCommonTest {
+            dependsOn jvmCommonMain
+            dependsOn commonTest
+        }
+
+        configure([jvmTest]) {
+            dependsOn jvmCommonTest
+            dependsOn jvmMain
+        }
+
+        configure([androidTest]) {
+            dependsOn jvmCommonTest
+            dependsOn androidMain
+        }
+
+        // =================================
+        // JS Source Sets
         jsMain {
             dependencies {
                 api 'org.jetbrains.kotlin:kotlin-stdlib'
@@ -63,28 +107,6 @@ kotlin {
             }
         }
 
-        macosMain {}
-        iosArm64Main { dependsOn macosMain }
-        iosArm32Main { dependsOn macosMain }
-        iosX64Main { dependsOn macosMain }
-
-        // ==================
-        // Test Source Sets
-        commonTest {
-            dependsOn commonMain
-            dependencies {
-                api "org.jetbrains.kotlin:kotlin-test"
-                api "org.jetbrains.kotlin:kotlin-test-junit"
-            }
-        }
-        jvmTest {
-            dependsOn jvmMain
-            dependsOn commonTest
-        }
-        androidTest {
-            dependsOn androidMain
-            dependsOn commonTest
-        }
         jsTest {
             dependsOn jsMain
             dependencies {
@@ -93,13 +115,50 @@ kotlin {
             }
         }
 
-        macosTest {
-            dependsOn macosMain
+        // =================================
+        // Native based Source Sets
+        nativeCommonMain {
+            dependsOn commonMain
+        }
+        nativeMain {}
+        appleMain {}
+
+        configure([nativeMain, appleMain]) {
+            dependsOn nativeCommonMain
+        }
+
+        configure([mingwMain]) {
+            dependsOn nativeMain
+        }
+
+        configure([iosX64Main, iosArm64Main, iosArm32Main, macosMain]) {
+            dependsOn appleMain
+        }
+
+        //Tests
+
+        nativeCommonTest {
+            dependsOn nativeCommonMain
             dependsOn commonTest
         }
-        iosArm64Test.dependsOn macosTest
-        iosArm32Test.dependsOn macosTest
-        iosX64Test.dependsOn macosTest
+
+        nativeTest {
+            dependsOn nativeMain
+            dependsOn nativeCommonTest
+        }
+
+        appleTest {
+            dependsOn appleMain
+            dependsOn nativeCommonTest
+        }
+
+        configure([mingwTest]) {
+            dependsOn nativeTest
+        }
+
+        configure([iosX64Test, iosArm64Test, iosArm32Test, macosTest, mingwTest]) {
+            dependsOn appleTest
+        }
     }
 }
 
@@ -108,12 +167,17 @@ kotlin {
 //==================================================================================================
 
 apply plugin: "maven-publish"
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: "com.github.dcendents.android-maven"
 
 publishing {
+    publications {
+        kotlinMultiplatform {
+            artifactId = project.name
+        }
+    }
     repositories {
         maven {
-            url = "https://api.bintray.com/content/pocketbyte/maven/${project.name}/${project.version}"
+            url = "https://api.bintray.com/content/pocketbyte/hydra/${project.name}/${project.version}"
             credentials {
                 username project.hasProperty('bintray.publish.user') ? project.property('bintray.publish.user') : ''
                 password project.hasProperty('bintray.publish.apikey') ? project.property('bintray.publish.apikey') : ''

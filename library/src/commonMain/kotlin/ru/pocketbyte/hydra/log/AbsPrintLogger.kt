@@ -1,51 +1,63 @@
 package ru.pocketbyte.hydra.log
 
- abstract class AbsPrintLogger: Logger {
+/**
+ * Base implementation of PrintLogger.
+ */
+abstract class AbsPrintLogger: Logger {
 
-     protected abstract fun printLog(message: String, vararg arguments: Any)
-     protected abstract fun stackTrace(exception: Throwable): String
+    protected abstract fun printLog(message: String, vararg arguments: Any)
 
-     override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
-         printLog(logToString(level, tag, message), *arguments)
-     }
+    /**
+     * Gets stack trace string from Throwable
+     */
+    protected abstract fun stackTrace(exception: Throwable): String
 
-     override fun log(level: LogLevel, tag: String?, exception: Throwable) {
-         if (exception.message != null) {
-             printLog(logToString(level, tag, "%s: %s\n%s"),
-                     exception::class.qualifiedName!!,
-                     exception.message!!,
-                     stackTrace(exception))
-         } else {
-             printLog(logToString(level, tag, "%s\n%s"),
-                     exception::class.qualifiedName!!,
-                     stackTrace(exception))
-         }
-     }
+    /**
+     * Gets qualified name from Throwable
+     */
+    protected abstract fun qualifiedName(exception: Throwable): String
 
-     override fun log(level: LogLevel, tag: String?, function: () -> String) {
-         log(level, tag, function())
-     }
+    override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
+        printLog(logToString(level, tag, message), *arguments)
+    }
 
-     protected open fun logToString(level: LogLevel, tag: String?, message: String): String {
-         val builder = StringBuilder()
+    override fun log(level: LogLevel, tag: String?, exception: Throwable) {
+        if (exception.message != null) {
+            printLog(logToString(level, tag, "%s: %s\n%s"),
+                    qualifiedName(exception),
+                    exception.message!!,
+                    stackTrace(exception))
+        } else {
+            printLog(logToString(level, tag, "%s\n%s"),
+                    qualifiedName(exception),
+                    stackTrace(exception))
+        }
+    }
 
-         builder.append(
-                 when(level) {
-                     LogLevel.INFO -> "I"
-                     LogLevel.DEBUG -> "D"
-                     LogLevel.WARNING -> "W"
-                     LogLevel.ERROR -> "E"
-                 }
-         )
+    override fun log(level: LogLevel, tag: String?, function: () -> String) {
+        log(level, tag, function())
+    }
 
-         builder.append("/")
+    protected open fun logToString(level: LogLevel, tag: String?, message: String): String {
+        val builder = StringBuilder()
 
-         if (tag?.isNotEmpty() == true)
-             builder.append(tag)
+        builder.append(
+                when(level) {
+                    LogLevel.INFO -> "I"
+                    LogLevel.DEBUG -> "D"
+                    LogLevel.WARNING -> "W"
+                    LogLevel.ERROR -> "E"
+                }
+        )
 
-         builder.append(": ")
-         builder.append(message)
+        builder.append("/")
 
-         return builder.toString()
-     }
- }
+        if (tag?.isNotEmpty() == true)
+            builder.append(tag)
+
+        builder.append(": ")
+        builder.append(message)
+
+        return builder.toString()
+    }
+}

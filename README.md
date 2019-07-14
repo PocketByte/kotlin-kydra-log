@@ -9,9 +9,10 @@ repositories {
 }
 dependencies {
     ...
-    implementation 'ru.pocketbyte.hydra.log:hydra-log-common:1.0.0'
+    implementation 'ru.pocketbyte.hydra:hydra-log:1.0.0'
 }
 ```
+
 Then you able to use HydraLog in common code:
 ```Kotlin
 HydraLog.info("Info log message")
@@ -22,6 +23,7 @@ HydraLog.error("Error log message")
 
 ##### Custom loggers:
 If you want to implement your own custom logger you should implement interface **`ru.pocketbyte.hydra.log.Logger`**:
+
 ```Kotlin
 class MyLogger: Logger {
 
@@ -43,13 +45,17 @@ class MyLogger: Logger {
     }
 }
 ```
+
 Then you should init HydraLog with your logger:
+
 ```Kotlin
 HydraLog.init(MyLogger())
 ```
+
 **NOTE:** Initialization can be called only once. Re-initialization will throw IllegalStateException. Any logging via not initialized HydraLog will call initialisation with default Logger.
 
 ## License
+
 ```
 Copyright © 2017 Denis Shurygin. All rights reserved.
 Contacts: <mail@pocketbyte.ru>

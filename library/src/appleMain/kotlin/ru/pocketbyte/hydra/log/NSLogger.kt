@@ -10,10 +10,12 @@ import platform.Foundation.*
 /**
  * iOS implementation of Logger that writes logs using NSLog.
  */
-open class NSLogger: AbsPrintLogger() {
+open class NSLogger: PrintLogger() {
 
     override fun printLog(message: String, vararg arguments: Any) {
         val macOsFormat = message.replace("%s", "%@")
+
+        // Variadic functions not well supported yet. Temporary workaround
         when(arguments.size) {
             0 -> NSLog(macOsFormat)
             1 -> NSLog(macOsFormat,
@@ -82,9 +84,5 @@ open class NSLogger: AbsPrintLogger() {
                             arguments[8].toString() as NSString,
                             arguments[9].toString() as NSString)
         }
-    }
-
-    override fun stackTrace(exception: Throwable): String {
-        return exception.getStackTrace().joinToString("\n")
     }
 }

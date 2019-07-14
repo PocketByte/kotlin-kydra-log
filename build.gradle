@@ -9,6 +9,10 @@ buildscript {
     ext.android_sdk_min = 14
     ext.android_build_tool_version = '28.0.3'
     ext.android_support_version = '27.1.1'
+    
+    ext.hydra_log_version = '1.0.0'
+    ext.hydra_log_dependency = "ru.pocketbyte.hydra:hydra-log:$hydra_log_version"
+//    ext.hydra_log_dependency = project(':hydra-log')
 
     repositories {
         google()
@@ -42,7 +46,7 @@ allprojects {
         maven { url "https://dl.bintray.com/kotlin/kotlin-eap" } // kotlin 1.3
 
         // PocketByte maven repo
-        maven { url "https://dl.bintray.com/pocketbyte/maven/" }
+        maven { url "https://dl.bintray.com/pocketbyte/hydra/" }
     }
 }
 

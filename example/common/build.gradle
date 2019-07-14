@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 
 
 version = '0.1.1'
-group = 'ru.pocketbyte.hydra.log.example_lib'
+group = 'ru.pocketbyte.hydralogexample.common_lib'
 
 android {
     compileSdkVersion project.android_sdk_compile
@@ -45,8 +45,9 @@ kotlin {
             kotlin.srcDir('src/main/kotlin')
             
             dependencies {
-                api 'org.jetbrains.kotlin:kotlin-stdlib-common'
-                api 'ru.pocketbyte.hydra.log:hydra-log:1.0.0'
+                api "org.jetbrains.kotlin:kotlin-stdlib-common"
+                api project.hydra_log_dependency
+//                api project(':hydra-log')
             }
         }
 

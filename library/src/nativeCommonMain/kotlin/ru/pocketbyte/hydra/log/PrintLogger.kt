@@ -7,6 +7,8 @@ open class PrintLogger: AbsPrintLogger() {
 
     override fun printLog(message: String, vararg arguments: Any) {
         val nativeFormat = "${timestamp()} $message"
+
+        // Variadic functions not well supported yet. Temporary workaround
         when(arguments.size) {
             0 -> printf(nativeFormat)
             1 -> printf(nativeFormat,
@@ -80,6 +82,10 @@ open class PrintLogger: AbsPrintLogger() {
 
     override fun stackTrace(exception: Throwable): String {
         return exception.getStackTrace().joinToString("\n")
+    }
+
+    override fun qualifiedName(exception: Throwable): String {
+        return exception::class.qualifiedName!!
     }
 
     protected open fun timestamp(): String {

@@ -28,5 +28,5 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
     implementation project(':example:common')
-    implementation 'ru.pocketbyte.hydra.log:hydra-log:0.2.0'
+    implementation project.hydra_log_dependency
 }
