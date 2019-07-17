@@ -38,6 +38,11 @@ kotlin {
         iosArm64("iosArm64")
         iosArm32("iosArm32")
 
+        linuxX64("linuxX64")
+        linuxArm32Hfp("linuxArm32Hfp")
+        androidNativeArm32("androidNativeArm32")
+        androidNativeArm64("androidNativeArm64")
+
         mingwX64("mingw")
     }
 
@@ -117,18 +122,21 @@ kotlin {
 
         // =================================
         // Native based Source Sets
-        nativeCommonMain {
-            dependsOn commonMain
-        }
+        nativeCommonMain { dependsOn commonMain }
         nativeMain {}
         appleMain {}
+        androidNativeMain {}
 
-        configure([nativeMain, appleMain]) {
+        configure([nativeMain, appleMain, androidNativeMain]) {
             dependsOn nativeCommonMain
         }
-
-        configure([mingwMain]) {
+        
+        configure([linuxX64Main, linuxArm32HfpMain, mingwMain]) {
             dependsOn nativeMain
+        }
+
+        configure([androidNativeArm32Main, androidNativeArm64Main]) {
+            dependsOn androidNativeMain
         }
 
         configure([iosX64Main, iosArm64Main, iosArm32Main, macosMain]) {
@@ -141,19 +149,20 @@ kotlin {
             dependsOn nativeCommonMain
             dependsOn commonTest
         }
+        nativeTest { dependsOn nativeMain }
+        appleTest { dependsOn appleMain }
+        androidNativeTest { dependsOn androidNativeMain }
 
-        nativeTest {
-            dependsOn nativeMain
+        configure([nativeTest, appleTest, androidNativeTest]) {
             dependsOn nativeCommonTest
         }
 
-        appleTest {
-            dependsOn appleMain
-            dependsOn nativeCommonTest
-        }
-
-        configure([mingwTest]) {
+        configure([linuxX64Test, linuxArm32HfpTest, mingwTest]) {
             dependsOn nativeTest
+        }
+
+        configure([androidNativeArm32Test, androidNativeArm64Test]) {
+            dependsOn androidNativeTest
         }
 
         configure([iosX64Test, iosArm64Test, iosArm32Test, macosTest, mingwTest]) {
