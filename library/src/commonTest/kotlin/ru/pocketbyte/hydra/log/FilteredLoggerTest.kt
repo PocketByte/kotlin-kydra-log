@@ -204,7 +204,7 @@ abstract class FilteredLoggerTest {
 
         private var _calledMethod: Method? = null
 
-        override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
+        override fun log(level: LogLevel, tag: String?, message: String) {
             _calledMethod = Method.MESSAGE
         }
 

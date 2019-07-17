@@ -164,7 +164,7 @@ abstract class LoggerSetTest {
         private var _exception: Throwable? = null
         private var _function: (() -> String)? = null
 
-        override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
+        override fun log(level: LogLevel, tag: String?, message: String) {
             _calledMethod = Method.MESSAGE
             _level = level
             _tag = tag

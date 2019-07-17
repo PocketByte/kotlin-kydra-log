@@ -19,9 +19,9 @@ open class LoggerSet(
         val calcFunctions: Boolean = true
 ): Logger {
 
-    override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
+    override fun log(level: LogLevel, tag: String?, message: String) {
         this.loggers.forEach {
-            it.log(level, tag, message, arguments)
+            it.log(level, tag, message)
         }
     }
 

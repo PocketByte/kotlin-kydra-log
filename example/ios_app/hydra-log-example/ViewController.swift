@@ -14,9 +14,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var switchStackTrace: UISwitch!
     @IBOutlet weak var switchAsync: UISwitch!
     
-    @IBOutlet weak var textMessage2: UITextField!
-    @IBOutlet weak var textArguments2: UITextField!
-    
     private let commonModule: Common = Common()
     
     override func viewDidLoad() {
@@ -63,10 +60,6 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func actionPrint2(_ sender: Any?) {
-        doPrint2()
-    }
-    
     private func doPrintInfo() {
         commonModule.printInfo(message: self.textMessage.text ?? "", stackTrace: self.switchStackTrace.isOn)
     }
@@ -81,10 +74,6 @@ class ViewController: UIViewController {
     
     private func doPrintError() {
         commonModule.printError(message: self.textMessage?.text ?? "", stackTrace: self.switchStackTrace.isOn)
-    }
-    
-    private func doPrint2() {
-        commonModule.print(message: self.textMessage2.text ?? "", arguments: self.textArguments2.text ?? "")
     }
 
 }

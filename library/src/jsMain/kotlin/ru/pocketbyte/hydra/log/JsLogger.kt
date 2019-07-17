@@ -10,31 +10,24 @@ package ru.pocketbyte.hydra.log
  */
 open class JsLogger : Logger {
 
-    override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
+    override fun log(level: LogLevel, tag: String?, message: String) {
         when(level) {
-            LogLevel.INFO -> console.info(logToString(tag, message), *arguments)
-            LogLevel.DEBUG -> console.log("DEBUG/${logToString(tag, message)}", *arguments)
-            LogLevel.WARNING -> console.warn(logToString(tag, message), *arguments)
-            LogLevel.ERROR ->console.error(logToString(tag, message), *arguments)
+            LogLevel.INFO -> console.info(logToString(tag, message))
+            LogLevel.DEBUG -> console.log("DEBUG/${logToString(tag, message)}")
+            LogLevel.WARNING -> console.warn(logToString(tag, message))
+            LogLevel.ERROR ->console.error(logToString(tag, message))
         }
     }
 
     override fun log(level: LogLevel, tag: String?, exception: Throwable) {
-        val logMessage = StringBuilder()
-
-        if (tag?.isNotEmpty() == true)
-            logMessage.append(tag).append(": ")
+        val logMessage = if (tag?.isNotEmpty() == true) "$tag: " else ""
 
         when(level) {
-            LogLevel.INFO -> console.info(logMessage.toString(), exception)
+            LogLevel.INFO -> console.info(logMessage, exception)
             LogLevel.DEBUG -> console.log("DEBUG/$logMessage", exception)
-            LogLevel.WARNING -> console.warn(logMessage.toString(), exception)
-            LogLevel.ERROR ->console.error(logMessage.toString(), exception)
+            LogLevel.WARNING -> console.warn(logMessage, exception)
+            LogLevel.ERROR ->console.error(logMessage, exception)
         }
-    }
-
-    override fun log(level: LogLevel, tag: String?, function: () -> String) {
-        log(level, tag, function())
     }
 
     protected open fun logToString(tag: String?, message: String): String {

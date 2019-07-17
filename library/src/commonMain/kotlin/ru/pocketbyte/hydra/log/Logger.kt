@@ -15,9 +15,8 @@ interface Logger {
      * @param level Log level
      * @param tag Tag of the log record. Nullable
      * @param message Message to be written into log
-     * @param arguments List of arguments
      */
-    fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any)
+    fun log(level: LogLevel, tag: String?, message: String)
 
     /**
      * Writes exception log with provided level and tag.
@@ -33,6 +32,8 @@ interface Logger {
      * @param tag Tag of the log record. Nullable
      * @param function Function that returns message to be written into log
      */
-    fun log(level: LogLevel, tag: String?, function: () -> String)
+    fun log(level: LogLevel, tag: String?, function: () -> String) {
+        log(level, tag, function())
+    }
 
 }

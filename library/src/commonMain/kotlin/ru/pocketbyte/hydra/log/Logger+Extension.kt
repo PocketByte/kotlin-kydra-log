@@ -9,10 +9,9 @@ package ru.pocketbyte.hydra.log
  * Writes log with provided level and empty tag.
  * @param level Log level
  * @param message Message to be written into log
- * @param arguments List of arguments
  */
-fun Logger.log(level: LogLevel, message: String, vararg arguments: Any) {
-    log(level, null, message, *arguments)
+fun Logger.log(level: LogLevel, message: String) {
+    log(level, null, message)
 }
 
 /**
@@ -39,19 +38,17 @@ fun Logger.log(level: LogLevel, function: () -> String) {
  * Writes log with INFO log level and provided tag.
  * @param tag Tag of the log record. Nullable
  * @param message Message to be written into log.
- * @param arguments List of arguments
  */
-fun Logger.info(tag: String?, message: String, vararg arguments: Any) {
-    log(LogLevel.INFO, tag, message, *arguments)
+fun Logger.info(tag: String?, message: String) {
+    log(LogLevel.INFO, tag, message)
 }
 
 /**
  * Writes log with INFO log level and empty tag.
  * @param message Message to be written into log.
- * @param arguments List of arguments
  */
-fun Logger.info(message: String, vararg arguments: Any) {
-    log(LogLevel.INFO, null, message, *arguments)
+fun Logger.info(message: String) {
+    log(LogLevel.INFO, null, message)
 }
 
 /**
@@ -94,19 +91,17 @@ fun Logger.info(function: () -> String) {
  * Writes log with DEBUG log level and provided tag.
  * @param tag Tag of the log record. Nullable
  * @param message Message to be written into log.
- * @param arguments List of arguments
  */
-fun Logger.debug(tag: String?, message: String, vararg arguments: Any) {
-    log(LogLevel.DEBUG, tag, message, *arguments)
+fun Logger.debug(tag: String?, message: String) {
+    log(LogLevel.DEBUG, tag, message)
 }
 
 /**
  * Writes log with DEBUG log level and empty tag.
  * @param message Message to be written into log.
- * @param arguments List of arguments
  */
-fun Logger.debug(message: String, vararg arguments: Any) {
-    log(LogLevel.DEBUG, null, message, *arguments)
+fun Logger.debug(message: String) {
+    log(LogLevel.DEBUG, null, message)
 }
 
 /**
@@ -149,19 +144,17 @@ fun Logger.debug(function: () -> String) {
  * Writes log with WARNING log level and provided tag.
  * @param tag Tag of the log record. Nullable
  * @param message Message to be written into log.
- * @param arguments List of arguments
  */
-fun Logger.warn(tag: String?, message: String, vararg arguments: Any) {
-    log(LogLevel.WARNING, tag, message, *arguments)
+fun Logger.warn(tag: String?, message: String) {
+    log(LogLevel.WARNING, tag, message)
 }
 
 /**
  * Writes log with WARNING log level and empty tag.
  * @param message Message to be written into log.
- * @param arguments List of arguments
  */
-fun Logger.warn(message: String, vararg arguments: Any) {
-    log(LogLevel.WARNING, null, message, *arguments)
+fun Logger.warn(message: String) {
+    log(LogLevel.WARNING, null, message)
 }
 
 /**
@@ -204,19 +197,17 @@ fun Logger.warn(function: () -> String) {
  * Writes log with ERROR log level and provided tag.
  * @param tag Tag of the log record. Nullable
  * @param message Message to be written into log.
- * @param arguments List of arguments
  */
-fun Logger.error(tag: String?, message: String, vararg arguments: Any) {
-    log(LogLevel.ERROR, tag, message, *arguments)
+fun Logger.error(tag: String?, message: String) {
+    log(LogLevel.ERROR, tag, message)
 }
 
 /**
  * Writes log with ERROR log level and empty tag.
  * @param message Message to be written into log.
- * @param arguments List of arguments
  */
-fun Logger.error(message: String, vararg arguments: Any) {
-    log(LogLevel.ERROR, null, message, *arguments)
+fun Logger.error(message: String) {
+    log(LogLevel.ERROR, null, message)
 }
 
 /**

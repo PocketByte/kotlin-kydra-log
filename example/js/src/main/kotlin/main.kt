@@ -31,15 +31,6 @@ fun main(args: Array<String>) {
         buttonError?.addEventListener("click", fun(_: Event) {
             Common.printError(inputMessage.value, cbStacktrace.checked)
         })
-
-        val inputMessage2 = document.getElementById("message_2_id") as HTMLInputElement
-        val inputArguments2 = document.getElementById("arguments_2_id") as HTMLInputElement
-
-        val buttonPrint = document.getElementById("button_print_id")
-
-        buttonPrint?.addEventListener("click", fun(_: Event) {
-            Common.print(inputMessage2.value, inputArguments2.value)
-        })
     }
 }
 

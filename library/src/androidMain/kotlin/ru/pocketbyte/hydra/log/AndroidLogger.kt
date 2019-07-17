@@ -12,14 +12,12 @@ import android.util.Log
  */
 open class AndroidLogger: Logger {
 
-    override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
-        val logMessage = String.format(message, *arguments)
-
+    override fun log(level: LogLevel, tag: String?, message: String) {
         when(level) {
-            LogLevel.INFO -> Log.i(tag ?: "", logMessage)
-            LogLevel.DEBUG -> Log.d(tag ?: "", logMessage)
-            LogLevel.WARNING -> Log.w(tag ?: "", logMessage)
-            LogLevel.ERROR -> Log.e(tag ?: "", logMessage)
+            LogLevel.INFO -> Log.i(tag ?: "", message)
+            LogLevel.DEBUG -> Log.d(tag ?: "", message)
+            LogLevel.WARNING -> Log.w(tag ?: "", message)
+            LogLevel.ERROR -> Log.e(tag ?: "", message)
         }
     }
 
@@ -30,10 +28,6 @@ open class AndroidLogger: Logger {
             LogLevel.WARNING -> Log.w(tag ?: "", "", exception)
             LogLevel.ERROR -> Log.e(tag ?: "", "", exception)
         }
-    }
-
-    override fun log(level: LogLevel, tag: String?, function: () -> String) {
-        log(level, tag, function())
     }
 
 }

@@ -5,7 +5,6 @@
 
 package ru.pocketbyte.hydra.log
 
-import java.lang.String.format
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,8 +15,8 @@ open class PrintLogger: AbsPrintLogger() {
 
     private val dateFormat = SimpleDateFormat("yyyy.MM.dd HH:mm:ss")
 
-    override fun printLog(message: String, vararg arguments: Any) {
-        println(format("${timestamp()} $message", *arguments))
+    override fun printLog(message: String) {
+        println("${timestamp()} $message")
     }
 
     override fun stackTrace(exception: Throwable): String {

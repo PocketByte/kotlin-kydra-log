@@ -33,9 +33,9 @@ open class FilteredLogger(
                         && (tags == null || tags.contains(pTag))
             })
 
-    override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
+    override fun log(level: LogLevel, tag: String?, message: String) {
         if (filter(level, tag)) {
-            super.log(level, tag, message, *arguments)
+            super.log(level, tag, message)
         }
     }
 

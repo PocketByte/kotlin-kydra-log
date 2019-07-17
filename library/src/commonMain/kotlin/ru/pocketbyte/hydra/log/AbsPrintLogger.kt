@@ -5,7 +5,7 @@ package ru.pocketbyte.hydra.log
  */
 abstract class AbsPrintLogger: Logger {
 
-    protected abstract fun printLog(message: String, vararg arguments: Any)
+    protected abstract fun printLog(message: String)
 
     /**
      * Gets stack trace string from Throwable
@@ -17,25 +17,17 @@ abstract class AbsPrintLogger: Logger {
      */
     protected abstract fun qualifiedName(exception: Throwable): String
 
-    override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
-        printLog(logToString(level, tag, message), *arguments)
+    override fun log(level: LogLevel, tag: String?, message: String) {
+        printLog(logToString(level, tag, message))
     }
 
     override fun log(level: LogLevel, tag: String?, exception: Throwable) {
         if (exception.message != null) {
-            printLog(logToString(level, tag, "%s: %s\n%s"),
-                    qualifiedName(exception),
-                    exception.message!!,
-                    stackTrace(exception))
+            printLog(logToString(level, tag, "${qualifiedName(exception)}: " +
+                    "${exception.message ?: ""}\n${stackTrace(exception)}"))
         } else {
-            printLog(logToString(level, tag, "%s\n%s"),
-                    qualifiedName(exception),
-                    stackTrace(exception))
+            printLog(logToString(level, tag, "${qualifiedName(exception)}\n${stackTrace(exception)}"))
         }
-    }
-
-    override fun log(level: LogLevel, tag: String?, function: () -> String) {
-        log(level, tag, function())
     }
 
     protected open fun logToString(level: LogLevel, tag: String?, message: String): String {

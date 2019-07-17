@@ -27,7 +27,7 @@ If you want to implement your own custom logger you should implement interface *
 ```Kotlin
 class MyLogger: Logger {
 
-    override fun log(level: LogLevel, tag: String?, message: String, vararg arguments: Any) {
+    override fun log(level: LogLevel, tag: String?, message: String) {
         // Custom logging of message
         ...
     }
