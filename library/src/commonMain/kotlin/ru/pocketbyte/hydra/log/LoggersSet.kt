@@ -14,10 +14,12 @@ package ru.pocketbyte.hydra.log
  *
  * @constructor Creates Loggers set.
  */
-open class LoggerSet(
+open class LoggersSet(
         val loggers: Set<Logger>,
         val calcFunctions: Boolean = true
 ): Logger {
+
+    constructor(vararg loggers: Logger): this(setOf(*loggers))
 
     override fun log(level: LogLevel, tag: String?, message: String) {
         this.loggers.forEach {

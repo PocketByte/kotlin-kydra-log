@@ -9,13 +9,13 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-abstract class LoggerSetTest {
+abstract class LoggersSetTest {
 
     @Test
     fun testLogMessage() {
         val logger1 = LoggerImpl()
         val logger2 = LoggerImpl()
-        val loggerSet = LoggerSet(setOf(logger1, logger2))
+        val loggerSet = LoggersSet(setOf(logger1, logger2))
 
         val level = LogLevel.DEBUG
         val tag = "TEST_1"
@@ -43,7 +43,7 @@ abstract class LoggerSetTest {
     fun testLogException() {
         val logger1 = LoggerImpl()
         val logger2 = LoggerImpl()
-        val loggerSet = LoggerSet(setOf(logger1, logger2))
+        val loggerSet = LoggersSet(setOf(logger1, logger2))
 
         val level = LogLevel.WARNING
         val tag = "TEST_2_WARN"
@@ -70,7 +70,7 @@ abstract class LoggerSetTest {
     fun testLogFunction() {
         val logger1 = LoggerImpl()
         val logger2 = LoggerImpl()
-        val loggerSet = LoggerSet(setOf(logger1, logger2), calcFunctions = false)
+        val loggerSet = LoggersSet(setOf(logger1, logger2), calcFunctions = false)
 
         val level = LogLevel.INFO
         val tag = "TEST_3_func"
@@ -104,7 +104,7 @@ abstract class LoggerSetTest {
         val functionResult = function()
 
         var logger = LoggerImpl()
-        var loggerSet = LoggerSet(setOf(logger), calcFunctions = true)
+        var loggerSet = LoggersSet(setOf(logger), calcFunctions = true)
 
         assertNull(logger.calledMethod)
 
@@ -119,7 +119,7 @@ abstract class LoggerSetTest {
         assertNull(logger.function)
 
         logger = LoggerImpl()
-        loggerSet = LoggerSet(setOf(logger), calcFunctions = false)
+        loggerSet = LoggersSet(setOf(logger), calcFunctions = false)
 
         assertNull(logger.calledMethod)
 
