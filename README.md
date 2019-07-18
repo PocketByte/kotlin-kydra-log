@@ -1,6 +1,15 @@
 # Kotlin Hydra Log
 Kotlin Hydra Log - Kotlin Multiplatform Library that allows to write logs in common module. The way how logs will written defines for each platform independently.
 
+Fully supported platforms:
+- Android and Android Native (LogCat)
+- JavaScript (JS Console)
+- iOS and MacOS (NSLog)
+
+Also, not well (using `println` command) but supported:
+- Java
+- Linux X64 and Arm32Hfp
+
 ##### How to use:
 Add common library as dependency in common **`build.gradle`**:
 ```gradle
