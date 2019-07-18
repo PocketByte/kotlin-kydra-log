@@ -10,7 +10,7 @@ Also, not well (using `println` command) but supported:
 - Java
 - Linux X64 and Arm32Hfp
 
-##### How to use:
+### How to use:
 Add common library as dependency in common **`build.gradle`**:
 ```gradle
 repositories {
@@ -29,7 +29,7 @@ HydraLog.debug("Debug log message")
 HydraLog.warn("Warning log message")
 HydraLog.error("Error log message")
 ```
-##### Logging with format:
+### Logging with format:
 If you would to log formatted string you should use kotlin String Templates:
 ```Kotlin
 val count = 1
@@ -60,7 +60,7 @@ In the logs will be printed following list of messages:
 Error log printed
 Logger say: Hello from Error
 ```
-##### Logger initialization:
+### Logger initialization:
 Any logging via not initialized HydraLog will call initialisation with default Logger. But if you want to initialize `HydraLog` with custom filtering you could use function `initDefault(level: LogLevel?, tags: Set<String?>?)`.
 For example, on Android platform can be used different `LogLevel` filtering depending on build type:
 ```Kotlin
@@ -76,7 +76,7 @@ calss MyApplication: Application() {
 ```
 **IMPORTANT NOTE**: Initialization can be called only once. Re-initialization will throw `IllegalStateException`. Any logging via not initialized HydraLog will call initialisation with default Logger.
 
-##### Custom loggers:
+### Custom loggers:
 If you want to implement your own custom logger you should implement interface **`ru.pocketbyte.hydra.log.Logger`**:
 
 ```Kotlin
@@ -123,7 +123,7 @@ HydraLog.init(
 ```
 **Note:** In example above, second filter applies to whole set instead of applying to `AndroidLogger` only. It helps to optimize logging with functions that was described in section "Logging with format", because `LoggersSet` calculate function and pass it's result into method `log(level, tag, message)` of wrapped loggers.
 
-##### HydraLog is not mandatory:
+### HydraLog is not mandatory:
 You are not forced to use `HydraLog` object. It was designed to provide Plug and Play functionality. If you wish, you can instantiate `Logger` as variable and use it for logging. Or you can use Dependency Injection to provide `Logger` instance. To make sure that `HydraLog` is not used in your application you can init `HydraLog` with `ThrowExceptionLogger`:
 ```Kotlin
 HydraLog.init(ThrowExceptionLogger("HydraLog object is forbidden. Please use DI to get Logger instance."))
