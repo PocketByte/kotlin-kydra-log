@@ -165,7 +165,7 @@ kotlin {
             dependsOn androidNativeTest
         }
 
-        configure([iosX64Test, iosArm64Test, iosArm32Test, macosTest, mingwTest]) {
+        configure([iosX64Test, iosArm64Test, iosArm32Test, macosTest]) {
             dependsOn appleTest
         }
     }
