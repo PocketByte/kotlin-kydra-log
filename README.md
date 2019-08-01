@@ -14,7 +14,7 @@ Also, not well (using `println` command) but supported:
 Add common library as dependency in common **`build.gradle`**:
 ```gradle
 repositories {
-    maven { url "https://dl.bintray.com/pocketbyte/maven/" }
+    maven { url "https://dl.bintray.com/pocketbyte/hydra/" }
 }
 dependencies {
     ...
