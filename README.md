@@ -18,7 +18,7 @@ repositories {
 }
 dependencies {
     ...
-    implementation 'ru.pocketbyte.hydra:hydra-log:1.0.0'
+    implementation 'ru.pocketbyte.hydra:hydra-log:1.0.1'
 }
 ```
 
@@ -133,7 +133,7 @@ It will let to know for other developers that should be used another way to rece
 ## License
 
 ```
-Copyright © 2017 Denis Shurygin. All rights reserved.
+Copyright © 2019 Denis Shurygin. All rights reserved.
 Contacts: <mail@pocketbyte.ru>
 
 Licensed under the Apache License, Version 2.0 (the "License");
