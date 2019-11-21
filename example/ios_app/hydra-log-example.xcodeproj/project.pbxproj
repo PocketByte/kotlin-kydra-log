@@ -7,8 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C81FF93E21B5CCD200A94E03 /* ios_app_framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FA80E521973B0600C73A8E /* ios_app_framework.framework */; };
-		C81FF93F21B5CCD200A94E03 /* ios_app_framework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C8FA80E521973B0600C73A8E /* ios_app_framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C806BE452386A447006F2794 /* hydra-log-example-watch WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C806BE442386A447006F2794 /* hydra-log-example-watch WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C806BE4B2386A447006F2794 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C806BE492386A447006F2794 /* Interface.storyboard */; };
+		C806BE4D2386A448006F2794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C806BE4C2386A448006F2794 /* Assets.xcassets */; };
+		C806BE542386A448006F2794 /* hydra-log-example-watch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C806BE532386A448006F2794 /* hydra-log-example-watch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C806BE592386A448006F2794 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C806BE582386A448006F2794 /* InterfaceController.swift */; };
+		C806BE5B2386A448006F2794 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C806BE5A2386A448006F2794 /* ExtensionDelegate.swift */; };
+		C806BE5D2386A449006F2794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C806BE5C2386A449006F2794 /* Assets.xcassets */; };
+		C806BE852386A9BA006F2794 /* common_watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C806BE7B2386A6CB006F2794 /* common_watch.framework */; };
+		C806BE862386A9BA006F2794 /* common_watch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C806BE7B2386A6CB006F2794 /* common_watch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C806BEA82386B664006F2794 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C806BEA72386B664006F2794 /* AppDelegate.swift */; };
+		C806BEAA2386B664006F2794 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C806BEA92386B664006F2794 /* ViewController.swift */; };
+		C806BEAD2386B664006F2794 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C806BEAB2386B664006F2794 /* Main.storyboard */; };
+		C806BEAF2386B665006F2794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C806BEAE2386B665006F2794 /* Assets.xcassets */; };
+		C806BEB22386B665006F2794 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C806BEB02386B665006F2794 /* LaunchScreen.storyboard */; };
+		C806BEBA2386BA52006F2794 /* common_tv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C806BE972386B5DF006F2794 /* common_tv.framework */; };
+		C806BEBB2386BA52006F2794 /* common_tv.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C806BE972386B5DF006F2794 /* common_tv.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C81FF93E21B5CCD200A94E03 /* common_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FA80E521973B0600C73A8E /* common_ios.framework */; };
+		C81FF93F21B5CCD200A94E03 /* common_ios.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C8FA80E521973B0600C73A8E /* common_ios.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C89A9D0520BDF9F500A19C77 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C89A9D0320BDF9F500A19C77 /* Localizable.strings */; };
 		C8A822BE20BAF801004C070F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8A822BC20BAF801004C070F /* Main.storyboard */; };
 		C8A822C020BAF802004C070F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A822BF20BAF802004C070F /* Assets.xcassets */; };
@@ -18,6 +34,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C806BE462386A447006F2794 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8A822AD20BAF801004C070F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C806BE432386A447006F2794;
+			remoteInfo = "hydra-log-example-watch WatchKit App";
+		};
+		C806BE552386A448006F2794 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8A822AD20BAF801004C070F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C806BE522386A448006F2794;
+			remoteInfo = "hydra-log-example-watch WatchKit Extension";
+		};
+		C806BE872386A9BA006F2794 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8A822AD20BAF801004C070F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C806BE7A2386A6CB006F2794;
+			remoteInfo = "watch-app-framework";
+		};
+		C806BEBC2386BA52006F2794 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8A822AD20BAF801004C070F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C806BE962386B5DF006F2794;
+			remoteInfo = "tv-app-framework";
+		};
 		C81FF94021B5CCD200A94E03 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C8A822AD20BAF801004C070F /* Project object */;
@@ -28,13 +72,57 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		C806BE612386A449006F2794 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				C806BE452386A447006F2794 /* hydra-log-example-watch WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C806BE642386A449006F2794 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C806BE542386A448006F2794 /* hydra-log-example-watch WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C806BE892386A9BA006F2794 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C806BE862386A9BA006F2794 /* common_watch.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C806BEBE2386BA52006F2794 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C806BEBB2386BA52006F2794 /* common_tv.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C81FF94221B5CCD200A94E03 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C81FF93F21B5CCD200A94E03 /* ios_app_framework.framework in Embed Frameworks */,
+				C81FF93F21B5CCD200A94E03 /* common_ios.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,15 +130,34 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C806BE412386A447006F2794 /* hydra-log-example-watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hydra-log-example-watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C806BE442386A447006F2794 /* hydra-log-example-watch WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hydra-log-example-watch WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C806BE4A2386A447006F2794 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		C806BE4C2386A448006F2794 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C806BE4E2386A448006F2794 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C806BE532386A448006F2794 /* hydra-log-example-watch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "hydra-log-example-watch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C806BE582386A448006F2794 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		C806BE5A2386A448006F2794 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		C806BE5C2386A449006F2794 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C806BE5E2386A449006F2794 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C806BE7B2386A6CB006F2794 /* common_watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = common_watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C806BE972386B5DF006F2794 /* common_tv.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = common_tv.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C806BEA52386B664006F2794 /* hydra-log-example-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hydra-log-example-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C806BEA72386B664006F2794 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C806BEA92386B664006F2794 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C806BEAC2386B664006F2794 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C806BEAE2386B665006F2794 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C806BEB12386B665006F2794 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C806BEB32386B665006F2794 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C89A9D0420BDF9F500A19C77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C8A822B520BAF801004C070F /* hydra-log-example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hydra-log-example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8A822B520BAF801004C070F /* hydra-log-example-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hydra-log-example-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A822BD20BAF801004C070F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C8A822BF20BAF802004C070F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8A822C220BAF802004C070F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C8A822C420BAF802004C070F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8A822CF20BC9B76004C070F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C8A822D120BCA023004C070F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C8FA80E521973B0600C73A8E /* ios_app_framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ios_app_framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8FA80E521973B0600C73A8E /* common_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = common_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FA80E721973B0600C73A8E /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		C8FA80E821973B0600C73A8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8FA8113219AF7F600C73A8E /* example-common.iml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "example-common.iml"; sourceTree = "<group>"; };
@@ -64,36 +171,118 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C806BE502386A448006F2794 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C806BE852386A9BA006F2794 /* common_watch.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C806BE742386A648006F2794 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C806BEA22386B664006F2794 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C806BEBA2386BA52006F2794 /* common_tv.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8A822B220BAF801004C070F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C81FF93E21B5CCD200A94E03 /* ios_app_framework.framework in Frameworks */,
+				C81FF93E21B5CCD200A94E03 /* common_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C806BE482386A447006F2794 /* hydra-log-example-watch WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				C806BE492386A447006F2794 /* Interface.storyboard */,
+				C806BE4C2386A448006F2794 /* Assets.xcassets */,
+				C806BE4E2386A448006F2794 /* Info.plist */,
+			);
+			path = "hydra-log-example-watch WatchKit App";
+			sourceTree = "<group>";
+		};
+		C806BE572386A448006F2794 /* hydra-log-example-watch WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C806BE582386A448006F2794 /* InterfaceController.swift */,
+				C806BE5A2386A448006F2794 /* ExtensionDelegate.swift */,
+				C806BE5C2386A449006F2794 /* Assets.xcassets */,
+				C806BE5E2386A449006F2794 /* Info.plist */,
+			);
+			path = "hydra-log-example-watch WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		C806BE6A2386A5EE006F2794 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C806BEA62386B664006F2794 /* hydra-log-example-tv */ = {
+			isa = PBXGroup;
+			children = (
+				C806BEA72386B664006F2794 /* AppDelegate.swift */,
+				C806BEA92386B664006F2794 /* ViewController.swift */,
+				C806BEAB2386B664006F2794 /* Main.storyboard */,
+				C806BEAE2386B665006F2794 /* Assets.xcassets */,
+				C806BEB02386B665006F2794 /* LaunchScreen.storyboard */,
+				C806BEB32386B665006F2794 /* Info.plist */,
+			);
+			path = "hydra-log-example-tv";
+			sourceTree = "<group>";
+		};
+		C806BEB82386B9C2006F2794 /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				C806BE482386A447006F2794 /* hydra-log-example-watch WatchKit App */,
+				C806BE572386A448006F2794 /* hydra-log-example-watch WatchKit Extension */,
+			);
+			name = Watch;
+			sourceTree = "<group>";
+		};
 		C8A822AC20BAF801004C070F = {
 			isa = PBXGroup;
 			children = (
-				C8A822B720BAF801004C070F /* hydra-log-example */,
+				C8A822B720BAF801004C070F /* hydra-log-example-ios */,
+				C806BEA62386B664006F2794 /* hydra-log-example-tv */,
+				C806BEB82386B9C2006F2794 /* Watch */,
 				C8FA80E621973B0600C73A8E /* Common */,
 				C8A822B620BAF801004C070F /* Products */,
+				C806BE6A2386A5EE006F2794 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		C8A822B620BAF801004C070F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C8A822B520BAF801004C070F /* hydra-log-example.app */,
-				C8FA80E521973B0600C73A8E /* ios_app_framework.framework */,
+				C8A822B520BAF801004C070F /* hydra-log-example-ios.app */,
+				C8FA80E521973B0600C73A8E /* common_ios.framework */,
+				C806BE412386A447006F2794 /* hydra-log-example-watch.app */,
+				C806BE442386A447006F2794 /* hydra-log-example-watch WatchKit App.app */,
+				C806BE532386A448006F2794 /* hydra-log-example-watch WatchKit Extension.appex */,
+				C806BE7B2386A6CB006F2794 /* common_watch.framework */,
+				C806BE972386B5DF006F2794 /* common_tv.framework */,
+				C806BEA52386B664006F2794 /* hydra-log-example-tv.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C8A822B720BAF801004C070F /* hydra-log-example */ = {
+		C8A822B720BAF801004C070F /* hydra-log-example-ios */ = {
 			isa = PBXGroup;
 			children = (
 				C8A822D120BCA023004C070F /* AppDelegate.swift */,
@@ -104,7 +293,7 @@
 				C8A822C120BAF802004C070F /* LaunchScreen.storyboard */,
 				C8A822C420BAF802004C070F /* Info.plist */,
 			);
-			path = "hydra-log-example";
+			path = "hydra-log-example-ios";
 			sourceTree = "<group>";
 		};
 		C8FA80E621973B0600C73A8E /* Common */ = {
@@ -304,9 +493,114 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C8A822B420BAF801004C070F /* hydra-log-example */ = {
+		C806BE402386A447006F2794 /* hydra-log-example-watch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C8A822C720BAF802004C070F /* Build configuration list for PBXNativeTarget "hydra-log-example" */;
+			buildConfigurationList = C806BE692386A449006F2794 /* Build configuration list for PBXNativeTarget "hydra-log-example-watch" */;
+			buildPhases = (
+				C806BE3F2386A447006F2794 /* Resources */,
+				C806BE612386A449006F2794 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C806BE472386A447006F2794 /* PBXTargetDependency */,
+			);
+			name = "hydra-log-example-watch";
+			productName = "hydra-log-example-watch";
+			productReference = C806BE412386A447006F2794 /* hydra-log-example-watch.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		C806BE432386A447006F2794 /* hydra-log-example-watch WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C806BE682386A449006F2794 /* Build configuration list for PBXNativeTarget "hydra-log-example-watch WatchKit App" */;
+			buildPhases = (
+				C806BE422386A447006F2794 /* Resources */,
+				C806BE642386A449006F2794 /* Embed App Extensions */,
+				C806BE742386A648006F2794 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C806BE562386A448006F2794 /* PBXTargetDependency */,
+			);
+			name = "hydra-log-example-watch WatchKit App";
+			productName = "hydra-log-example-watch WatchKit App";
+			productReference = C806BE442386A447006F2794 /* hydra-log-example-watch WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		C806BE522386A448006F2794 /* hydra-log-example-watch WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C806BE672386A449006F2794 /* Build configuration list for PBXNativeTarget "hydra-log-example-watch WatchKit Extension" */;
+			buildPhases = (
+				C806BE4F2386A448006F2794 /* Sources */,
+				C806BE502386A448006F2794 /* Frameworks */,
+				C806BE512386A448006F2794 /* Resources */,
+				C806BE892386A9BA006F2794 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C806BE882386A9BA006F2794 /* PBXTargetDependency */,
+			);
+			name = "hydra-log-example-watch WatchKit Extension";
+			productName = "hydra-log-example-watch WatchKit Extension";
+			productReference = C806BE532386A448006F2794 /* hydra-log-example-watch WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		C806BE7A2386A6CB006F2794 /* common_watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C806BE802386A6CB006F2794 /* Build configuration list for PBXNativeTarget "common_watch" */;
+			buildPhases = (
+				C806BE832386A8BC006F2794 /* Build Binary From Kotlin Sources */,
+				C806BE842386A909006F2794 /* CopyFramevork */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = common_watch;
+			productName = "watch-app-framework";
+			productReference = C806BE7B2386A6CB006F2794 /* common_watch.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C806BE962386B5DF006F2794 /* common_tv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C806BE9C2386B5DF006F2794 /* Build configuration list for PBXNativeTarget "common_tv" */;
+			buildPhases = (
+				C806BE9F2386B60A006F2794 /* Build Binary From Kotlin Sources */,
+				C806BEA02386B628006F2794 /* CopyFramevork */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = common_tv;
+			productName = "tv-app-framework";
+			productReference = C806BE972386B5DF006F2794 /* common_tv.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C806BEA42386B664006F2794 /* hydra-log-example-tv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C806BEB42386B665006F2794 /* Build configuration list for PBXNativeTarget "hydra-log-example-tv" */;
+			buildPhases = (
+				C806BEA12386B664006F2794 /* Sources */,
+				C806BEA22386B664006F2794 /* Frameworks */,
+				C806BEA32386B664006F2794 /* Resources */,
+				C806BEBE2386BA52006F2794 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C806BEBD2386BA52006F2794 /* PBXTargetDependency */,
+			);
+			name = "hydra-log-example-tv";
+			productName = "hydra-log-example-tv";
+			productReference = C806BEA52386B664006F2794 /* hydra-log-example-tv.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C8A822B420BAF801004C070F /* hydra-log-example-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8A822C720BAF802004C070F /* Build configuration list for PBXNativeTarget "hydra-log-example-ios" */;
 			buildPhases = (
 				C8A822B120BAF801004C070F /* Sources */,
 				C8A822B220BAF801004C070F /* Frameworks */,
@@ -318,14 +612,14 @@
 			dependencies = (
 				C81FF94121B5CCD200A94E03 /* PBXTargetDependency */,
 			);
-			name = "hydra-log-example";
+			name = "hydra-log-example-ios";
 			productName = "locolaser-kotlin-multiplatform-example";
-			productReference = C8A822B520BAF801004C070F /* hydra-log-example.app */;
+			productReference = C8A822B520BAF801004C070F /* hydra-log-example-ios.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C8FA80E421973B0600C73A8E /* ios-app-framework */ = {
+		C8FA80E421973B0600C73A8E /* common_ios */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C8FA80F021973B0600C73A8E /* Build configuration list for PBXNativeTarget "ios-app-framework" */;
+			buildConfigurationList = C8FA80F021973B0600C73A8E /* Build configuration list for PBXNativeTarget "common_ios" */;
 			buildPhases = (
 				C8FA80F221973B1700C73A8E /* Build Binary From Kotlin Sources */,
 				C8FA80F321973BE200C73A8E /* CopyFramevork */,
@@ -334,9 +628,9 @@
 			);
 			dependencies = (
 			);
-			name = "ios-app-framework";
+			name = common_ios;
 			productName = Common;
-			productReference = C8FA80E521973B0600C73A8E /* ios_app_framework.framework */;
+			productReference = C8FA80E521973B0600C73A8E /* common_ios.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -345,10 +639,28 @@
 		C8A822AD20BAF801004C070F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = PcketByte.ru;
 				TargetAttributes = {
+					C806BE402386A447006F2794 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					C806BE432386A447006F2794 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					C806BE522386A448006F2794 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					C806BE7A2386A6CB006F2794 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					C806BE962386B5DF006F2794 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
+					C806BEA42386B664006F2794 = {
+						CreatedOnToolsVersion = 11.2.1;
+					};
 					C8A822B420BAF801004C070F = {
 						CreatedOnToolsVersion = 9.3.1;
 					};
@@ -370,13 +682,53 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C8A822B420BAF801004C070F /* hydra-log-example */,
-				C8FA80E421973B0600C73A8E /* ios-app-framework */,
+				C8A822B420BAF801004C070F /* hydra-log-example-ios */,
+				C806BEA42386B664006F2794 /* hydra-log-example-tv */,
+				C806BE402386A447006F2794 /* hydra-log-example-watch */,
+				C806BE432386A447006F2794 /* hydra-log-example-watch WatchKit App */,
+				C806BE522386A448006F2794 /* hydra-log-example-watch WatchKit Extension */,
+				C8FA80E421973B0600C73A8E /* common_ios */,
+				C806BE962386B5DF006F2794 /* common_tv */,
+				C806BE7A2386A6CB006F2794 /* common_watch */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C806BE3F2386A447006F2794 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C806BE422386A447006F2794 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C806BE4D2386A448006F2794 /* Assets.xcassets in Resources */,
+				C806BE4B2386A447006F2794 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C806BE512386A448006F2794 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C806BE5D2386A449006F2794 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C806BEA32386B664006F2794 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C806BEB22386B665006F2794 /* LaunchScreen.storyboard in Resources */,
+				C806BEAF2386B665006F2794 /* Assets.xcassets in Resources */,
+				C806BEAD2386B664006F2794 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8A822B320BAF801004C070F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -391,6 +743,78 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		C806BE832386A8BC006F2794 /* Build Binary From Kotlin Sources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Binary From Kotlin Sources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PRJ_DIR=\"$SRCROOT/../..\";\nTASK_TARGET=\"$(tr '[:lower:]' '[:upper:]' <<< ${KOTLIN_TARGET:0:1})${KOTLIN_TARGET:1}\"\n\n\"${PRJ_DIR}/gradlew\" -p \"${PRJ_DIR}/\" \":example:common:linkCommon_watch${CONFIGURATION}FrameworkWatch\" \\\n-Pkonan.configuration.build.dir=\"$CONFIGURATION_BUILD_DIR\" \\\n-Pkonan.debugging.symbols=\"$DEBUGGING_SYMBOLS\"             \\\n-Pkonan.optimizations.enable=\"$KONAN_ENABLE_OPTIMIZATIONS\"\n";
+		};
+		C806BE842386A909006F2794 /* CopyFramevork */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = CopyFramevork;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BUILD_TYPE=\"$(tr '[:upper:]' '[:lower:]' <<< ${CONFIGURATION:0:1})${CONFIGURATION:1}\"\nSOURCE_DIR=\"$SRCROOT/../common/build/bin/watch/${PRODUCT_NAME}${BUILD_TYPE}Framework/\"\n\nmkdir -p \"$CONFIGURATION_BUILD_DIR\"\ncp -r \"${SOURCE_DIR}/.\" \"$CONFIGURATION_BUILD_DIR\"\n";
+		};
+		C806BE9F2386B60A006F2794 /* Build Binary From Kotlin Sources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Binary From Kotlin Sources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PRJ_DIR=\"$SRCROOT/../..\";\nTASK_TARGET=\"$(tr '[:lower:]' '[:upper:]' <<< ${KOTLIN_TARGET:0:1})${KOTLIN_TARGET:1}\"\n\n\"${PRJ_DIR}/gradlew\" -p \"${PRJ_DIR}/\" \":example:common:linkCommon_tv${CONFIGURATION}FrameworkTv\" \\\n-Pkonan.configuration.build.dir=\"$CONFIGURATION_BUILD_DIR\" \\\n-Pkonan.debugging.symbols=\"$DEBUGGING_SYMBOLS\"             \\\n-Pkonan.optimizations.enable=\"$KONAN_ENABLE_OPTIMIZATIONS\"\n";
+		};
+		C806BEA02386B628006F2794 /* CopyFramevork */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = CopyFramevork;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BUILD_TYPE=\"$(tr '[:upper:]' '[:lower:]' <<< ${CONFIGURATION:0:1})${CONFIGURATION:1}\"\nSOURCE_DIR=\"$SRCROOT/../common/build/bin/tv/${PRODUCT_NAME}${BUILD_TYPE}Framework/\"\n\nmkdir -p \"$CONFIGURATION_BUILD_DIR\"\ncp -r \"${SOURCE_DIR}/.\" \"$CONFIGURATION_BUILD_DIR\"\n";
+		};
 		C8FA80F221973B1700C73A8E /* Build Binary From Kotlin Sources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -407,7 +831,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PRJ_DIR=\"$SRCROOT/../..\";\nTASK_TARGET=\"$(tr '[:lower:]' '[:upper:]' <<< ${KOTLIN_TARGET:0:1})${KOTLIN_TARGET:1}\"\n\n\"${PRJ_DIR}/gradlew\" -p \"${PRJ_DIR}/\" \":example:common:linkIos_app_framework${CONFIGURATION}FrameworkIos\" \\\n-Pkonan.configuration.build.dir=\"$CONFIGURATION_BUILD_DIR\" \\\n-Pkonan.debugging.symbols=\"$DEBUGGING_SYMBOLS\"             \\\n-Pkonan.optimizations.enable=\"$KONAN_ENABLE_OPTIMIZATIONS\"\n";
+			shellScript = "PRJ_DIR=\"$SRCROOT/../..\";\nTASK_TARGET=\"$(tr '[:lower:]' '[:upper:]' <<< ${KOTLIN_TARGET:0:1})${KOTLIN_TARGET:1}\"\n\n\"${PRJ_DIR}/gradlew\" -p \"${PRJ_DIR}/\" \":example:common:linkCommon_ios${CONFIGURATION}FrameworkIos\" \\\n-Pkonan.configuration.build.dir=\"$CONFIGURATION_BUILD_DIR\" \\\n-Pkonan.debugging.symbols=\"$DEBUGGING_SYMBOLS\"             \\\n-Pkonan.optimizations.enable=\"$KONAN_ENABLE_OPTIMIZATIONS\"\n";
 		};
 		C8FA80F321973BE200C73A8E /* CopyFramevork */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -430,6 +854,24 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C806BE4F2386A448006F2794 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C806BE5B2386A448006F2794 /* ExtensionDelegate.swift in Sources */,
+				C806BE592386A448006F2794 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C806BEA12386B664006F2794 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C806BEAA2386B664006F2794 /* ViewController.swift in Sources */,
+				C806BEA82386B664006F2794 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8A822B120BAF801004C070F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -442,14 +884,58 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C806BE472386A447006F2794 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C806BE432386A447006F2794 /* hydra-log-example-watch WatchKit App */;
+			targetProxy = C806BE462386A447006F2794 /* PBXContainerItemProxy */;
+		};
+		C806BE562386A448006F2794 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C806BE522386A448006F2794 /* hydra-log-example-watch WatchKit Extension */;
+			targetProxy = C806BE552386A448006F2794 /* PBXContainerItemProxy */;
+		};
+		C806BE882386A9BA006F2794 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C806BE7A2386A6CB006F2794 /* common_watch */;
+			targetProxy = C806BE872386A9BA006F2794 /* PBXContainerItemProxy */;
+		};
+		C806BEBD2386BA52006F2794 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C806BE962386B5DF006F2794 /* common_tv */;
+			targetProxy = C806BEBC2386BA52006F2794 /* PBXContainerItemProxy */;
+		};
 		C81FF94121B5CCD200A94E03 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C8FA80E421973B0600C73A8E /* ios-app-framework */;
+			target = C8FA80E421973B0600C73A8E /* common_ios */;
 			targetProxy = C81FF94021B5CCD200A94E03 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C806BE492386A447006F2794 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C806BE4A2386A447006F2794 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		C806BEAB2386B664006F2794 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C806BEAC2386B664006F2794 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C806BEB02386B665006F2794 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C806BEB12386B665006F2794 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		C89A9D0320BDF9F500A19C77 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -477,6 +963,298 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C806BE5F2386A449006F2794 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QYF24V9H2B;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.hydra-log-example-watch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C806BE602386A449006F2794 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QYF24V9H2B;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.hydra-log-example-watch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C806BE622386A449006F2794 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QYF24V9H2B;
+				IBSC_MODULE = hydra_log_example_watch_WatchKit_Extension;
+				INFOPLIST_FILE = "hydra-log-example-watch WatchKit App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.hydra-log-example-watch.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Debug;
+		};
+		C806BE632386A449006F2794 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QYF24V9H2B;
+				IBSC_MODULE = hydra_log_example_watch_WatchKit_Extension;
+				INFOPLIST_FILE = "hydra-log-example-watch WatchKit App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.hydra-log-example-watch.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Release;
+		};
+		C806BE652386A449006F2794 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QYF24V9H2B;
+				INFOPLIST_FILE = "hydra-log-example-watch WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.hydra-log-example-watch.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Debug;
+		};
+		C806BE662386A449006F2794 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QYF24V9H2B;
+				INFOPLIST_FILE = "hydra-log-example-watch WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.hydra-log-example-watch.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Release;
+		};
+		C806BE812386A6CB006F2794 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QYF24V9H2B;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Common/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.watch-app-framework";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Debug;
+		};
+		C806BE822386A6CB006F2794 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QYF24V9H2B;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Common/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.watch-app-framework";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Release;
+		};
+		C806BE9D2386B5DF006F2794 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QYF24V9H2B;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Common/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.tv-app-framework";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C806BE9E2386B5DF006F2794 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QYF24V9H2B;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Common/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.tv-app-framework";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C806BEB52386B665006F2794 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QYF24V9H2B;
+				INFOPLIST_FILE = "hydra-log-example-tv/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.hydra-log-example-tv";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.2;
+			};
+			name = Debug;
+		};
+		C806BEB62386B665006F2794 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QYF24V9H2B;
+				INFOPLIST_FILE = "hydra-log-example-tv/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.hydra-log-example-tv";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.2;
+			};
+			name = Release;
+		};
 		C8A822C520BAF802004C070F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -597,7 +1375,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QYF24V9H2B;
-				INFOPLIST_FILE = "hydra-log-example/Info.plist";
+				INFOPLIST_FILE = "hydra-log-example-ios/Info.plist";
 				KONAN_ENABLE_OPTIMIZATIONS = NO;
 				KONAN_TASK = "";
 				"KONAN_TASK[sdk=iphonesimulator*]" = compileKonanApp$KOTLIN_TARGET;
@@ -609,7 +1387,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.hydra-log-example";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.hydra-log-example-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -622,7 +1400,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QYF24V9H2B;
-				INFOPLIST_FILE = "hydra-log-example/Info.plist";
+				INFOPLIST_FILE = "hydra-log-example-ios/Info.plist";
 				KONAN_ENABLE_OPTIMIZATIONS = YES;
 				KONAN_TASK = "";
 				KOTLIN_BUILD = Release;
@@ -631,7 +1409,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.hydra-log-example";
+				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.hydra-log-example-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -704,6 +1482,60 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C806BE672386A449006F2794 /* Build configuration list for PBXNativeTarget "hydra-log-example-watch WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C806BE652386A449006F2794 /* Debug */,
+				C806BE662386A449006F2794 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C806BE682386A449006F2794 /* Build configuration list for PBXNativeTarget "hydra-log-example-watch WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C806BE622386A449006F2794 /* Debug */,
+				C806BE632386A449006F2794 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C806BE692386A449006F2794 /* Build configuration list for PBXNativeTarget "hydra-log-example-watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C806BE5F2386A449006F2794 /* Debug */,
+				C806BE602386A449006F2794 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C806BE802386A6CB006F2794 /* Build configuration list for PBXNativeTarget "common_watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C806BE812386A6CB006F2794 /* Debug */,
+				C806BE822386A6CB006F2794 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C806BE9C2386B5DF006F2794 /* Build configuration list for PBXNativeTarget "common_tv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C806BE9D2386B5DF006F2794 /* Debug */,
+				C806BE9E2386B5DF006F2794 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C806BEB42386B665006F2794 /* Build configuration list for PBXNativeTarget "hydra-log-example-tv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C806BEB52386B665006F2794 /* Debug */,
+				C806BEB62386B665006F2794 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C8A822B020BAF801004C070F /* Build configuration list for PBXProject "hydra-log-example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -713,7 +1545,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C8A822C720BAF802004C070F /* Build configuration list for PBXNativeTarget "hydra-log-example" */ = {
+		C8A822C720BAF802004C070F /* Build configuration list for PBXNativeTarget "hydra-log-example-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C8A822C820BAF802004C070F /* Debug */,
@@ -722,7 +1554,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C8FA80F021973B0600C73A8E /* Build configuration list for PBXNativeTarget "ios-app-framework" */ = {
+		C8FA80F021973B0600C73A8E /* Build configuration list for PBXNativeTarget "common_ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C8FA80EE21973B0600C73A8E /* Debug */,

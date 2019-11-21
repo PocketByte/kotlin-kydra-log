@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15505" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="hydra_log_example_watch_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <textField width="136" alignment="left" text="Hello Hydra Log" id="mB8-IK-ra2">
+                            <connections>
+                                <action selector="actionMessageChanged:" destination="AgC-eL-Hgc" id="h8A-Bj-xzS"/>
+                            </connections>
+                        </textField>
+                        <switch width="1" alignment="left" title="Stack Tr." id="64h-Ga-Ywx">
+                            <connections>
+                                <action selector="actionSwitchStackTrace:" destination="AgC-eL-Hgc" id="iuS-Vc-mkB"/>
+                            </connections>
+                        </switch>
+                        <switch width="1" alignment="left" value="YES" title="Async" id="Dqg-QI-IQb">
+                            <connections>
+                                <action selector="actionSwitchAsync:" destination="AgC-eL-Hgc" id="vES-32-hUN"/>
+                            </connections>
+                        </switch>
+                        <button width="1" alignment="left" title="Info" id="jKE-IQ-WoU">
+                            <connections>
+                                <action selector="actionPrintInfo:" destination="AgC-eL-Hgc" id="yd9-5e-xwj"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Debug" id="FLT-ox-W9f">
+                            <connections>
+                                <action selector="actionPrintDebug:" destination="AgC-eL-Hgc" id="qxc-T7-1eR"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Warning" id="obs-MY-Q3a">
+                            <connections>
+                                <action selector="actionPrintWarning:" destination="AgC-eL-Hgc" id="X0y-oX-P8K"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Error" id="6pG-cQ-wZ0">
+                            <connections>
+                                <action selector="actionPrintError:" destination="AgC-eL-Hgc" id="ic2-ox-0lr"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="switchAsync" destination="Dqg-QI-IQb" id="B1p-tG-F7a"/>
+                        <outlet property="switchStackTrace" destination="64h-Ga-Ywx" id="VCY-qh-xl1"/>
+                        <outlet property="textMessage" destination="mB8-IK-ra2" id="fvR-x9-A30"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="34" y="100"/>
+        </scene>
+    </scenes>
+</document>
