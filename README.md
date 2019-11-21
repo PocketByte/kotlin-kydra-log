@@ -4,15 +4,13 @@ Kotlin Hydra Log - Kotlin Multiplatform Library that allows to write logs in com
 Fully supported platforms:
 - Android and AndroidNative(Arm32, Arm64, X64, X86) using LogCat;
 - JavaScript using JS Console;
-- Apple based platform: iOS, MacOS, Watch and TV using NSLog.
+- Apple based: iOS, MacOS, Watch and TV using NSLog.
 
 Also, not well by using `println` with timestamp:
 - Java;
-- Linux X64, Arm64 and Arm32Hfp;
+- Linux based: X64, Arm64, Arm32Hfp, Mips32 and Mipsel32;
 - Windows X64 and X86;
 - WebAssembly without timestamp.
-
-Targets linuxMips32 and linuxMipsel32 supported(using `println`) but not yet published.
 
 ### How to use:
 Add common library as dependency in common **`build.gradle`**:
@@ -130,7 +128,14 @@ HydraLog.init(
 ### HydraLog is not mandatory:
 You are not forced to use `HydraLog` object. It was designed to provide Plug and Play functionality. If you wish, you can instantiate `Logger` as variable and use it for logging. Or you can use Dependency Injection to provide `Logger` instance. To make sure that `HydraLog` is not used in your application you can init `HydraLog` with `ThrowExceptionLogger`:
 ```Kotlin
-HydraLog.init(ThrowExceptionLogger("HydraLog object is forbidden. Please use DI to get Logger instance."))
+// BuildConfig is an example class from android platform.
+// You should use corresponded way to identify debug build for each platform independently.
+if (BuildConfig.DEBUG) {
+    HydraLog.init(ThrowExceptionLogger("HydraLog object is forbidden. Please use DI to get Logger instance."))
+} else {
+    // No need to crash Production Build
+    HydraLog.initDefault()
+}
 ```
 It will let other developers to know that they should use another way to get an instance of `Logger`.
 
