@@ -2,13 +2,17 @@
 Kotlin Hydra Log - Kotlin Multiplatform Library that allows to write logs in common module. The way how logs will written defines for each platform independently.
 
 Fully supported platforms:
-- Android and Android Native (LogCat)
-- JavaScript (JS Console)
-- iOS and MacOS (NSLog)
+- Android and AndroidNative(Arm32, Arm64, X64, X86) using LogCat;
+- JavaScript using JS Console;
+- Apple based platform: iOS, MacOS, Watch and TV using NSLog.
 
-Also, not well (using `println` command) but supported:
-- Java
-- Linux X64 and Arm32Hfp
+Also, not well by using `println` with timestamp:
+- Java;
+- Linux X64, Arm64 and Arm32Hfp;
+- Windows X64 and X86;
+- WebAssembly without timestamp.
+
+Targets linuxMips32 and linuxMipsel32 supported(using `println`) but not yet published.
 
 ### How to use:
 Add common library as dependency in common **`build.gradle`**:
@@ -18,7 +22,7 @@ repositories {
 }
 dependencies {
     ...
-    implementation 'ru.pocketbyte.hydra:hydra-log:1.0.1'
+    implementation 'ru.pocketbyte.hydra:hydra-log:1.0.2'
 }
 ```
 
@@ -128,7 +132,7 @@ You are not forced to use `HydraLog` object. It was designed to provide Plug and
 ```Kotlin
 HydraLog.init(ThrowExceptionLogger("HydraLog object is forbidden. Please use DI to get Logger instance."))
 ```
-It will let to know for other developers that should be used another way to receive `Logger` instance.
+It will let other developers to know that they should use another way to get an instance of `Logger`.
 
 ## License
 
