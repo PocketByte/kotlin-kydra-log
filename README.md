@@ -125,7 +125,7 @@ HydraLog.init(
 ```
 **Note:** In example above, second filter applies to whole set instead of applying to `AndroidLogger` only. It helps to optimize logging with functions that was described in section "Logging with format", because `LoggersSet` calculate function and pass it's result into method `log(level, tag, message)` of wrapped loggers.
 
-### HydraLog is not mandatory:
+### HydraLog class is not mandatory:
 You are not forced to use `HydraLog` object. It was designed to provide Plug and Play functionality. If you wish, you can instantiate `Logger` as variable and use it for logging. Or you can use Dependency Injection to provide `Logger` instance. To make sure that `HydraLog` is not used in your application you can init `HydraLog` with `ThrowExceptionLogger`:
 ```Kotlin
 // BuildConfig is an example class from android platform.
