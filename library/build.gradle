@@ -31,17 +31,34 @@ kotlin {
 
         js("js")
 
-        macosX64("macos")
-        iosX64("iosX64")
-        iosArm64("iosArm64")
-        iosArm32("iosArm32")
+        macosX64("macosX64") // macOS required
+        iosX64("iosX64")     // macOS required
+        iosArm64("iosArm64") // macOS required
+        iosArm32("iosArm32") // macOS required
+
+        watchosArm32("watchosArm32") // macOS required
+        watchosArm64("watchosArm64") // macOS required
+        watchosX86("watchosX86")     // macOS required
+
+        tvosArm64("tvosArm64") // macOS required
+        tvosX64("tvosX64")     // macOS required
 
         linuxX64("linuxX64")
+        linuxArm64("linuxArm64")
         linuxArm32Hfp("linuxArm32Hfp")
+
+        linuxMips32("linuxMips32")     // Linux required
+        linuxMipsel32("linuxMipsel32") // Linux required
+
         androidNativeArm32("androidNativeArm32")
         androidNativeArm64("androidNativeArm64")
+        androidNativeX64("androidNativeX64")
+        androidNativeX86("androidNativeX86")
 
-        mingwX64("mingw")
+        mingwX64("mingwX64") // Windows required
+        mingwX86("mingwX86") // Windows required
+
+        wasm32("wasm32")
     }
 
     sourceSets {
@@ -124,21 +141,41 @@ kotlin {
         nativeMain {}
         appleMain {}
         androidNativeMain {}
+        mingwMain {}
 
-        configure([nativeMain, appleMain, androidNativeMain]) {
+        configure([nativeMain, appleMain, androidNativeMain, mingwMain]) {
             dependsOn nativeCommonMain
         }
         
-        configure([linuxX64Main, linuxArm32HfpMain, mingwMain]) {
+        configure([
+                linuxX64Main, linuxArm64Main, linuxArm32HfpMain,
+                linuxMips32Main, linuxMipsel32Main
+        ]) {
             dependsOn nativeMain
         }
 
-        configure([androidNativeArm32Main, androidNativeArm64Main]) {
+        configure([
+                androidNativeArm32Main, androidNativeArm64Main,
+                androidNativeX64Main, androidNativeX86Main
+        ]) {
             dependsOn androidNativeMain
         }
 
-        configure([iosX64Main, iosArm64Main, iosArm32Main, macosMain]) {
+        configure([
+                macosX64Main,
+                iosX64Main, iosArm64Main, iosArm32Main,
+                watchosArm32Main, watchosArm64Main, watchosX86Main,
+                tvosArm64Main, tvosX64Main
+        ]) {
             dependsOn appleMain
+        }
+
+        configure([mingwX64Main, mingwX86Main]) {
+            dependsOn mingwMain
+        }
+
+        configure([wasm32Main]) {
+            dependsOn commonMain
         }
 
         //Tests
@@ -150,21 +187,41 @@ kotlin {
         nativeTest { dependsOn nativeMain }
         appleTest { dependsOn appleMain }
         androidNativeTest { dependsOn androidNativeMain }
+        mingwTest { dependsOn mingwMain }
 
-        configure([nativeTest, appleTest, androidNativeTest]) {
+        configure([nativeTest, appleTest, androidNativeTest, mingwTest]) {
             dependsOn nativeCommonTest
         }
 
-        configure([linuxX64Test, linuxArm32HfpTest, mingwTest]) {
+        configure([
+                linuxX64Test, linuxArm64Test, linuxArm32HfpTest,
+                linuxMips32Test, linuxMipsel32Test
+        ]) {
             dependsOn nativeTest
         }
 
-        configure([androidNativeArm32Test, androidNativeArm64Test]) {
+        configure([
+                androidNativeArm32Test, androidNativeArm64Test,
+                androidNativeX64Test, androidNativeX86Test
+        ]) {
             dependsOn androidNativeTest
         }
 
-        configure([iosX64Test, iosArm64Test, iosArm32Test, macosTest]) {
+        configure([
+                macosX64Test,
+                iosX64Test, iosArm64Test, iosArm32Test,
+                watchosArm32Test, watchosArm64Test, watchosX86Test,
+                tvosArm64Test, tvosX64Test
+        ]) {
             dependsOn appleTest
+        }
+
+        configure([mingwX64Test, mingwX86Test]) {
+            dependsOn mingwTest
+        }
+
+        configure([wasm32Test]) {
+            dependsOn commonTest
         }
     }
 }
