@@ -171,6 +171,7 @@ kotlin {
         }
 
         configure([mingwX64Main, mingwX86Main]) {
+            dependsOn nativeMain
             dependsOn mingwMain
         }
 
@@ -217,6 +218,7 @@ kotlin {
         }
 
         configure([mingwX64Test, mingwX86Test]) {
+            dependsOn nativeTest
             dependsOn mingwTest
         }
 
