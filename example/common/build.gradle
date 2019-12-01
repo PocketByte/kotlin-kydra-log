@@ -6,12 +6,12 @@ version = '0.1.1'
 group = 'ru.pocketbyte.hydralogexample.common_lib'
 
 android {
-    compileSdkVersion project.android_sdk_compile
-    buildToolsVersion project.android_build_tool_version
+    compileSdkVersion AndroidSdk.compile
+    buildToolsVersion BuildVersion.androidTool
 
     defaultConfig {
-        minSdkVersion project.android_sdk_min
-        targetSdkVersion project.android_sdk_target
+        minSdkVersion AndroidSdk.min
+        targetSdkVersion AndroidSdk.target
         versionCode 1
         versionName project.version
     }
@@ -34,7 +34,7 @@ kotlin {
         fromPreset(appleIosTarget, 'ios') {
             binaries {
                 framework('common_ios') {
-                    export("ru.pocketbyte.hydra:hydra-log:$hydra_log_version")
+                    export("ru.pocketbyte.hydra:hydra-log:$LibraryInfo.version")
                 }
             }
         }
@@ -63,10 +63,10 @@ kotlin {
         commonMain {
 
             kotlin.srcDir('src/main/kotlin')
-            
+
             dependencies {
                 api "org.jetbrains.kotlin:kotlin-stdlib-common"
-                api "ru.pocketbyte.hydra:hydra-log:$hydra_log_version"
+                api "ru.pocketbyte.hydra:hydra-log:$LibraryInfo.version"
             }
         }
 
