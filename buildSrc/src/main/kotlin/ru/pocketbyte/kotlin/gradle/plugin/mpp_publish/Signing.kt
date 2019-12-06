@@ -11,6 +11,7 @@ import ru.pocketbyte.kotlin_mpp.plugin.publish.visitPublishingTasks
 
 object Signing {
     const val GROUP = "signing"
+    val REPOS_WITH_SIGNINGS = setOf("Sonatype")
 }
 
 
@@ -219,8 +220,10 @@ private fun Project.registerJarSigningTask(targetName: String, taskToSign: Task?
 
 private fun Project.registerSigningTask(targetName: String, signingTask: TaskProvider<Sign>?): TaskProvider<Sign>? {
     return signingTask?.apply {
-        visitPublishingTasks(targetName) { task, _ ->
-            task.dependsOn(signingTask)
+        visitPublishingTasks(targetName) { task, repoName ->
+            if (Signing.REPOS_WITH_SIGNINGS.contains(repoName)) {
+                task.dependsOn(signingTask)
+            }
         }
     }
 }
