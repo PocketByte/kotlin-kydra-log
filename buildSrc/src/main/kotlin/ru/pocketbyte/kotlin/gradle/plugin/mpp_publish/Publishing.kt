@@ -64,7 +64,7 @@ fun Project.registerPlatformDependentPublishingTasks(repoName: String?) {
     registerPlatformDependentTasks(Publishing.ApplePlatformName, repoName,
             Publishing.AppleOnlyTargets)
     registerPlatformDependentTasks(Publishing.MipsPlatformName, repoName,
-            Publishing.WindowsOnlyTargets)
+            Publishing.MipsOnlyTargets)
     registerPlatformDependentTasks(Publishing.WindowsPlatformName, repoName,
             Publishing.WindowsOnlyTargets)
 }
