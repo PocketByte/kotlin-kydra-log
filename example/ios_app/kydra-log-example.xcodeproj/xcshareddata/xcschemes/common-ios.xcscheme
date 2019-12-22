@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C8FA80E421973B0600C73A8E"
                BuildableName = "common_ios.framework"
-               BlueprintName = "common-ios"
+               BlueprintName = "common_ios"
                ReferencedContainer = "container:kydra-log-example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -52,7 +52,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8FA80E421973B0600C73A8E"
             BuildableName = "common_ios.framework"
-            BlueprintName = "common-ios"
+            BlueprintName = "common_ios"
             ReferencedContainer = "container:kydra-log-example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
