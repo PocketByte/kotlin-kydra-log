@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C8A822B420BAF801004C070F"
-               BuildableName = "hydra-log-example-ios.app"
-               BlueprintName = "hydra-log-example-ios"
-               ReferencedContainer = "container:hydra-log-example.xcodeproj">
+               BuildableName = "kydra-log-example-ios.app"
+               BlueprintName = "kydra-log-example-ios"
+               ReferencedContainer = "container:kydra-log-example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8A822B420BAF801004C070F"
-            BuildableName = "hydra-log-example-ios.app"
-            BlueprintName = "hydra-log-example-ios"
-            ReferencedContainer = "container:hydra-log-example.xcodeproj">
+            BuildableName = "kydra-log-example-ios.app"
+            BlueprintName = "kydra-log-example-ios"
+            ReferencedContainer = "container:kydra-log-example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8A822B420BAF801004C070F"
-            BuildableName = "hydra-log-example-ios.app"
-            BlueprintName = "hydra-log-example-ios"
-            ReferencedContainer = "container:hydra-log-example.xcodeproj">
+            BuildableName = "kydra-log-example-ios.app"
+            BlueprintName = "kydra-log-example-ios"
+            ReferencedContainer = "container:kydra-log-example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

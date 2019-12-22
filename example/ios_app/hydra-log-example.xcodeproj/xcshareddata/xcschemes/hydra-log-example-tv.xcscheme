@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C806BEA42386B664006F2794"
-               BuildableName = "hydra-log-example-tv.app"
-               BlueprintName = "hydra-log-example-tv"
-               ReferencedContainer = "container:hydra-log-example.xcodeproj">
+               BuildableName = "kydra-log-example-tv.app"
+               BlueprintName = "kydra-log-example-tv"
+               ReferencedContainer = "container:kydra-log-example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C806BEA42386B664006F2794"
-            BuildableName = "hydra-log-example-tv.app"
-            BlueprintName = "hydra-log-example-tv"
-            ReferencedContainer = "container:hydra-log-example.xcodeproj">
+            BuildableName = "kydra-log-example-tv.app"
+            BlueprintName = "kydra-log-example-tv"
+            ReferencedContainer = "container:kydra-log-example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C806BEA42386B664006F2794"
-            BuildableName = "hydra-log-example-tv.app"
-            BlueprintName = "hydra-log-example-tv"
-            ReferencedContainer = "container:hydra-log-example.xcodeproj">
+            BuildableName = "kydra-log-example-tv.app"
+            BlueprintName = "kydra-log-example-tv"
+            ReferencedContainer = "container:kydra-log-example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

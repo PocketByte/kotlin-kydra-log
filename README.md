@@ -1,5 +1,5 @@
-# Kotlin Hydra Log
-Kotlin Hydra Log - Kotlin Multiplatform Library that allows to write logs in common module. The way how logs will written defines for each platform independently.
+# Kotlin Kydra Log
+Kotlin Kydra Log - Kotlin Multiplatform Library that allows to write logs in common module. The way how logs will written defines for each platform independently.
 
 Fully supported platforms:
 - Android and AndroidNative(Arm32, Arm64, X64, X86) using LogCat;
@@ -16,46 +16,46 @@ Also, not well by using `println` with timestamp:
 Add common library as dependency in common **`build.gradle`**:
 ```gradle
 repositories {
-    maven { url "https://dl.bintray.com/pocketbyte/hydra/" }
+    maven { url "https://dl.bintray.com/pocketbyte/kydra/" }
 }
 dependencies {
     ...
-    implementation 'ru.pocketbyte.hydra:hydra-log:1.0.2'
+    implementation 'ru.pocketbyte.kydra:kydra-log:1.0.2'
 }
 ```
 
-Then you able to use HydraLog in common code:
+Then you able to use KydraLog in common code:
 ```Kotlin
-HydraLog.info("Info log message")
-HydraLog.debug("Debug log message")
-HydraLog.warn("Warning log message")
-HydraLog.error("Error log message")
+KydraLog.info("Info log message")
+KydraLog.debug("Debug log message")
+KydraLog.warn("Warning log message")
+KydraLog.error("Error log message")
 ```
 ### Logging with format:
 If you would to log formatted string you should use kotlin String Templates:
 ```Kotlin
 val count = 1
-HydraLog.info("Count is $count")
+KydraLog.info("Count is $count")
 ```
 To optimize logging with formatting you could use methods with function as parameter instead of string. It allow to skip filtered messages without calculating message string.
 ```Kotlin
-HydraLog.info { "Count is $count" }
+KydraLog.info { "Count is $count" }
 ```
 Here is the complex example that demonstrate logging of function.
 ```Kotlin
 // Messages with level priority that lower than INFO will be filtered
-HydraLog.initDefault(level= LogLevel.INFO)
+KydraLog.initDefault(level= LogLevel.INFO)
 
 var loggerMessage = "Hello"
-HydraLog.error {
+KydraLog.error {
     loggerMessage = "Hello from Error"
     "Error log printed"
 }
-HydraLog.debug {
+KydraLog.debug {
     loggerMessage = "Hello from Debug"
     "Debug log printed"
 }
-HydraLog.info { "Logger say: $loggerMessage" }
+KydraLog.info { "Logger say: $loggerMessage" }
 ```
 In the logs will be printed following list of messages:
 ```
@@ -63,7 +63,7 @@ Error log printed
 Logger say: Hello from Error
 ```
 ### Logger initialization:
-Any logging via not initialized HydraLog will call initialisation with default Logger. But if you want to initialize `HydraLog` with custom filtering you could use function `initDefault(level: LogLevel?, tags: Set<String?>?)`.
+Any logging via not initialized KydraLog will call initialisation with default Logger. But if you want to initialize `KydraLog` with custom filtering you could use function `initDefault(level: LogLevel?, tags: Set<String?>?)`.
 For example, on Android platform can be used different `LogLevel` filtering depending on build type:
 ```Kotlin
 calss MyApplication: Application() {
@@ -71,15 +71,15 @@ calss MyApplication: Application() {
         super.onCreate()
         if (!BuildConfig.DEBUG) {
             // No need to write debug logs in production build
-            HydraLog.initDefault(LogLevel.INFO)
+            KydraLog.initDefault(LogLevel.INFO)
         }
     }
 }
 ```
-**IMPORTANT NOTE**: Initialization can be called only once. Re-initialization will throw `IllegalStateException`. Any logging via not initialized HydraLog will call initialisation with default Logger.
+**IMPORTANT NOTE**: Initialization can be called only once. Re-initialization will throw `IllegalStateException`. Any logging via not initialized KydraLog will call initialisation with default Logger.
 
 ### Custom loggers:
-If you want to implement your own custom logger you should implement interface **`ru.pocketbyte.hydra.log.Logger`**:
+If you want to implement your own custom logger you should implement interface **`ru.pocketbyte.kydra.log.Logger`**:
 
 ```Kotlin
 class MyLogger: Logger {
@@ -103,20 +103,20 @@ class MyLogger: Logger {
 }
 ```
 
-Then you should init HydraLog with your logger:
+Then you should init KydraLog with your logger:
 
 ```Kotlin
-HydraLog.init(MyLogger())
+KydraLog.init(MyLogger())
 ```
 To apply filter on your custom logger you could use operator `filtered`:
 ```Kotlin
 // Will loged only error logs with tags "API_CORE" and "API_SOCKET"
-HydraLog.init(MyLogger().filtered(LogLevel.ERROR, setOf("API_CORE", "API_SOCKET")))
+KydraLog.init(MyLogger().filtered(LogLevel.ERROR, setOf("API_CORE", "API_SOCKET")))
 ```
 
 To utilize several loggers at the same time could be used `LoggersSet`:
 ```Kotlin
-HydraLog.init(
+KydraLog.init(
     LoggersSet(
         AndroidLogger(),
         MyLogger().filtered(LogLevel.ERROR, setOf("API_CORE", "API_SOCKET"))
@@ -125,16 +125,16 @@ HydraLog.init(
 ```
 **Note:** In example above, second filter applies to whole set instead of applying to `AndroidLogger` only. It helps to optimize logging with functions that was described in section "Logging with format", because `LoggersSet` calculate function and pass it's result into method `log(level, tag, message)` of wrapped loggers.
 
-### HydraLog class is not mandatory:
-You are not forced to use `HydraLog` object. It was designed to provide Plug and Play functionality. If you wish, you can instantiate `Logger` as variable and use it for logging. Or you can use Dependency Injection to provide `Logger` instance. To make sure that `HydraLog` is not used in your application you can init `HydraLog` with `ThrowExceptionLogger`:
+### KydraLog class is not mandatory:
+You are not forced to use `KydraLog` object. It was designed to provide Plug and Play functionality. If you wish, you can instantiate `Logger` as variable and use it for logging. Or you can use Dependency Injection to provide `Logger` instance. To make sure that `KydraLog` is not used in your application you can init `KydraLog` with `ThrowExceptionLogger`:
 ```Kotlin
 // BuildConfig is an example class from android platform.
 // You should use corresponded way to identify debug build for each platform independently.
 if (BuildConfig.DEBUG) {
-    HydraLog.init(ThrowExceptionLogger("HydraLog object is forbidden. Please use DI to get Logger instance."))
+    KydraLog.init(ThrowExceptionLogger("KydraLog object is forbidden. Please use DI to get Logger instance."))
 } else {
     // No need to crash Production Build
-    HydraLog.initDefault()
+    KydraLog.initDefault()
 }
 ```
 It will let other developers to know that they should use another way to get an instance of `Logger`.

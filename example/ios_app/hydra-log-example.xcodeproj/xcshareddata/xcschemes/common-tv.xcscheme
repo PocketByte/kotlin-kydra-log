@@ -17,7 +17,7 @@
                BlueprintIdentifier = "C806BE962386B5DF006F2794"
                BuildableName = "common_tv.framework"
                BlueprintName = "common_tv"
-               ReferencedContainer = "container:hydra-log-example.xcodeproj">
+               ReferencedContainer = "container:kydra-log-example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -53,7 +53,7 @@
             BlueprintIdentifier = "C806BE962386B5DF006F2794"
             BuildableName = "common_tv.framework"
             BlueprintName = "common_tv"
-            ReferencedContainer = "container:hydra-log-example.xcodeproj">
+            ReferencedContainer = "container:kydra-log-example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

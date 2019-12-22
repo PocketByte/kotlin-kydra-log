@@ -263,7 +263,7 @@ publishing {
     repositories {
         maven {
             name = "Bintray"
-            url = uri("https://api.bintray.com/content/pocketbyte/hydra/${project.name}/${project.version}")
+            url = uri("https://api.bintray.com/content/pocketbyte/kydra/${project.name}/${project.version}")
             credentials {
                 username = project.findProperty("bintray.publish.user")?.toString() ?: ""
                 password = project.findProperty("bintray.publish.apikey")?.toString() ?: ""
@@ -284,18 +284,18 @@ publishing {
 fun configurePomDefault(pom: MavenPom, targetName: String?) {
     pom.apply {
         if (targetName != null) {
-            name.set("Kotlin Hydra Log (${targetName})")
-            description.set("Hydra Log implementation for target \'${targetName}\'")
+            name.set("Kotlin Kydra Log (${targetName})")
+            description.set("Kydra Log implementation for target \'${targetName}\'")
         } else {
-            name.set("Kotlin Hydra Log")
-            description.set("Kotlin Hydra Log - Kotlin Multiplatform Library that allows to write logs in common module. The way how logs will written defines for each platform independently.")
+            name.set("Kotlin Kydra Log")
+            description.set("Kotlin Kydra Log - Kotlin Multiplatform Library that allows to write logs in common module. The way how logs will written defines for each platform independently.")
         }
-        url.set("https://github.com/PocketByte/kotlin-hydra-log")
+        url.set("https://github.com/PocketByte/kotlin-kydra-log")
         issueManagement {
-            url.set("https://github.com/PocketByte/kotlin-hydra-log/issues")
+            url.set("https://github.com/PocketByte/kotlin-kydra-log/issues")
         }
         scm {
-            url.set("https://github.com/PocketByte/kotlin-hydra-log.git")
+            url.set("https://github.com/PocketByte/kotlin-kydra-log.git")
         }
         developers {
             developer {

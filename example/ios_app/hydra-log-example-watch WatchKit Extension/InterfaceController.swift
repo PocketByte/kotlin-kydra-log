@@ -1,6 +1,6 @@
 //
 //  InterfaceController.swift
-//  hydra-log-example-watch WatchKit Extension
+//  kydra-log-example-watch WatchKit Extension
 //
 //  Created by Dash on 21/11/2019.
 //  Copyright © 2019 PcketByte.ru. All rights reserved.
@@ -16,7 +16,7 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet weak var switchStackTrace: WKInterfaceSwitch!
     @IBOutlet weak var switchAsync: WKInterfaceSwitch!
     
-    private var logMessage: String = "Hello Hydra Log"
+    private var logMessage: String = "Hello Kydra Log"
     private var printStackTrace: Bool = false
     private var runAsync: Bool = true
     

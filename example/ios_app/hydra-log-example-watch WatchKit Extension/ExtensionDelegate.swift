@@ -1,6 +1,6 @@
 //
 //  ExtensionDelegate.swift
-//  hydra-log-example-watch WatchKit Extension
+//  kydra-log-example-watch WatchKit Extension
 //
 //  Created by Dash on 21/11/2019.
 //  Copyright © 2019 PcketByte.ru. All rights reserved.

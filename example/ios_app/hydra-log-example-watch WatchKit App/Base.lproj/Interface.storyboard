@@ -9,9 +9,9 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="hydra_log_example_watch_WatchKit_App" customModuleProvider="target">
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="kydra_log_example_watch_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <textField width="136" alignment="left" text="Hello Hydra Log" id="mB8-IK-ra2">
+                        <textField width="136" alignment="left" text="Hello Kydra Log" id="mB8-IK-ra2">
                             <connections>
                                 <action selector="actionMessageChanged:" destination="AgC-eL-Hgc" id="h8A-Bj-xzS"/>
                             </connections>

@@ -27,7 +27,7 @@ allprojects {
         maven ("https://dl.bintray.com/kotlin/kotlin-eap") // kotlin 1.2
 
         // PocketByte maven repo
-        maven ("https://dl.bintray.com/pocketbyte/hydra/")
+        maven ("https://dl.bintray.com/pocketbyte/kydra/")
     }
 }
 

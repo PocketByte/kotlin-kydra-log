@@ -1,7 +1,7 @@
 enableFeaturePreview('GRADLE_METADATA')
 
-include ':hydra-log'
-project(':hydra-log').projectDir = new File(settingsDir, './library/')
+include ':kydra-log'
+project(':kydra-log').projectDir = new File(settingsDir, './library/')
 
 // Common
 include ':example'

@@ -5,7 +5,7 @@
 
 import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.events.Event
-import ru.pocketbyte.hydralogexample.common.Common
+import ru.pocketbyte.kydralogexample.common.Common
 import kotlin.browser.document
 import kotlin.browser.window
 

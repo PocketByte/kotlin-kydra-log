@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C806BE432386A447006F2794"
-               BuildableName = "hydra-log-example-watch WatchKit App.app"
-               BlueprintName = "hydra-log-example-watch WatchKit App"
-               ReferencedContainer = "container:hydra-log-example.xcodeproj">
+               BuildableName = "kydra-log-example-watch WatchKit App.app"
+               BlueprintName = "kydra-log-example-watch WatchKit App"
+               ReferencedContainer = "container:kydra-log-example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C806BE402386A447006F2794"
-               BuildableName = "hydra-log-example-watch.app"
-               BlueprintName = "hydra-log-example-watch"
-               ReferencedContainer = "container:hydra-log-example.xcodeproj">
+               BuildableName = "kydra-log-example-watch.app"
+               BlueprintName = "kydra-log-example-watch"
+               ReferencedContainer = "container:kydra-log-example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -57,13 +57,13 @@
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/hydra-log-example-watch WatchKit App">
+         RemotePath = "/kydra-log-example-watch WatchKit App">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C806BE432386A447006F2794"
-            BuildableName = "hydra-log-example-watch WatchKit App.app"
-            BlueprintName = "hydra-log-example-watch WatchKit App"
-            ReferencedContainer = "container:hydra-log-example.xcodeproj">
+            BuildableName = "kydra-log-example-watch WatchKit App.app"
+            BlueprintName = "kydra-log-example-watch WatchKit App"
+            ReferencedContainer = "container:kydra-log-example.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
    </LaunchAction>
@@ -76,22 +76,22 @@
       <RemoteRunnable
          runnableDebuggingMode = "2"
          BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/hydra-log-example-watch WatchKit App">
+         RemotePath = "/kydra-log-example-watch WatchKit App">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C806BE432386A447006F2794"
-            BuildableName = "hydra-log-example-watch WatchKit App.app"
-            BlueprintName = "hydra-log-example-watch WatchKit App"
-            ReferencedContainer = "container:hydra-log-example.xcodeproj">
+            BuildableName = "kydra-log-example-watch WatchKit App.app"
+            BlueprintName = "kydra-log-example-watch WatchKit App"
+            ReferencedContainer = "container:kydra-log-example.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C806BE432386A447006F2794"
-            BuildableName = "hydra-log-example-watch WatchKit App.app"
-            BlueprintName = "hydra-log-example-watch WatchKit App"
-            ReferencedContainer = "container:hydra-log-example.xcodeproj">
+            BuildableName = "kydra-log-example-watch WatchKit App.app"
+            BlueprintName = "kydra-log-example-watch WatchKit App"
+            ReferencedContainer = "container:kydra-log-example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

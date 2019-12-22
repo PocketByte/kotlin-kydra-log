@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  hydra-log-example-tv
+//  kydra-log-example-tv
 //
 //  Created by Dash on 21/11/2019.
 //  Copyright © 2019 PcketByte.ru. All rights reserved.
