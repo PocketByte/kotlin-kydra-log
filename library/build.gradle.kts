@@ -37,45 +37,10 @@ android {
     }
 }
 
+// =================================
+// Common Source Sets
 kotlin {
-    jvm()
-    android {
-        publishLibraryVariants("release", "debug")
-    }
-    js()
-
-    macosX64() // macOS required
-    iosX64()     // macOS required
-    iosArm64() // macOS required
-    iosArm32() // macOS required
-
-    watchosArm32() // macOS required
-    watchosArm64() // macOS required
-    watchosX86()     // macOS required
-
-    tvosArm64() // macOS required
-    tvosX64()     // macOS required
-
-    linuxX64()
-    linuxArm64()
-    linuxArm32Hfp()
-
-    linuxMips32()     // Linux required
-    linuxMipsel32() // Linux required
-
-    androidNativeArm32()
-    androidNativeArm64()
-    androidNativeX64()
-    androidNativeX86()
-
-    mingwX64() // Windows required
-    mingwX86() // Windows required
-
-    wasm32()
-
     sourceSets {
-        // =================================
-        // Main Source Sets
         val commonMain by getting {
             dependencies {
                 api("org.jetbrains.kotlin:kotlin-stdlib-common")
@@ -90,8 +55,29 @@ kotlin {
             }
         }
 
-        // =================================
-        // JVM based Source Sets
+        // Native common
+        val nativeCommonMain by creating {
+            dependsOn(commonMain)
+        }
+        val nativeCommonTest by creating {
+            dependsOn(nativeCommonMain)
+            dependsOn(commonTest)
+        }
+    }
+}
+
+// =================================
+// JVM based targets
+kotlin {
+    jvm()
+    android {
+        publishLibraryVariants("release", "debug")
+    }
+
+    sourceSets {
+        val commonMain by getting
+        val commonTest by getting
+
         val jvmCommonMain by creating {
             dependsOn(commonMain)
             dependencies {
@@ -131,9 +117,15 @@ kotlin {
             dependsOn(jvmCommonTest)
             dependsOn(androidMain)
         }
+    }
+}
 
-        // =================================
-        // JS Source Sets
+// =================================
+// JS Target
+kotlin {
+    js()
+
+    sourceSets {
         val jsMain by getting {
             dependencies {
                 api("org.jetbrains.kotlin:kotlin-stdlib")
@@ -148,108 +140,176 @@ kotlin {
                 api("org.jetbrains.kotlin:kotlin-test-js")
             }
         }
+    }
+}
+
+// =================================
+// Android Native Targets
+kotlin {
+    androidNativeArm32()
+    androidNativeArm64()
+    androidNativeX64()
+    androidNativeX86()
+
+    sourceSets {
+        val androidNativeArm32Main by getting {
+            dependsOn(getByName("nativeCommonMain"))
+        }
+
+        configure(listOf(
+                getByName("androidNativeArm64Main"),
+                getByName("androidNativeX64Main"),
+                getByName("androidNativeX86Main")
+        )) {
+            dependsOn(androidNativeArm32Main)
+        }
+
+        val androidNativeArm32Test by getting {
+            dependsOn(getByName("nativeCommonTest"))
+        }
+
+        configure(listOf(
+                getByName("androidNativeArm64Test"),
+                getByName("androidNativeX64Test"),
+                getByName("androidNativeX86Test")
+        )) {
+            dependsOn(androidNativeArm32Test)
+        }
+    }
+}
+
+// =================================
+// Apple Targets
+kotlin {
+    macosX64() // macOS required
+    iosX64()     // macOS required
+    iosArm64() // macOS required
+    iosArm32() // macOS required
+
+    watchosArm32() // macOS required
+    watchosArm64() // macOS required
+    watchosX86()     // macOS required
+
+    tvosArm64() // macOS required
+    tvosX64()     // macOS required
+
+    sourceSets {
+        val macosX64Main by getting {
+            dependsOn(getByName("nativeCommonMain"))
+        }
+
+        configure(listOf(
+                getByName("iosX64Main"),
+                getByName("iosArm64Main"),
+                getByName("iosArm32Main"),
+                getByName("watchosX86Main"),
+                getByName("watchosArm32Main"),
+                getByName("watchosArm64Main"),
+                getByName("tvosArm64Main"),
+                getByName("tvosX64Main")
+        )) {
+            dependsOn(macosX64Main)
+        }
+
+        val macosX64Test by getting {
+            dependsOn(getByName("nativeCommonTest"))
+        }
+
+        configure(listOf(
+                getByName("iosX64Test"),
+                getByName("iosArm64Test"),
+                getByName("iosArm32Test"),
+                getByName("watchosX86Test"),
+                getByName("watchosArm32Test"),
+                getByName("watchosArm64Test"),
+                getByName("tvosArm64Test"),
+                getByName("tvosX64Test")
+        )) {
+            dependsOn(macosX64Test)
+        }
+    }
+}
+
+// =================================
+// Linux targets
+kotlin {
+    linuxX64()
+    linuxArm64()
+    linuxArm32Hfp()
+
+    linuxMips32()     // Linux required
+    linuxMipsel32() // Linux required
+
+    sourceSets {
 
         // =================================
         // Native based Source Sets
-        val nativeCommonMain by creating {
-            dependsOn(commonMain)
-        }
-        val nativeMain by creating
-        val appleMain by creating
-        val androidNativeMain by creating
-        val mingwMain by creating
-
-        configure(listOf(nativeMain, appleMain, androidNativeMain, mingwMain)) {
-            dependsOn(nativeCommonMain)
+        val linuxX64Main by getting {
+            dependsOn(getByName("nativeCommonMain"))
         }
 
         configure(listOf(
-                getByName("linuxX64Main"),
-                getByName("linuxArm64Main"), getByName("linuxArm32HfpMain"),
-                getByName("linuxMips32Main"), getByName("linuxMipsel32Main")
+                getByName("linuxArm64Main"),
+                getByName("linuxArm32HfpMain"),
+                getByName("linuxMips32Main"),
+                getByName("linuxMipsel32Main")
         )) {
-            dependsOn(nativeMain)
+            dependsOn(linuxX64Main)
+        }
+
+        val linuxX64Test by getting {
+            dependsOn(getByName("nativeCommonTest"))
         }
 
         configure(listOf(
-                getByName("androidNativeArm32Main"), getByName("androidNativeArm64Main"),
-                getByName("androidNativeX64Main"), getByName("androidNativeX86Main")
+                getByName("linuxArm64Test"),
+                getByName("linuxArm32HfpTest"),
+                getByName("linuxMips32Test"),
+                getByName("linuxMipsel32Test")
         )) {
-            dependsOn(androidNativeMain)
+            dependsOn(linuxX64Test)
         }
+    }
+}
+
+// =================================
+// Windows targets
+kotlin {
+    mingwX64() // Windows required
+    mingwX86() // Windows required
+
+    sourceSets {
+        val linuxX64Main by getting
 
         configure(listOf(
-                getByName("macosX64Main"),
-                getByName("iosX64Main"),
-                getByName("iosArm64Main"), getByName("iosArm32Main"),
-                getByName("watchosX86Main"),
-                getByName("watchosArm32Main"), getByName("watchosArm64Main"),
-                getByName("tvosArm64Main"), getByName("tvosX64Main")
+                getByName("mingwX64Main"),
+                getByName("mingwX86Main")
         )) {
-            dependsOn(appleMain)
+            dependsOn(linuxX64Main)
         }
+
+        val linuxX64Test by getting
 
         configure(listOf(
-                getByName("mingwX64Main"), getByName("mingwX86Main")
+                getByName("mingwX64Test"),
+                getByName("mingwX86Test")
         )) {
-            dependsOn(nativeMain)
-            dependsOn(mingwMain)
+            dependsOn(linuxX64Test)
         }
+    }
+}
 
-        configure(listOf(getByName("wasm32Main"))) {
-            dependsOn(commonMain)
+// =================================
+// Web Assembly targets
+kotlin {
+    wasm32()
+
+    sourceSets {
+        getByName("wasm32Main") {
+            dependsOn(getByName("commonMain"))
         }
-
-        //Tests
-
-        val nativeCommonTest by creating {
-            dependsOn(nativeCommonMain)
-            dependsOn(commonTest)
-        }
-        val nativeTest by creating { dependsOn(nativeMain) }
-        val appleTest by creating { dependsOn(appleMain) }
-        val androidNativeTest by creating { dependsOn(androidNativeMain) }
-        val mingwTest by creating { dependsOn(mingwMain) }
-
-        configure(listOf(nativeTest, appleTest, androidNativeTest, mingwTest)) {
-            dependsOn(nativeCommonTest)
-        }
-
-        configure(listOf(
-                getByName("linuxX64Test"),
-                getByName("linuxArm64Test"), getByName("linuxArm32HfpTest"),
-                getByName("linuxMips32Test"), getByName("linuxMipsel32Test")
-        )) {
-            dependsOn(nativeTest)
-        }
-
-        configure(listOf(
-                getByName("androidNativeArm32Test"), getByName("androidNativeArm64Test"),
-                getByName("androidNativeX64Test"), getByName("androidNativeX86Test")
-        )) {
-            dependsOn(androidNativeTest)
-        }
-
-        configure(listOf(
-                getByName("macosX64Test"),
-                getByName("iosX64Test"),
-                getByName("iosArm64Test"), getByName("iosArm32Test"),
-                getByName("watchosX86Test"),
-                getByName("watchosArm32Test"), getByName("watchosArm64Test"),
-                getByName("tvosArm64Test"), getByName("tvosX64Test")
-        )) {
-            dependsOn(appleTest)
-        }
-
-        configure(listOf(
-                getByName("mingwX64Test"), getByName("mingwX86Test")
-        )) {
-            dependsOn(nativeTest)
-            dependsOn(mingwTest)
-        }
-
-        configure(listOf(getByName("wasm32Test"))) {
-            dependsOn(commonTest)
+        getByName("wasm32Test") {
+            dependsOn(getByName("commonTest"))
         }
     }
 }
