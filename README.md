@@ -1,4 +1,6 @@
 # Kotlin Kydra Log
+![Maven Central](https://img.shields.io/maven-central/v/ru.pocketbyte.kydra/kydra-log) [![License](https://img.shields.io/badge/License-Apache/2.0-blue.svg)](LICENSE)
+
 Kotlin Kydra Log - Kotlin Multiplatform Library that allows to write logs in common module. The way how logs will written defines for each platform independently.
 
 Fully supported platforms:
