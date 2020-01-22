@@ -21,13 +21,11 @@ buildscript {
 allprojects {
     repositories {
         mavenLocal()
+        mavenCentral()
         google()
         jcenter()
         maven ("https://kotlin.bintray.com/kotlinx")
         maven ("https://dl.bintray.com/kotlin/kotlin-eap") // kotlin 1.2
-
-        // PocketByte maven repo
-        maven ("https://dl.bintray.com/pocketbyte/kydra/")
     }
 }
 

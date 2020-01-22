@@ -1,5 +1,0 @@
-allprojects {
-    repositories {
-        maven { url "https://dl.bintray.com/pocketbyte/kydra/" }
-    }
-}

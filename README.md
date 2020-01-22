@@ -16,7 +16,7 @@ Also, not well by using `println` with timestamp:
 Add common library as dependency in common **`build.gradle`**:
 ```gradle
 repositories {
-    maven { url "https://dl.bintray.com/pocketbyte/kydra/" }
+    mavenCentral()
 }
 dependencies {
     ...
