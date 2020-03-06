@@ -213,6 +213,7 @@ kotlin {
 
         val macosX64Test by getting {
             dependsOn(getByName("nativeCommonTest"))
+            dependsOn(macosX64Main)
         }
 
         configure(listOf(
@@ -259,6 +260,7 @@ kotlin {
 
         val linuxX64Test by getting {
             dependsOn(getByName("nativeCommonTest"))
+            dependsOn(linuxX64Main)
         }
 
         configure(listOf(
