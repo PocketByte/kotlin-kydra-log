@@ -1,6 +1,6 @@
 
 object BuildVersion {
-    const val kotlin = "1.3.70"
+    const val kotlin = "1.3.71"
 
     const val dokka = "0.10.0"
 
