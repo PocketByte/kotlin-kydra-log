@@ -238,7 +238,7 @@ kotlin {
     linuxArm64()
     linuxArm32Hfp()
 
-    linuxMips32()     // Linux required
+    linuxMips32()   // Linux required
     linuxMipsel32() // Linux required
 
     sourceSets {
