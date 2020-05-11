@@ -6,21 +6,19 @@
 package ru.pocketbyte.kydra.log
 
 /**
- * Global logger instance.
+ * Logger container.
  * You should initialize it via [init] before usage.
  */
-object KydraLog: InitializableLogger() {
+expect abstract class InitializableLogger() : AbsLogger {
+
+    override val logger: Logger
 
     /**
-     * Init KydraLog instance with provided Logger
+     * Init Logger with provided Logger
      * @param logger Logger that should be user for logging
      */
-    override fun init(logger: Logger) {
-        super.init(logger)
-    }
+    open fun init(logger: Logger)
 
-    override fun onNeedToBeInitialized() {
-        initDefault()
-    }
+    protected abstract fun onNeedToBeInitialized()
 
 }

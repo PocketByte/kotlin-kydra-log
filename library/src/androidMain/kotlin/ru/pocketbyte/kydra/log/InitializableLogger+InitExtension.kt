@@ -5,7 +5,7 @@
 
 package ru.pocketbyte.kydra.log
 
-actual fun KydraLog.initDefault(level: LogLevel?, tags: Set<String?>?) {
+actual fun InitializableLogger.initDefault(level: LogLevel?, tags: Set<String?>?) {
     if (level == null && tags?.isNotEmpty() != true)
         init(AndroidLogger())
     else
