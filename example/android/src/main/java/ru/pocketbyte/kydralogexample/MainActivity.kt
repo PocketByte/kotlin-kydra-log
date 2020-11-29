@@ -7,29 +7,32 @@ package ru.pocketbyte.kydralogexample
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
 import ru.pocketbyte.kydralogexample.common.Common
+import ru.pocketbyte.kydralogexample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        btnPrintInfo.setOnClickListener {
-            Common.printInfo(txtMessage.text.toString(), cbStackTrace.isChecked)
+        binding.btnPrintInfo.setOnClickListener {
+            Common.printInfo(binding.txtMessage.text.toString(), binding.cbStackTrace.isChecked)
         }
 
-        btnPrintDebug.setOnClickListener {
-            Common.printDebug(txtMessage.text.toString(), cbStackTrace.isChecked)
+        binding.btnPrintDebug.setOnClickListener {
+            Common.printDebug(binding.txtMessage.text.toString(), binding.cbStackTrace.isChecked)
         }
 
-        btnPrintWarning.setOnClickListener {
-            Common.printWarning(txtMessage.text.toString(), cbStackTrace.isChecked)
+        binding.btnPrintWarning.setOnClickListener {
+            Common.printWarning(binding.txtMessage.text.toString(), binding.cbStackTrace.isChecked)
         }
 
-        btnPrintError.setOnClickListener {
-            Common.printError(txtMessage.text.toString(), cbStackTrace.isChecked)
+        binding.btnPrintError.setOnClickListener {
+            Common.printError(binding.txtMessage.text.toString(), binding.cbStackTrace.isChecked)
         }
     }
 }

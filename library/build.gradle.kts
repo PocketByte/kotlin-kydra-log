@@ -182,16 +182,16 @@ kotlin {
 // Apple Targets
 kotlin {
     macosX64() // macOS required
-    iosX64()     // macOS required
+    iosX64()   // macOS required
     iosArm64() // macOS required
     iosArm32() // macOS required
 
     watchosArm32() // macOS required
     watchosArm64() // macOS required
-    watchosX86()     // macOS required
+    watchosX86()   // macOS required
 
     tvosArm64() // macOS required
-    tvosX64()     // macOS required
+    tvosX64()   // macOS required
 
     sourceSets {
         val macosX64Main by getting {

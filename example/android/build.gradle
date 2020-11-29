@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+
 android {
-    compileSdkVersion 28
+    compileSdkVersion AndroidSdk.compile
 
     defaultConfig {
         applicationId "ru.pocketbyte.kydralogexample"
-        minSdkVersion 14
-        targetSdkVersion 28
+        minSdkVersion AndroidSdk.min
+        targetSdkVersion AndroidSdk.target
         versionCode 1
         versionName "1.0"
     }
@@ -19,14 +19,16 @@ android {
         }
     }
 
+    buildFeatures {
+        viewBinding true
+    }
 
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$BuildVersion.kotlin"
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
 
     implementation project(':example:common')
-    implementation "ru.pocketbyte.kydra:kydra-log:$LibraryInfo.version"
+    implementation "ru.pocketbyte.kydra:kydra-log:1.1.3"
 }

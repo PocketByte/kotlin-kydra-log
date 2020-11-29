@@ -1,7 +1,7 @@
 
 object BuildVersion {
-    const val kotlin = "1.4.10"
+    const val kotlin = "1.4.20"
 
-    const val androidGradle = "3.5.2"
-    const val androidTool = "28.0.3"
+    const val androidGradle = "4.1.0"
+    const val androidTool = "29.0.2"
 }
