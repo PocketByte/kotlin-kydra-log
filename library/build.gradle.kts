@@ -324,14 +324,6 @@ kotlin {
 publishing {
     repositories {
         maven {
-            name = "Bintray"
-            url = uri("https://api.bintray.com/content/pocketbyte/kydra/${project.name}/${project.version}")
-            credentials {
-                username = project.findProperty("bintray.publish.user")?.toString() ?: ""
-                password = project.findProperty("bintray.publish.apikey")?.toString() ?: ""
-            }
-        }
-        maven {
             name = "Sonatype"
             url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
             credentials {
@@ -421,7 +413,9 @@ publishing {
     publications {
         val kotlinMultiplatform by getting {
             (this as? MavenPublication)?.apply {
-                addSigningsToPublication(this, Publishing.ROOT_TARGET)
+                addAllSigningsToPublication(this, Publishing.ROOT_TARGET)
+                addJarSigningsToPublication(this, "metadata")
+                addSourcesSigningsToPublication(this, "metadata")
                 configurePomDefault(pom, null)
             }
         }
@@ -443,7 +437,7 @@ kotlin {
     )) {
         val targetName = name.upperFirstChar()
         mavenPublication {
-            addSigningsToPublication(this, targetName)
+            addAllSigningsToPublication(this, targetName)
             configurePomDefault(pom, targetName)
         }
     }
@@ -454,7 +448,7 @@ kotlin {
                 val variant = if (this.artifactId.endsWith("debug")) // FIXME
                 { "Debug"} else { "Release" }
 
-                addSigningsToPublication(this, targetName, variant)
+                addAllSigningsToPublication(this, targetName, variant)
                 configurePomDefault(pom, "$targetName $variant")
             }
         }

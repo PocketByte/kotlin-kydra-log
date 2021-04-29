@@ -225,9 +225,16 @@ private fun Project.registerSigningTask(targetName: String, signingTask: TaskPro
     }
 }
 
+fun Project.addAllSigningsToPublication(publication: MavenPublication, targetName: String) {
+    addPomSigningsToPublication(publication, targetName)
+    addMetaSigningsToPublication(publication, targetName)
+    addSourcesSigningsToPublication(publication, targetName)
+    addJavaDocSigningsToPublication(publication, targetName)
+    addJarSigningsToPublication(publication, targetName)
+    addKlibSigningsToPublication(publication, targetName)
+}
 
-
-fun Project.addSigningsToPublication(publication: MavenPublication, targetName: String) {
+fun Project.addPomSigningsToPublication(publication: MavenPublication, targetName: String) {
     pomSigningTask(targetName)?.let {
         it.signatureFiles.find { file ->
             file.name == "pom-default.xml.asc"
@@ -238,6 +245,8 @@ fun Project.addSigningsToPublication(publication: MavenPublication, targetName: 
             }
         }
     }
+}
+fun Project.addMetaSigningsToPublication(publication: MavenPublication, targetName: String) {
     metaSigningTask(targetName)?.let {
         it.signatureFiles.find { file ->
             file.name == "module.json.asc"
@@ -248,6 +257,8 @@ fun Project.addSigningsToPublication(publication: MavenPublication, targetName: 
             }
         }
     }
+}
+fun Project.addSourcesSigningsToPublication(publication: MavenPublication, targetName: String) {
     sourcesSigningTask(targetName)?.let {
         it.signatureFiles.find { file ->
             file.name.endsWith("sources.jar.asc")
@@ -258,6 +269,8 @@ fun Project.addSigningsToPublication(publication: MavenPublication, targetName: 
             }
         }
     }
+}
+fun Project.addJavaDocSigningsToPublication(publication: MavenPublication, targetName: String) {
     javaDocSigningTask(targetName)?.let {
         it.signatureFiles.find { file ->
             file.name.endsWith("javadoc.jar.asc")
@@ -268,6 +281,8 @@ fun Project.addSigningsToPublication(publication: MavenPublication, targetName: 
             }
         }
     }
+}
+fun Project.addJarSigningsToPublication(publication: MavenPublication, targetName: String) {
     jarSigningTask(targetName)?.let {
         it.signatureFiles.find { file ->
             file.name.endsWith("jar.asc")
@@ -278,6 +293,8 @@ fun Project.addSigningsToPublication(publication: MavenPublication, targetName: 
             }
         }
     }
+}
+fun Project.addKlibSigningsToPublication(publication: MavenPublication, targetName: String) {
     klibSigningTask(targetName)?.let {
         it.signatureFiles.find { file ->
             file.name.endsWith("klib.asc")
@@ -290,8 +307,8 @@ fun Project.addSigningsToPublication(publication: MavenPublication, targetName: 
     }
 }
 
-fun Project.addSigningsToPublication(publication: MavenPublication, targetName: String, variantName: String) {
-    addSigningsToPublication(publication, "${targetName}${variantName.upperFirstChar()}")
+fun Project.addAllSigningsToPublication(publication: MavenPublication, targetName: String, variantName: String) {
+    addAllSigningsToPublication(publication, "${targetName}${variantName.upperFirstChar()}")
 
     aarSigningTask(targetName, variantName)?.let {
         it.signatureFiles.find { file ->
