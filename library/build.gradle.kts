@@ -316,6 +316,9 @@ kotlin {
     }
 }
 
+val javadocJar by tasks.registering(Jar::class) {
+    archiveClassifier.set("javadoc")
+}
 
 //==================================================================================================
 // Publication
@@ -334,6 +337,9 @@ publishing {
     }
 }
 
+signing {
+    sign(publishing.publications)
+}
 
 fun configurePomDefault(pom: MavenPom, targetName: String?) {
     pom.apply {
@@ -371,51 +377,15 @@ fun configurePomDefault(pom: MavenPom, targetName: String?) {
     }
 }
 
-// Create Signing Tasks for Root
-registerPomSigningTask(Publishing.ROOT_TARGET)
-registerMetaSigningTask(Publishing.ROOT_TARGET)
-
-// Create Signing Tasks for Targets
-kotlin.targets.forEach { target ->
-    when (target.platformType) {
-        KotlinPlatformType.common, KotlinPlatformType.jvm, KotlinPlatformType.js -> {
-            registerJarSigningTask(target.name)
-            registerSourcesSigningTask(target.name)
-            registerJavaDocSigningTask(target.name)
-            registerPomSigningTask(target.name)
-            registerMetaSigningTask(target.name)
-        }
-        KotlinPlatformType.native -> {
-            registerKlibSigningTask(target.name,
-                    target.compilations.getByName("main").output.allOutputs)
-            registerSourcesSigningTask(target.name)
-            registerJavaDocSigningTask(target.name)
-            registerPomSigningTask(target.name)
-            registerMetaSigningTask(target.name)
-
-        }
-        KotlinPlatformType.androidJvm -> {
-            afterEvaluate {
-                (target as? KotlinAndroidTarget)?.publishLibraryVariants?.forEach { variant ->
-                    registerAarSigningTask(target.name, variant)
-                    registerSourcesSigningTask(target.name, variant)
-                    registerJavaDocSigningTask(target.name, variant)
-                    registerPomSigningTask(target.name, variant)
-                    registerMetaSigningTask(target.name, variant)
-                }
-            }
-        }
-    }
-}
-
 // Configure Root publication
 publishing {
+    publications.withType<MavenPublication> {
+        // Stub javadoc.jar artifact
+        artifact(javadocJar.get())
+    }
     publications {
         val kotlinMultiplatform by getting {
             (this as? MavenPublication)?.apply {
-                addAllSigningsToPublication(this, Publishing.ROOT_TARGET)
-                addJarSigningsToPublication(this, "metadata")
-                addSourcesSigningsToPublication(this, "metadata")
                 configurePomDefault(pom, null)
             }
         }
@@ -437,7 +407,6 @@ kotlin {
     )) {
         val targetName = name.upperFirstChar()
         mavenPublication {
-            addAllSigningsToPublication(this, targetName)
             configurePomDefault(pom, targetName)
         }
     }
@@ -448,7 +417,6 @@ kotlin {
                 val variant = if (this.artifactId.endsWith("debug")) // FIXME
                 { "Debug"} else { "Release" }
 
-                addAllSigningsToPublication(this, targetName, variant)
                 configurePomDefault(pom, "$targetName $variant")
             }
         }
