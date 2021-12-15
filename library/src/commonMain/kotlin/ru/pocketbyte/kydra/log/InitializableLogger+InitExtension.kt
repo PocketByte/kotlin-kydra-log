@@ -12,4 +12,6 @@ package ru.pocketbyte.kydra.log
  * @param tags Set of tags that can be passed.
  * Null if filter by Tag shouldn't be used.
  */
-expect fun InitializableLogger.initDefault(level: LogLevel? = null, tags: Set<String?>? = null)
+fun InitializableLogger.initDefault(level: LogLevel? = null, tags: Set<String?>? = null) {
+    init(DefaultLogger.build(level, tags))
+}
