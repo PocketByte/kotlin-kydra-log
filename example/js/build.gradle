@@ -1,9 +1,9 @@
 apply plugin: 'kotlin-platform-js'
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$BuildVersion.kotlin"
-    compile "ru.pocketbyte.kydra:kydra-log:$LibraryInfo.version"
-    compile project(':example:common')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-js:$BuildVersion.kotlin"
+    implementation "ru.pocketbyte.kydra:kydra-log:$LibraryInfo.version"
+    implementation project(':example:common')
 }
 
 compileKotlin2Js.kotlinOptions.sourceMap = true

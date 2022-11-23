@@ -2,8 +2,9 @@
 //  AppDelegate.swift
 //  kydra-log-example-tv
 //
-//  Created by Dash on 21/11/2019.
-//  Copyright © 2019 PcketByte.ru. All rights reserved.
+//  Created by Denis Shurygin on 21/11/2019.
+//  Copyright © 2022 Denis Shurygin. All rights reserved.
+//  Licensed under the Apache License, Version 2.0
 //
 
 import UIKit

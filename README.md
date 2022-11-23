@@ -86,24 +86,14 @@ If you want to implement your own custom logger you should implement interface *
 ```Kotlin
 class MyLogger: Logger {
 
-    override fun log(level: LogLevel, tag: String?, message: String) {
+    override fun log(level: LogLevel, tag: String?, message: Any) {
         // Custom logging of message
         ...
     }
-
-    fun log(level: LogLevel, tag: String?, exception: Throwable) {
-        // Custom logging of exception
-        ...
-    }
-
-    fun log(level: LogLevel, tag: String?, function: () -> String) {
-        // Custom logging of function
-
-        // For example
-        log(level, tag, function())
-    }
 }
 ```
+Also you can use abstract class **`ru.pocketbyte.kydra.log.AbsLogger`**.
+This class splits log function into 2 functions with string and exception as a message parameter.
 
 Then you should init KydraLog with your logger:
 
@@ -144,7 +134,7 @@ It will let other developers to know that they should use another way to get an 
 ## License
 
 ```
-Copyright © 2019 Denis Shurygin. All rights reserved.
+Copyright © 2022 Denis Shurygin. All rights reserved.
 Contacts: <mail@pocketbyte.ru>
 
 Licensed under the Apache License, Version 2.0 (the "License");

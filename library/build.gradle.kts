@@ -10,7 +10,6 @@ plugins {
     id("kotlin-multiplatform")
 
     id("maven-publish")
-    id("com.github.dcendents.android-maven")
     id("signing")
 }
 
@@ -181,17 +180,23 @@ kotlin {
 // =================================
 // Apple Targets
 kotlin {
-    macosX64() // macOS required
+    macosX64()   // macOS required
+    macosArm64() // macOS required
+
     iosX64()   // macOS required
     iosArm64() // macOS required
     iosArm32() // macOS required
+    iosSimulatorArm64() // macOS required
 
     watchosArm32() // macOS required
     watchosArm64() // macOS required
     watchosX86()   // macOS required
+    watchosX64()   // macOS required
+    watchosSimulatorArm64() // macOS required
 
     tvosArm64() // macOS required
     tvosX64()   // macOS required
+    tvosSimulatorArm64() // macOS required
 
     sourceSets {
         val macosX64Main by getting {
@@ -199,14 +204,19 @@ kotlin {
         }
 
         configure(listOf(
-                getByName("iosX64Main"),
-                getByName("iosArm64Main"),
-                getByName("iosArm32Main"),
-                getByName("watchosX86Main"),
-                getByName("watchosArm32Main"),
-                getByName("watchosArm64Main"),
-                getByName("tvosArm64Main"),
-                getByName("tvosX64Main")
+            getByName("macosArm64Main"),
+            getByName("iosX64Main"),
+            getByName("iosArm64Main"),
+            getByName("iosArm32Main"),
+            getByName("iosSimulatorArm64Main"),
+            getByName("watchosX86Main"),
+            getByName("watchosArm32Main"),
+            getByName("watchosArm64Main"),
+            getByName("watchosX64Main"),
+            getByName("watchosSimulatorArm64Main"),
+            getByName("tvosArm64Main"),
+            getByName("tvosX64Main"),
+            getByName("tvosSimulatorArm64Main")
         )) {
             dependsOn(macosX64Main)
         }
@@ -217,14 +227,19 @@ kotlin {
         }
 
         configure(listOf(
-                getByName("iosX64Test"),
-                getByName("iosArm64Test"),
-                getByName("iosArm32Test"),
-                getByName("watchosX86Test"),
-                getByName("watchosArm32Test"),
-                getByName("watchosArm64Test"),
-                getByName("tvosArm64Test"),
-                getByName("tvosX64Test")
+            getByName("macosArm64Test"),
+            getByName("iosX64Test"),
+            getByName("iosArm64Test"),
+            getByName("iosArm32Test"),
+            getByName("iosSimulatorArm64Test"),
+            getByName("watchosX86Test"),
+            getByName("watchosArm32Test"),
+            getByName("watchosArm64Test"),
+            getByName("watchosX64Test"),
+            getByName("watchosSimulatorArm64Test"),
+            getByName("tvosArm64Test"),
+            getByName("tvosX64Test"),
+            getByName("tvosSimulatorArm64Test")
         )) {
             dependsOn(macosX64Test)
         }
@@ -395,15 +410,16 @@ publishing {
 // Configure Target publications
 kotlin {
     configure(listOf(
-            metadata(), jvm(), js(),
-            macosX64(), iosX64(), iosArm64(), iosArm32(),
-            watchosArm32(), watchosArm64(), watchosX86(),
-            tvosArm64(), tvosX64(),
-            linuxX64(), linuxArm64(), linuxArm32Hfp(),
-            linuxMips32(), linuxMipsel32(),
-            androidNativeArm32(), androidNativeArm64(),
-            androidNativeX64(), androidNativeX86(),
-            mingwX64(), mingwX86(), wasm32()
+        metadata(), jvm(), js(),
+        macosX64(), macosArm64(),
+        iosX64(), iosArm64(), iosArm32(), iosSimulatorArm64(),
+        watchosArm32(), watchosArm64(), watchosX86(), watchosX64(), watchosSimulatorArm64(),
+        tvosArm64(), tvosX64(), tvosSimulatorArm64(),
+        linuxX64(), linuxArm64(), linuxArm32Hfp(),
+        linuxMips32(), linuxMipsel32(),
+        androidNativeArm32(), androidNativeArm64(),
+        androidNativeX64(), androidNativeX86(),
+        mingwX64(), mingwX86(), wasm32()
     )) {
         val targetName = name.upperFirstChar()
         mavenPublication {

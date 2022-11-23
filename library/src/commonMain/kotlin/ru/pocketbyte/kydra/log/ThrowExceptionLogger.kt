@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019 Denis Shurygin. All rights reserved.
+ * Copyright © 2022 Denis Shurygin. All rights reserved.
  * Licensed under the Apache License, Version 2.0
  */
 
@@ -22,54 +22,30 @@ class ThrowExceptionLogger(
     )
 
     interface Factory {
-        fun exceptionFromMessage(level: LogLevel, tag: String?, message: String): Throwable
-        fun exceptionFromException(level: LogLevel, tag: String?, exception: Throwable): Throwable
-        fun exceptionFromFunction(level: LogLevel, tag: String?, function: () -> String): Throwable
+        fun exceptionFromMessage(level: LogLevel, tag: String?, message: Any): Throwable
     }
 
     constructor(): this(FactoryImpl())
     constructor(exceptionMessage: String): this(RuntimeException(exceptionMessage))
     constructor(exception: Throwable): this(ConstantExceptionFactory(exception))
 
-    override fun log(level: LogLevel, tag: String?, message: String) {
+    override fun log(level: LogLevel, tag: String?, message: Any) {
         throw exceptionFactory.exceptionFromMessage(level, tag, message)
     }
 
-    override fun log(level: LogLevel, tag: String?, exception: Throwable) {
-        throw exceptionFactory.exceptionFromException(level, tag, exception)
-    }
-
-    override fun log(level: LogLevel, tag: String?, function: () -> String) {
-        throw exceptionFactory.exceptionFromFunction(level, tag, function)
-    }
-
-
     private class FactoryImpl: Factory {
-        override fun exceptionFromMessage(level: LogLevel, tag: String?, message: String): Throwable {
-            return Exception(level, tag, message, null)
-        }
-
-        override fun exceptionFromException(level: LogLevel, tag: String?, exception: Throwable): Throwable {
-            return Exception(level, tag, null, exception)
-        }
-
-        override fun exceptionFromFunction(level: LogLevel, tag: String?, function: () -> String): Throwable {
-            return exceptionFromMessage(level, tag, function())
+        override fun exceptionFromMessage(level: LogLevel, tag: String?, message: Any): Throwable {
+            return when(message) {
+                is Throwable -> Exception(level, tag, null, message)
+                else -> Exception(level, tag, message.toString(), null)
+            }
         }
     }
 
     private class ConstantExceptionFactory(
         val exception: Throwable
     ): Factory {
-        override fun exceptionFromMessage(level: LogLevel, tag: String?, message: String): Throwable {
-            return this.exception
-        }
-
-        override fun exceptionFromException(level: LogLevel, tag: String?, exception: Throwable): Throwable {
-            return this.exception
-        }
-
-        override fun exceptionFromFunction(level: LogLevel, tag: String?, function: () -> String): Throwable {
+        override fun exceptionFromMessage(level: LogLevel, tag: String?, message: Any): Throwable {
             return this.exception
         }
     }

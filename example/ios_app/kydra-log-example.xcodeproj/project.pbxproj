@@ -641,7 +641,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = PcketByte.ru;
+				ORGANIZATIONNAME = PocketByte.ru;
 				TargetAttributes = {
 					C806BE402386A447006F2794 = {
 						CreatedOnToolsVersion = 11.2.1;

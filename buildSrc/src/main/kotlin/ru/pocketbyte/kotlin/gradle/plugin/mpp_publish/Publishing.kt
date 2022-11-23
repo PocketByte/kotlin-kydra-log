@@ -11,9 +11,11 @@ object Publishing {
     const val GROUP = "publishing"
 
     internal val AppleOnlyTargets = arrayOf(
-            "macosX64", "iosX64", "iosArm64", "iosArm32",
+            "macosX64", "macosArm64",
+            "iosX64", "iosArm64", "iosArm32", "iosSimulatorArm64",
             "watchosArm32", "watchosArm64", "watchosX86",
-            "tvosArm64", "tvosX64"
+            "watchosX64", "watchosSimulatorArm64",
+            "tvosArm64", "tvosX64", "tvosSimulatorArm64"
     )
     internal val MipsOnlyTargets = arrayOf(
             "linuxMips32", "linuxMipsel32"

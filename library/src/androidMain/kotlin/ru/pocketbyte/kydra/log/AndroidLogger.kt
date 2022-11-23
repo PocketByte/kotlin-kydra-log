@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019 Denis Shurygin. All rights reserved.
+ * Copyright © 2022 Denis Shurygin. All rights reserved.
  * Licensed under the Apache License, Version 2.0
  */
 
@@ -10,14 +10,14 @@ import android.util.Log
 /**
  * Android implementation of Logger that writes logs using LogCat.
  */
-open class AndroidLogger: Logger {
+open class AndroidLogger: AbsLogger() {
 
-    override fun log(level: LogLevel, tag: String?, message: String) {
+    override fun log(level: LogLevel, tag: String?, string: String) {
         when(level) {
-            LogLevel.INFO -> Log.i(tag ?: "", message)
-            LogLevel.DEBUG -> Log.d(tag ?: "", message)
-            LogLevel.WARNING -> Log.w(tag ?: "", message)
-            LogLevel.ERROR -> Log.e(tag ?: "", message)
+            LogLevel.INFO -> Log.i(tag ?: "", string)
+            LogLevel.DEBUG -> Log.d(tag ?: "", string)
+            LogLevel.WARNING -> Log.w(tag ?: "", string)
+            LogLevel.ERROR -> Log.e(tag ?: "", string)
         }
     }
 
