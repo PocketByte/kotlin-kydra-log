@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019 Denis Shurygin. All rights reserved.
+ * Copyright © 2022 Denis Shurygin. All rights reserved.
  * Licensed under the Apache License, Version 2.0
  */
 
@@ -8,7 +8,7 @@ package ru.pocketbyte.kydra.log
 /**
  * Base implementation of PrintLogger.
  */
-abstract class AbsPrintLogger: Logger {
+abstract class AbsPrintLogger: AbsLogger() {
 
     protected abstract fun printLog(message: String)
 
@@ -22,8 +22,8 @@ abstract class AbsPrintLogger: Logger {
      */
     protected abstract fun qualifiedName(exception: Throwable): String
 
-    override fun log(level: LogLevel, tag: String?, message: String) {
-        printLog(logToString(level, tag, message))
+    override fun log(level: LogLevel, tag: String?, string: String) {
+        printLog(logToString(level, tag, string))
     }
 
     override fun log(level: LogLevel, tag: String?, exception: Throwable) {

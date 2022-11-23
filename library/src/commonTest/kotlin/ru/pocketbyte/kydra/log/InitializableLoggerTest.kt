@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019 Denis Shurygin. All rights reserved.
+ * Copyright © 2022 Denis Shurygin. All rights reserved.
  * Licensed under the Apache License, Version 2.0
  */
 
@@ -89,11 +89,7 @@ abstract class InitializableLoggerTest {
     }
 
     private class LoggerMock: Logger {
-        override fun log(level: LogLevel, tag: String?, message: String) {
-            throw RuntimeException()
-        }
-
-        override fun log(level: LogLevel, tag: String?, exception: Throwable) {
+        override fun log(level: LogLevel, tag: String?, message: Any) {
             throw RuntimeException()
         }
     }

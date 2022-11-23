@@ -1,3 +1,8 @@
+/*
+ * Copyright © 2022 Denis Shurygin. All rights reserved.
+ * Licensed under the Apache License, Version 2.0
+ */
+
 package ru.pocketbyte.kydra.log
 
 import kotlin.test.*
@@ -119,14 +124,14 @@ abstract class ThrowExceptionLoggerTest {
         testDefaultFactoryFunction(LogLevel.ERROR, "www") { "Hello Kydra" }
     }
 
-    private fun testDefaultFactoryFunction(level: LogLevel, tag: String?, function: () -> String) {
+    private fun testDefaultFactoryFunction(level: LogLevel, tag: String?, function: () -> Any) {
         val logger = ThrowExceptionLogger()
         try {
             logger.log(level, tag, function)
         } catch (e: ThrowExceptionLogger.Exception) {
             assertEquals(level, e.logLevel)
             assertEquals(tag, e.logTag)
-            assertEquals(function(), e.logMessage)
+            assertEquals(function().toString(), e.logMessage)
             assertNull(e.cause)
             return
         }
@@ -158,25 +163,13 @@ abstract class ThrowExceptionLoggerTest {
     @Test
     fun testCustomFactoryException() {
         val messageException = RuntimeException("Message")
-        val functionException = RuntimeException("Function")
-        val exceptionException = RuntimeException("Exception")
         val logger = ThrowExceptionLogger(object : ThrowExceptionLogger.Factory {
             override fun exceptionFromMessage(
-                    level: LogLevel, tag: String?, message: String
+                level: LogLevel,
+                tag: String?,
+                message: Any
             ): Throwable {
                 return messageException
-            }
-
-            override fun exceptionFromException(
-                    level: LogLevel, tag: String?, exception: Throwable
-            ): Throwable {
-                return exceptionException
-            }
-
-            override fun exceptionFromFunction(
-                    level: LogLevel, tag: String?, function: () -> String
-            ): Throwable {
-                return functionException
             }
         })
 
@@ -186,22 +179,6 @@ abstract class ThrowExceptionLoggerTest {
         } catch (e: Throwable) {
             exception = e
         }
-        assertSame<Throwable?>(messageException, exception)
-
-        exception = null
-        try {
-            logger.log(LogLevel.INFO, null) { "fun" }
-        } catch (e: Throwable) {
-            exception = e
-        }
-        assertSame<Throwable?>(functionException, exception)
-
-        exception = null
-        try {
-            logger.log(LogLevel.WARNING, "Sys Error", RuntimeException())
-        } catch (e: Throwable) {
-            exception = e
-        }
-        assertSame<Throwable?>(exceptionException, exception)
+        assertSame(messageException, exception)
     }
 }

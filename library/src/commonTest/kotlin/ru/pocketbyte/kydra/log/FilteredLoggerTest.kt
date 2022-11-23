@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019 Denis Shurygin. All rights reserved.
+ * Copyright © 2022 Denis Shurygin. All rights reserved.
  * Licensed under the Apache License, Version 2.0
  */
 
@@ -8,6 +8,7 @@ package ru.pocketbyte.kydra.log
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlin.test.assertSame
 
 abstract class FilteredLoggerTest {
 
@@ -106,40 +107,17 @@ abstract class FilteredLoggerTest {
             val logger = LoggerImpl()
             val filteredLogger = FilteredLogger(logger, expectLevel)
 
-            assertNull(logger.calledMethod)
+            assertNull(logger.lastMessage)
 
             LogLevel.values().forEach { level ->
                 logger.reset()
-                filteredLogger.log(level, null, "message")
+                val message = "Level: ${level.name}"
+                filteredLogger.log(level, null, message)
 
                 if (expectLevel.priority <= level.priority)
-                    assertEquals(Method.MESSAGE, logger.calledMethod,
-                            "Called wrong method")
+                    assertEquals(message, logger.lastMessage, "Called wrong method")
                 else
-                    assertNull(logger.calledMethod,
-                            "Level ${level.name} satisfied " +
-                                    "for filtering by ${expectLevel.name} but shouldn't")
-
-                logger.reset()
-                filteredLogger.log(level, null, RuntimeException())
-
-                if (expectLevel.priority <= level.priority)
-                    assertEquals(Method.EXCEPTION, logger.calledMethod,
-                            "Called wrong method")
-                else
-                    assertNull(logger.calledMethod,
-                            "Level ${level.name} satisfied " +
-                                    "for filtering by ${expectLevel.name} but shouldn't")
-
-
-                logger.reset()
-                filteredLogger.log(level, null) { "message" }
-
-                if (expectLevel.priority <= level.priority)
-                    assertEquals(Method.FUNCTION, logger.calledMethod,
-                            "Called wrong method")
-                else
-                    assertNull(logger.calledMethod,
+                    assertNull(logger.lastMessage,
                             "Level ${level.name} satisfied " +
                                     "for filtering by ${expectLevel.name} but shouldn't")
             }
@@ -156,68 +134,28 @@ abstract class FilteredLoggerTest {
 
         logger.reset()
         filteredLogger.log(LogLevel.DEBUG, gudTag, "some message")
-        assertEquals(Method.MESSAGE, logger.calledMethod)
+        assertEquals("some message", logger.lastMessage)
 
         logger.reset()
-        filteredLogger.log(LogLevel.DEBUG, badTag, "some message")
-        assertNull(logger.calledMethod)
+        filteredLogger.log(LogLevel.DEBUG, badTag, "some debug message")
+        assertNull(logger.lastMessage)
 
         logger.reset()
         filteredLogger.log(LogLevel.DEBUG, null, "some message")
-        assertNull(logger.calledMethod)
-
-        logger.reset()
-        filteredLogger.log(LogLevel.DEBUG, gudTag, RuntimeException())
-        assertEquals(Method.EXCEPTION, logger.calledMethod)
-
-        logger.reset()
-        filteredLogger.log(LogLevel.DEBUG, badTag, RuntimeException())
-        assertNull(logger.calledMethod)
-
-        logger.reset()
-        filteredLogger.log(LogLevel.DEBUG, null, RuntimeException())
-        assertNull(logger.calledMethod)
-
-        logger.reset()
-        filteredLogger.log(LogLevel.DEBUG, gudTag) { "message" }
-        assertEquals(Method.FUNCTION, logger.calledMethod)
-
-        logger.reset()
-        filteredLogger.log(LogLevel.DEBUG, badTag) { "message" }
-        assertNull(logger.calledMethod)
-
-        logger.reset()
-        filteredLogger.log(LogLevel.DEBUG, null) { "message" }
-        assertNull(logger.calledMethod)
-    }
-
-    private enum class Method {
-        MESSAGE,
-        EXCEPTION,
-        FUNCTION
+        assertNull(logger.lastMessage)
     }
 
     private class LoggerImpl :Logger {
 
-        val calledMethod: Method?
-            get() { return _calledMethod }
+        var lastMessage: Any? = null
+            private set
 
-        private var _calledMethod: Method? = null
-
-        override fun log(level: LogLevel, tag: String?, message: String) {
-            _calledMethod = Method.MESSAGE
-        }
-
-        override fun log(level: LogLevel, tag: String?, exception: Throwable) {
-            _calledMethod = Method.EXCEPTION
-        }
-
-        override fun log(level: LogLevel, tag: String?, function: () -> String) {
-            _calledMethod = Method.FUNCTION
+        override fun log(level: LogLevel, tag: String?, message: Any) {
+            lastMessage = message
         }
 
         fun reset() {
-            _calledMethod = null
+            lastMessage = null
         }
 
     }

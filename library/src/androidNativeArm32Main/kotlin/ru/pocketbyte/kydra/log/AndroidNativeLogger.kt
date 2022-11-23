@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019 Denis Shurygin. All rights reserved.
+ * Copyright © 2022 Denis Shurygin. All rights reserved.
  * Licensed under the Apache License, Version 2.0
  */
 
@@ -10,7 +10,7 @@ import platform.android.*
 /**
  * Android Native implementation of Logger that writes logs using __android_log_print.
  */
-open class AndroidNativeLogger: Logger {
+open class AndroidNativeLogger: AbsLogger() {
 
     override fun log(level: LogLevel, tag: String?, message: String) {
         __android_log_print(level.native.toInt(), tag, message)

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019 Denis Shurygin. All rights reserved.
+ * Copyright © 2022 Denis Shurygin. All rights reserved.
  * Licensed under the Apache License, Version 2.0
  */
 
@@ -33,19 +33,13 @@ open class FilteredLogger(
                         && (tags == null || tags.contains(pTag))
             })
 
-    override fun log(level: LogLevel, tag: String?, message: String) {
+    override fun log(level: LogLevel, tag: String?, message: Any) {
         if (filter(level, tag)) {
             super.log(level, tag, message)
         }
     }
 
-    override fun log(level: LogLevel, tag: String?, exception: Throwable) {
-        if (filter(level, tag)) {
-            super.log(level, tag, exception)
-        }
-    }
-
-    override fun log(level: LogLevel, tag: String?, function: () -> String) {
+    override fun log(level: LogLevel, tag: String?, function: () -> Any) {
         if (filter(level, tag)) {
             super.log(level, tag, function)
         }

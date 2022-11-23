@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019 Denis Shurygin. All rights reserved.
+ * Copyright © 2022 Denis Shurygin. All rights reserved.
  * Licensed under the Apache License, Version 2.0
  */
 
@@ -10,17 +10,8 @@ package ru.pocketbyte.kydra.log
  * @param level Log level
  * @param message Message to be written into log
  */
-fun Logger.log(level: LogLevel, message: String) {
+fun Logger.log(level: LogLevel, message: Any) {
     log(level, null, message)
-}
-
-/**
- * Writes exception log with provided level and empty tag.
- * @param level Log level
- * @param exception Exception to be written into log
- */
-fun Logger.log(level: LogLevel, exception: Throwable) {
-    log(level, null, exception)
 }
 
 /**
@@ -28,7 +19,7 @@ fun Logger.log(level: LogLevel, exception: Throwable) {
  * @param level Log level
  * @param function Function that returns message to be written into log
  */
-fun Logger.log(level: LogLevel, function: () -> String) {
+fun Logger.log(level: LogLevel, function: () -> Any) {
     log(level, null, function)
 }
 
@@ -39,7 +30,7 @@ fun Logger.log(level: LogLevel, function: () -> String) {
  * @param tag Tag of the log record. Nullable
  * @param message Message to be written into log.
  */
-fun Logger.info(tag: String?, message: String) {
+fun Logger.info(tag: String?, message: Any) {
     log(LogLevel.INFO, tag, message)
 }
 
@@ -47,25 +38,8 @@ fun Logger.info(tag: String?, message: String) {
  * Writes log with INFO log level and empty tag.
  * @param message Message to be written into log.
  */
-fun Logger.info(message: String) {
+fun Logger.info(message: Any) {
     log(LogLevel.INFO, null, message)
-}
-
-/**
- * Log exception with INFO log level and provided tag.
- * @param tag Tag of the log record. Nullable
- * @param exception Exception to be written into log.
- */
-fun Logger.info(tag: String?, exception: Throwable) {
-    log(LogLevel.INFO, tag, exception)
-}
-
-/**
- * Log exception with INFO log level and empty tag.
- * @param exception Exception to be written into log.
- */
-fun Logger.info(exception: Throwable) {
-    log(LogLevel.INFO, null, exception)
 }
 
 /**
@@ -73,7 +47,7 @@ fun Logger.info(exception: Throwable) {
  * @param tag Tag of the log record. Nullable
  * @param function Function that returns message to be written into log
  */
-fun Logger.info(tag: String?, function: () -> String) {
+fun Logger.info(tag: String?, function: () -> Any) {
     log(LogLevel.INFO, tag, function)
 }
 
@@ -81,7 +55,7 @@ fun Logger.info(tag: String?, function: () -> String) {
  * Writes log with INFO log level and empty tag.
  * @param function Function that returns message to be written into log
  */
-fun Logger.info(function: () -> String) {
+fun Logger.info(function: () -> Any) {
     log(LogLevel.INFO, null, function)
 }
 
@@ -92,7 +66,7 @@ fun Logger.info(function: () -> String) {
  * @param tag Tag of the log record. Nullable
  * @param message Message to be written into log.
  */
-fun Logger.debug(tag: String?, message: String) {
+fun Logger.debug(tag: String?, message: Any) {
     log(LogLevel.DEBUG, tag, message)
 }
 
@@ -100,25 +74,8 @@ fun Logger.debug(tag: String?, message: String) {
  * Writes log with DEBUG log level and empty tag.
  * @param message Message to be written into log.
  */
-fun Logger.debug(message: String) {
+fun Logger.debug(message: Any) {
     log(LogLevel.DEBUG, null, message)
-}
-
-/**
- * Log exception with DEBUG log level and provided tag.
- * @param tag Tag of the log record. Nullable
- * @param exception Exception to be written into log.
- */
-fun Logger.debug(tag: String?, exception: Throwable) {
-    log(LogLevel.DEBUG, tag, exception)
-}
-
-/**
- * Log exception with DEBUG log level and empty tag.
- * @param exception Exception to be written into log.
- */
-fun Logger.debug(exception: Throwable) {
-    log(LogLevel.DEBUG, null, exception)
 }
 
 /**
@@ -126,7 +83,7 @@ fun Logger.debug(exception: Throwable) {
  * @param tag Tag of the log record. Nullable
  * @param function Function that returns message to be written into log
  */
-fun Logger.debug(tag: String?, function: () -> String) {
+fun Logger.debug(tag: String?, function: () -> Any) {
     log(LogLevel.DEBUG, tag, function)
 }
 
@@ -134,7 +91,7 @@ fun Logger.debug(tag: String?, function: () -> String) {
  * Writes log with DEBUG log level and empty tag.
  * @param function Function that returns message to be written into log
  */
-fun Logger.debug(function: () -> String) {
+fun Logger.debug(function: () -> Any) {
     log(LogLevel.DEBUG, null, function)
 }
 
@@ -145,7 +102,7 @@ fun Logger.debug(function: () -> String) {
  * @param tag Tag of the log record. Nullable
  * @param message Message to be written into log.
  */
-fun Logger.warn(tag: String?, message: String) {
+fun Logger.warn(tag: String?, message: Any) {
     log(LogLevel.WARNING, tag, message)
 }
 
@@ -153,25 +110,8 @@ fun Logger.warn(tag: String?, message: String) {
  * Writes log with WARNING log level and empty tag.
  * @param message Message to be written into log.
  */
-fun Logger.warn(message: String) {
+fun Logger.warn(message: Any) {
     log(LogLevel.WARNING, null, message)
-}
-
-/**
- * Log exception with WARNING log level and provided tag.
- * @param tag Tag of the log record. Nullable
- * @param exception Exception to be written into log.
- */
-fun Logger.warn(tag: String?, exception: Throwable) {
-    log(LogLevel.WARNING, tag, exception)
-}
-
-/**
- * Log exception with WARNING log level and empty tag.
- * @param exception Exception to be written into log.
- */
-fun Logger.warn(exception: Throwable) {
-    log(LogLevel.WARNING, null, exception)
 }
 
 /**
@@ -179,7 +119,7 @@ fun Logger.warn(exception: Throwable) {
  * @param tag Tag of the log record. Nullable
  * @param function Function that returns message to be written into log
  */
-fun Logger.warn(tag: String?, function: () -> String) {
+fun Logger.warn(tag: String?, function: () -> Any) {
     log(LogLevel.WARNING, tag, function)
 }
 
@@ -187,7 +127,7 @@ fun Logger.warn(tag: String?, function: () -> String) {
  * Writes log with WARNING log level and empty tag.
  * @param function Function that returns message to be written into log
  */
-fun Logger.warn(function: () -> String) {
+fun Logger.warn(function: () -> Any) {
     log(LogLevel.WARNING, null, function)
 }
 
@@ -198,7 +138,7 @@ fun Logger.warn(function: () -> String) {
  * @param tag Tag of the log record. Nullable
  * @param message Message to be written into log.
  */
-fun Logger.error(tag: String?, message: String) {
+fun Logger.error(tag: String?, message: Any) {
     log(LogLevel.ERROR, tag, message)
 }
 
@@ -206,25 +146,8 @@ fun Logger.error(tag: String?, message: String) {
  * Writes log with ERROR log level and empty tag.
  * @param message Message to be written into log.
  */
-fun Logger.error(message: String) {
+fun Logger.error(message: Any) {
     log(LogLevel.ERROR, null, message)
-}
-
-/**
- * Log exception with ERROR log level and provided tag.
- * @param tag Tag of the log record. Nullable
- * @param exception Exception to be written into log.
- */
-fun Logger.error(tag: String?, exception: Throwable) {
-    log(LogLevel.ERROR, tag, exception)
-}
-
-/**
- * Log exception with ERROR log level and empty tag.
- * @param exception Exception to be written into log.
- */
-fun Logger.error(exception: Throwable) {
-    log(LogLevel.ERROR, null, exception)
 }
 
 /**
@@ -232,7 +155,7 @@ fun Logger.error(exception: Throwable) {
  * @param tag Tag of the log record. Nullable
  * @param function Function that returns message to be written into log
  */
-fun Logger.error(tag: String?, function: () -> String) {
+fun Logger.error(tag: String?, function: () -> Any) {
     log(LogLevel.ERROR, tag, function)
 }
 
@@ -240,6 +163,6 @@ fun Logger.error(tag: String?, function: () -> String) {
  * Writes log with ERROR log level and empty tag.
  * @param function Function that returns message to be written into log
  */
-fun Logger.error(function: () -> String) {
+fun Logger.error(function: () -> Any) {
     log(LogLevel.ERROR, null, function)
 }

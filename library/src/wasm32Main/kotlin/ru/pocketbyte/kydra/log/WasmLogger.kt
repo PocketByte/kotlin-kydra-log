@@ -1,11 +1,9 @@
 /*
- * Copyright © 2019 Denis Shurygin. All rights reserved.
+ * Copyright © 2022 Denis Shurygin. All rights reserved.
  * Licensed under the Apache License, Version 2.0
  */
 
 package ru.pocketbyte.kydra.log
-
-import kotlinx.cinterop.*
 
 open class WasmLogger: AbsPrintLogger() {
 

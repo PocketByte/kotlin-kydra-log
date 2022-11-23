@@ -10,7 +10,6 @@ plugins {
     id("kotlin-multiplatform")
 
     id("maven-publish")
-    id("com.github.dcendents.android-maven")
     id("signing")
 }
 

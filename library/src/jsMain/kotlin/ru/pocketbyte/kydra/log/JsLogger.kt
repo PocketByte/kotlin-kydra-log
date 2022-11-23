@@ -1,5 +1,5 @@
 /*
- * Copyright © 2019 Denis Shurygin. All rights reserved.
+ * Copyright © 2022 Denis Shurygin. All rights reserved.
  * Licensed under the Apache License, Version 2.0
  */
 
@@ -8,14 +8,14 @@ package ru.pocketbyte.kydra.log
 /**
  * JavaScript implementation of Logger that writes logs using Console.
  */
-open class JsLogger : Logger {
+open class JsLogger : AbsLogger() {
 
-    override fun log(level: LogLevel, tag: String?, message: String) {
+    override fun log(level: LogLevel, tag: String?, string: String) {
         when(level) {
-            LogLevel.INFO -> console.info(logToString(tag, message))
-            LogLevel.DEBUG -> console.log("DEBUG/${logToString(tag, message)}")
-            LogLevel.WARNING -> console.warn(logToString(tag, message))
-            LogLevel.ERROR ->console.error(logToString(tag, message))
+            LogLevel.INFO -> console.info(logToString(tag, string))
+            LogLevel.DEBUG -> console.log("DEBUG/${logToString(tag, string)}")
+            LogLevel.WARNING -> console.warn(logToString(tag, string))
+            LogLevel.ERROR ->console.error(logToString(tag, string))
         }
     }
 
