@@ -5,6 +5,9 @@
 
 package ru.pocketbyte.kydra.log
 
+import kotlin.experimental.ExperimentalNativeApi
+
+@OptIn(ExperimentalNativeApi::class)
 open class WasmLogger: AbsPrintLogger() {
 
     override fun printLog(message: String) {
@@ -16,6 +19,6 @@ open class WasmLogger: AbsPrintLogger() {
     }
 
     override fun qualifiedName(exception: Throwable): String {
-        return exception::class.qualifiedName!!
+        return exception::class.qualifiedName ?: "unknown"
     }
 }

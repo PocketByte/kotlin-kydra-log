@@ -20,7 +20,7 @@ open class FilteredLoggerWrapper(
 ) : AbsLoggerWrapper() {
 
     override val filter: (level: LogLevel, tag: String?) -> Boolean = { level, tag ->
-        logger.filter?.invoke(level, tag) != false || filter.invoke(level, tag)
+        logger.filter?.invoke(level, tag) != false && filter.invoke(level, tag)
     }
 
     /**

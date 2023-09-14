@@ -1,6 +1,6 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import ru.pocketbyte.kotlin.gradle.plugin.mpp_publish.upperFirstChar
-import ru.pocketbyte.kotlin_mpp.plugin.publish.registerPlatformDependentPublishingTasks
 
 plugins {
     id("com.android.library")
@@ -73,7 +73,7 @@ kotlin {
 // JVM based targets
 kotlin {
     jvm()
-    android {
+    androidTarget {
         publishLibraryVariants("release", "debug")
     }
 
@@ -126,7 +126,7 @@ kotlin {
 // =================================
 // JS Target
 kotlin {
-    js(BOTH)
+    js(IR)
 
     sourceSets {
         val jsMain by getting {
@@ -189,14 +189,13 @@ kotlin {
 
     iosX64()   // macOS required
     iosArm64() // macOS required
-    iosArm32() // macOS required
     iosSimulatorArm64() // macOS required
 
-    watchosArm32() // macOS required
-    watchosArm64() // macOS required
-    watchosX86()   // macOS required
-    watchosX64()   // macOS required
+    watchosArm32()       // macOS required
+    watchosArm64()       // macOS required
+    watchosX64()         // macOS required
     watchosSimulatorArm64() // macOS required
+//    watchosDeviceArm64() // macOS required
 
     tvosArm64() // macOS required
     tvosX64()   // macOS required
@@ -211,13 +210,12 @@ kotlin {
             getByName("macosArm64Main"),
             getByName("iosX64Main"),
             getByName("iosArm64Main"),
-            getByName("iosArm32Main"),
             getByName("iosSimulatorArm64Main"),
-            getByName("watchosX86Main"),
             getByName("watchosArm32Main"),
             getByName("watchosArm64Main"),
             getByName("watchosX64Main"),
             getByName("watchosSimulatorArm64Main"),
+//            getByName("watchosDeviceArm64Main"),
             getByName("tvosArm64Main"),
             getByName("tvosX64Main"),
             getByName("tvosSimulatorArm64Main")
@@ -234,13 +232,12 @@ kotlin {
             getByName("macosArm64Test"),
             getByName("iosX64Test"),
             getByName("iosArm64Test"),
-            getByName("iosArm32Test"),
             getByName("iosSimulatorArm64Test"),
-            getByName("watchosX86Test"),
             getByName("watchosArm32Test"),
             getByName("watchosArm64Test"),
             getByName("watchosX64Test"),
             getByName("watchosSimulatorArm64Test"),
+//            getByName("watchosDeviceArm64Test"),
             getByName("tvosArm64Test"),
             getByName("tvosX64Test"),
             getByName("tvosSimulatorArm64Test")
@@ -255,10 +252,6 @@ kotlin {
 kotlin {
     linuxX64()
     linuxArm64()
-    linuxArm32Hfp()
-
-    linuxMips32()   // Linux required
-    linuxMipsel32() // Linux required
 
     sourceSets {
 
@@ -268,12 +261,7 @@ kotlin {
             dependsOn(getByName("nativeCommonMain"))
         }
 
-        configure(listOf(
-                getByName("linuxArm64Main"),
-                getByName("linuxArm32HfpMain"),
-                getByName("linuxMips32Main"),
-                getByName("linuxMipsel32Main")
-        )) {
+        val linuxArm64Main by getting {
             dependsOn(linuxX64Main)
         }
 
@@ -282,12 +270,7 @@ kotlin {
             dependsOn(linuxX64Main)
         }
 
-        configure(listOf(
-                getByName("linuxArm64Test"),
-                getByName("linuxArm32HfpTest"),
-                getByName("linuxMips32Test"),
-                getByName("linuxMipsel32Test")
-        )) {
+        val linuxArm64Test by getting {
             dependsOn(linuxX64Test)
         }
     }
@@ -297,24 +280,17 @@ kotlin {
 // Windows targets
 kotlin {
     mingwX64() // Windows required
-    mingwX86() // Windows required
 
     sourceSets {
         val linuxX64Main by getting
 
-        configure(listOf(
-                getByName("mingwX64Main"),
-                getByName("mingwX86Main")
-        )) {
+        val mingwX64Main by getting {
             dependsOn(linuxX64Main)
         }
 
         val linuxX64Test by getting
 
-        configure(listOf(
-                getByName("mingwX64Test"),
-                getByName("mingwX86Test")
-        )) {
+        val mingwX64Test by getting {
             dependsOn(linuxX64Test)
         }
     }
@@ -323,13 +299,15 @@ kotlin {
 // =================================
 // Web Assembly targets
 kotlin {
-    wasm32()
+    wasm {
+        browser()
+    }
 
     sourceSets {
-        getByName("wasm32Main") {
+        getByName("wasmMain") {
             dependsOn(getByName("commonMain"))
         }
-        getByName("wasm32Test") {
+        getByName("wasmTest") {
             dependsOn(getByName("commonTest"))
         }
     }
@@ -419,34 +397,30 @@ publishing {
 
 // Configure Target publications
 kotlin {
-    configure(listOf(
-        metadata(), jvm(), js(),
-        macosX64(), macosArm64(),
-        iosX64(), iosArm64(), iosArm32(), iosSimulatorArm64(),
-        watchosArm32(), watchosArm64(), watchosX86(), watchosX64(), watchosSimulatorArm64(),
-        tvosArm64(), tvosX64(), tvosSimulatorArm64(),
-        linuxX64(), linuxArm64(), linuxArm32Hfp(),
-        linuxMips32(), linuxMipsel32(),
-        androidNativeArm32(), androidNativeArm64(),
-        androidNativeX64(), androidNativeX86(),
-        mingwX64(), mingwX86(), wasm32()
-    )) {
+    targets.forEach {
         val targetName = name.upperFirstChar()
-        mavenPublication {
-            configurePomDefault(pom, targetName)
-        }
-    }
-    android {
-        val targetName = name.upperFirstChar()
-        afterEvaluate {
-            mavenPublication {
-                val variant = if (this.artifactId.endsWith("debug")) // FIXME
-                { "Debug"} else { "Release" }
+        if (it is KotlinAndroidTarget) {
+            afterEvaluate {
+                it.mavenPublication {
+                    val variant = if (this.artifactId.endsWith("debug")) // FIXME
+                    { "Debug"} else { "Release" }
 
-                configurePomDefault(pom, "$targetName $variant")
+                    configurePomDefault(pom, "$targetName $variant")
+                }
+            }
+        } else {
+            it.mavenPublication {
+                configurePomDefault(pom, targetName)
             }
         }
     }
 }
 
-registerPlatformDependentPublishingTasks()
+// Workaround for
+// https://youtrack.jetbrains.com/issue/KT-46466/Kotlin-MPP-publishing-Gradle-7-disables-optimizations-because-of-task-dependencies
+tasks.withType(Sign::class, configureAction = {
+    val signingTask = this
+    tasks.withType(AbstractPublishToMaven::class, configureAction = {
+        this.dependsOn(signingTask)
+    })
+})

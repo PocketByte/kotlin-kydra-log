@@ -7,7 +7,9 @@ package ru.pocketbyte.kydra.log
 
 import kotlinx.cinterop.*
 import platform.posix.*
+import kotlin.experimental.ExperimentalNativeApi
 
+@OptIn(ExperimentalForeignApi::class, ExperimentalNativeApi::class, UnsafeNumber::class)
 open class PrintLogger: AbsPrintLogger() {
 
     override fun printLog(message: String) {
@@ -24,9 +26,9 @@ open class PrintLogger: AbsPrintLogger() {
 
     protected open fun timestamp(): String {
         return memScoped {
-            val time_t = alloc<time_tVar>()
-            time(time_t.ptr)
-            ctime(time_t.ptr)?.toKString()?.replace("[\n|\r]".toRegex(), "") ?: ""
+            val timeVar = alloc<time_tVar>()
+            time(timeVar.ptr)
+            ctime(timeVar.ptr)?.toKString()?.replace("[\n|\r]".toRegex(), "") ?: ""
         }
     }
 }

@@ -7,10 +7,3 @@ fun String.upperFirstChar(): String {
     }
     return this
 }
-
-fun String.lowerFirstChar(): String {
-    if (this[0].isUpperCase()) {
-        return this[0].toLowerCase() + substring(1)
-    }
-    return this
-}

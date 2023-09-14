@@ -6,10 +6,12 @@
 package ru.pocketbyte.kydra.log
 
 import platform.android.*
+import kotlin.experimental.ExperimentalNativeApi
 
 /**
  * Android Native implementation of Logger that writes logs using __android_log_print.
  */
+@OptIn(ExperimentalNativeApi::class)
 open class AndroidNativeLogger: AbsLogger() {
 
     override fun doLog(level: LogLevel, tag: String?, string: String) {
@@ -30,6 +32,6 @@ open class AndroidNativeLogger: AbsLogger() {
     }
 
     open fun qualifiedName(exception: Throwable): String {
-        return exception::class.qualifiedName!!
+        return exception::class.qualifiedName ?: "unknown"
     }
 }
