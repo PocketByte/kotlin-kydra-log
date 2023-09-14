@@ -10,7 +10,7 @@ package ru.pocketbyte.kydra.log
  */
 open class JsLogger : AbsLogger() {
 
-    override fun log(level: LogLevel, tag: String?, string: String) {
+    override fun doLog(level: LogLevel, tag: String?, string: String) {
         when(level) {
             LogLevel.INFO -> console.info(logToString(tag, string))
             LogLevel.DEBUG -> console.log("DEBUG/${logToString(tag, string)}")
@@ -19,7 +19,7 @@ open class JsLogger : AbsLogger() {
         }
     }
 
-    override fun log(level: LogLevel, tag: String?, exception: Throwable) {
+    override fun doLog(level: LogLevel, tag: String?, exception: Throwable) {
         val logMessage = if (tag?.isNotEmpty() == true) "$tag: " else ""
 
         when(level) {

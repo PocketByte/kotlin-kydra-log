@@ -9,7 +9,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
-abstract class LoggersSetTest {
+class LoggersSetTest {
 
     @Test
     fun testLogMessage() {
@@ -24,7 +24,7 @@ abstract class LoggersSetTest {
         assertNull(logger1.message)
         assertNull(logger2.message)
 
-        loggerSet.log(level, tag, message)
+        loggerSet.doLog(level, tag, message)
 
         assertEquals(level, logger1.level)
         assertEquals(level, logger2.level)
@@ -48,7 +48,7 @@ abstract class LoggersSetTest {
         assertNull(logger1.message)
         assertNull(logger2.message)
 
-        loggerSet.log(level, tag, exception)
+        loggerSet.doLog(level, tag, exception)
 
         assertEquals(level, logger1.level)
         assertEquals(level, logger2.level)
@@ -58,7 +58,7 @@ abstract class LoggersSetTest {
         assertEquals(exception, logger2.message)
     }
 
-    private class LoggerImpl: Logger {
+    private class LoggerImpl: Logger() {
 
         var level: LogLevel? = null
             private set
@@ -67,7 +67,7 @@ abstract class LoggersSetTest {
         var message: Any? = null
             private set
 
-        override fun log(level: LogLevel, tag: String?, message: Any) {
+        override fun doLog(level: LogLevel, tag: String?, message: Any) {
             this.level = level
             this.tag = tag
             this.message = message

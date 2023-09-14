@@ -8,13 +8,12 @@ package ru.pocketbyte.kydra.log
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
-import kotlin.test.assertSame
 
-abstract class FilteredLoggerTest {
+class FilteredLoggerWrapperTest {
 
     @Test
     fun testFilterAll() {
-        val logger = FilteredLogger(LoggerImpl())
+        val logger = FilteredLoggerWrapper(LoggerImpl())
 
         LogLevel.values().forEach { level ->
             assertEquals(true, logger.filter(level, null),
@@ -27,31 +26,31 @@ abstract class FilteredLoggerTest {
 
     @Test
     fun testFilterLevels() {
-        var logger = FilteredLogger(LoggerImpl(), level = null)
+        var logger = FilteredLoggerWrapper(LoggerImpl(), level = null)
         assertEquals(true, logger.filter(LogLevel.DEBUG, null))
         assertEquals(true, logger.filter(LogLevel.INFO, null))
         assertEquals(true, logger.filter(LogLevel.WARNING, null))
         assertEquals(true, logger.filter(LogLevel.ERROR, null))
 
-        logger = FilteredLogger(LoggerImpl(), LogLevel.DEBUG)
+        logger = FilteredLoggerWrapper(LoggerImpl(), LogLevel.DEBUG)
         assertEquals(true, logger.filter(LogLevel.DEBUG, null))
         assertEquals(true, logger.filter(LogLevel.INFO, null))
         assertEquals(true, logger.filter(LogLevel.WARNING, null))
         assertEquals(true, logger.filter(LogLevel.ERROR, null))
 
-        logger = FilteredLogger(LoggerImpl(), LogLevel.INFO)
+        logger = FilteredLoggerWrapper(LoggerImpl(), LogLevel.INFO)
         assertEquals(false, logger.filter(LogLevel.DEBUG, null))
         assertEquals(true, logger.filter(LogLevel.INFO, null))
         assertEquals(true, logger.filter(LogLevel.WARNING, null))
         assertEquals(true, logger.filter(LogLevel.ERROR, null))
 
-        logger = FilteredLogger(LoggerImpl(), LogLevel.WARNING)
+        logger = FilteredLoggerWrapper(LoggerImpl(), LogLevel.WARNING)
         assertEquals(false, logger.filter(LogLevel.DEBUG, null))
         assertEquals(false, logger.filter(LogLevel.INFO, null))
         assertEquals(true, logger.filter(LogLevel.WARNING, null))
         assertEquals(true, logger.filter(LogLevel.ERROR, null))
 
-        logger = FilteredLogger(LoggerImpl(), LogLevel.ERROR)
+        logger = FilteredLoggerWrapper(LoggerImpl(), LogLevel.ERROR)
         assertEquals(false, logger.filter(LogLevel.DEBUG, null))
         assertEquals(false, logger.filter(LogLevel.INFO, null))
         assertEquals(false, logger.filter(LogLevel.WARNING, null))
@@ -65,35 +64,35 @@ abstract class FilteredLoggerTest {
         val tag3 = "tag3_f"
         val tag4 = "tag4"
 
-        var logger = FilteredLogger(LoggerImpl(), tags = null)
+        var logger = FilteredLoggerWrapper(LoggerImpl(), tags = null)
         assertEquals(true, logger.filter(LogLevel.DEBUG, tag1))
         assertEquals(true, logger.filter(LogLevel.DEBUG, tag2))
         assertEquals(true, logger.filter(LogLevel.DEBUG, tag3))
         assertEquals(true, logger.filter(LogLevel.DEBUG, tag4))
         assertEquals(true, logger.filter(LogLevel.DEBUG, null))
 
-        logger = FilteredLogger(LoggerImpl(), tags = setOf(tag1, tag2))
+        logger = FilteredLoggerWrapper(LoggerImpl(), tags = setOf(tag1, tag2))
         assertEquals(true, logger.filter(LogLevel.DEBUG, tag1))
         assertEquals(true, logger.filter(LogLevel.DEBUG, tag2))
         assertEquals(false, logger.filter(LogLevel.DEBUG, tag3))
         assertEquals(false, logger.filter(LogLevel.DEBUG, tag4))
         assertEquals(false, logger.filter(LogLevel.DEBUG, null))
 
-        logger = FilteredLogger(LoggerImpl(), tags = setOf(tag2, tag3))
+        logger = FilteredLoggerWrapper(LoggerImpl(), tags = setOf(tag2, tag3))
         assertEquals(false, logger.filter(LogLevel.DEBUG, tag1))
         assertEquals(true, logger.filter(LogLevel.DEBUG, tag2))
         assertEquals(true, logger.filter(LogLevel.DEBUG, tag3))
         assertEquals(false, logger.filter(LogLevel.DEBUG, tag4))
         assertEquals(false, logger.filter(LogLevel.DEBUG, null))
 
-        logger = FilteredLogger(LoggerImpl(), tags = setOf(tag3, tag4))
+        logger = FilteredLoggerWrapper(LoggerImpl(), tags = setOf(tag3, tag4))
         assertEquals(false, logger.filter(LogLevel.DEBUG, tag1))
         assertEquals(false, logger.filter(LogLevel.DEBUG, tag2))
         assertEquals(true, logger.filter(LogLevel.DEBUG, tag3))
         assertEquals(true, logger.filter(LogLevel.DEBUG, tag4))
         assertEquals(false, logger.filter(LogLevel.DEBUG, null))
 
-        logger = FilteredLogger(LoggerImpl(), tags = setOf(null, tag4))
+        logger = FilteredLoggerWrapper(LoggerImpl(), tags = setOf(null, tag4))
         assertEquals(false, logger.filter(LogLevel.DEBUG, tag1))
         assertEquals(false, logger.filter(LogLevel.DEBUG, tag2))
         assertEquals(false, logger.filter(LogLevel.DEBUG, tag3))
@@ -105,7 +104,7 @@ abstract class FilteredLoggerTest {
     fun testLevelFilter() {
         LogLevel.values().forEach { expectLevel ->
             val logger = LoggerImpl()
-            val filteredLogger = FilteredLogger(logger, expectLevel)
+            val filteredLogger = FilteredLoggerWrapper(logger, expectLevel)
 
             assertNull(logger.lastMessage)
 
@@ -130,7 +129,7 @@ abstract class FilteredLoggerTest {
         val badTag = "badTag_984234"
 
         val logger = LoggerImpl()
-        val filteredLogger = FilteredLogger(logger, tags = setOf(gudTag))
+        val filteredLogger = FilteredLoggerWrapper(logger, tags = setOf(gudTag))
 
         logger.reset()
         filteredLogger.log(LogLevel.DEBUG, gudTag, "some message")
@@ -145,12 +144,12 @@ abstract class FilteredLoggerTest {
         assertNull(logger.lastMessage)
     }
 
-    private class LoggerImpl :Logger {
+    private class LoggerImpl :Logger() {
 
         var lastMessage: Any? = null
             private set
 
-        override fun log(level: LogLevel, tag: String?, message: Any) {
+        override fun doLog(level: LogLevel, tag: String?, message: Any) {
             lastMessage = message
         }
 

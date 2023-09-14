@@ -34,5 +34,5 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:2.0.4'
 
     implementation project(':example:common')
-    implementation "ru.pocketbyte.kydra:kydra-log:$LibraryInfo.version"
+    implementation "ru.pocketbyte.kydra:kydra-log:$LibraryInfo.sampleVersion"
 }

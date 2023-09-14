@@ -14,10 +14,14 @@ package ru.pocketbyte.kydra.log
  *
  * @constructor Creates filtered logger depends on provided filter function.
  */
-open class FilteredLogger(
-        logger: Logger,
-        val filter: (level: LogLevel, tag: String?) -> Boolean
-) : LoggerWrapper(logger) {
+open class FilteredLoggerWrapper(
+    override val logger: Logger,
+    filter: (level: LogLevel, tag: String?) -> Boolean
+) : AbsLoggerWrapper() {
+
+    override val filter: (level: LogLevel, tag: String?) -> Boolean = { level, tag ->
+        logger.filter?.invoke(level, tag) != false || filter.invoke(level, tag)
+    }
 
     /**
      * Creates filtered logger depends on provided log level and set of tags.
@@ -27,21 +31,15 @@ open class FilteredLogger(
      * @param tags Set of tags that can be passed.
      * Null if filter by Tag shouldn't be used.
      */
-    constructor(logger: Logger, level: LogLevel? = null, tags: Set<String?>? = null) :
-            this(logger, { pLevel: LogLevel, pTag: String? -> Boolean
-                (level == null || pLevel.priority >= level.priority)
-                        && (tags == null || tags.contains(pTag))
-            })
-
-    override fun log(level: LogLevel, tag: String?, message: Any) {
-        if (filter(level, tag)) {
-            super.log(level, tag, message)
+    constructor(
+        logger: Logger,
+        level: LogLevel? = null,
+        tags: Set<String?>? = null
+    ) : this(
+        logger,
+        { pLevel: LogLevel, pTag: String? -> Boolean
+            (level == null || pLevel.priority >= level.priority)
+                    && (tags == null || tags.contains(pTag))
         }
-    }
-
-    override fun log(level: LogLevel, tag: String?, function: () -> Any) {
-        if (filter(level, tag)) {
-            super.log(level, tag, function)
-        }
-    }
+    )
 }

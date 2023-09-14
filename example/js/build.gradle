@@ -2,7 +2,7 @@ apply plugin: 'kotlin-platform-js'
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-js:$BuildVersion.kotlin"
-    implementation "ru.pocketbyte.kydra:kydra-log:$LibraryInfo.version"
+    implementation "ru.pocketbyte.kydra:kydra-log:$LibraryInfo.sampleVersion"
     implementation project(':example:common')
 }
 

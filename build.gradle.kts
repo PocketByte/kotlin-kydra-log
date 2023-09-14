@@ -3,7 +3,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter()
         maven("https://maven.google.com")
         maven("https://plugins.gradle.org/m2/")
 
@@ -24,7 +23,6 @@ allprojects {
         mavenLocal()
         mavenCentral()
         google()
-        jcenter()
         maven ("https://kotlin.bintray.com/kotlinx")
         maven ("https://dl.bintray.com/kotlin/kotlin-eap") // kotlin 1.2
     }

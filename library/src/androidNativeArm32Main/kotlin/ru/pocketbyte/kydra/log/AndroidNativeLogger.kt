@@ -12,11 +12,11 @@ import platform.android.*
  */
 open class AndroidNativeLogger: AbsLogger() {
 
-    override fun log(level: LogLevel, tag: String?, message: String) {
-        __android_log_print(level.native.toInt(), tag, message)
+    override fun doLog(level: LogLevel, tag: String?, string: String) {
+        __android_log_print(level.native.toInt(), tag, string)
     }
 
-    override fun log(level: LogLevel, tag: String?, exception: Throwable) {
+    override fun doLog(level: LogLevel, tag: String?, exception: Throwable) {
         if (exception.message != null) {
             log(level, tag, "${qualifiedName(exception)}: " +
                     "${exception.message ?: ""}\n${stackTrace(exception)}")

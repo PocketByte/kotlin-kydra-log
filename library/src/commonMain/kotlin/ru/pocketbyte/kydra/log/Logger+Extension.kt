@@ -19,7 +19,7 @@ fun Logger.log(level: LogLevel, message: Any) {
  * @param level Log level
  * @param function Function that returns message to be written into log
  */
-fun Logger.log(level: LogLevel, function: () -> Any) {
+inline fun Logger.log(level: LogLevel, function: () -> Any) {
     log(level, null, function)
 }
 
@@ -47,7 +47,7 @@ fun Logger.info(message: Any) {
  * @param tag Tag of the log record. Nullable
  * @param function Function that returns message to be written into log
  */
-fun Logger.info(tag: String?, function: () -> Any) {
+inline fun Logger.info(tag: String?, function: () -> Any) {
     log(LogLevel.INFO, tag, function)
 }
 
@@ -55,7 +55,7 @@ fun Logger.info(tag: String?, function: () -> Any) {
  * Writes log with INFO log level and empty tag.
  * @param function Function that returns message to be written into log
  */
-fun Logger.info(function: () -> Any) {
+inline fun Logger.info(function: () -> Any) {
     log(LogLevel.INFO, null, function)
 }
 
@@ -83,7 +83,7 @@ fun Logger.debug(message: Any) {
  * @param tag Tag of the log record. Nullable
  * @param function Function that returns message to be written into log
  */
-fun Logger.debug(tag: String?, function: () -> Any) {
+inline fun Logger.debug(tag: String?, function: () -> Any) {
     log(LogLevel.DEBUG, tag, function)
 }
 
@@ -91,7 +91,7 @@ fun Logger.debug(tag: String?, function: () -> Any) {
  * Writes log with DEBUG log level and empty tag.
  * @param function Function that returns message to be written into log
  */
-fun Logger.debug(function: () -> Any) {
+inline fun Logger.debug(function: () -> Any) {
     log(LogLevel.DEBUG, null, function)
 }
 
@@ -119,7 +119,7 @@ fun Logger.warn(message: Any) {
  * @param tag Tag of the log record. Nullable
  * @param function Function that returns message to be written into log
  */
-fun Logger.warn(tag: String?, function: () -> Any) {
+inline fun Logger.warn(tag: String?, function: () -> Any) {
     log(LogLevel.WARNING, tag, function)
 }
 
@@ -127,7 +127,7 @@ fun Logger.warn(tag: String?, function: () -> Any) {
  * Writes log with WARNING log level and empty tag.
  * @param function Function that returns message to be written into log
  */
-fun Logger.warn(function: () -> Any) {
+inline fun Logger.warn(function: () -> Any) {
     log(LogLevel.WARNING, null, function)
 }
 
@@ -155,7 +155,7 @@ fun Logger.error(message: Any) {
  * @param tag Tag of the log record. Nullable
  * @param function Function that returns message to be written into log
  */
-fun Logger.error(tag: String?, function: () -> Any) {
+inline fun Logger.error(tag: String?, function: () -> Any) {
     log(LogLevel.ERROR, tag, function)
 }
 
@@ -163,6 +163,6 @@ fun Logger.error(tag: String?, function: () -> Any) {
  * Writes log with ERROR log level and empty tag.
  * @param function Function that returns message to be written into log
  */
-fun Logger.error(function: () -> Any) {
+inline fun Logger.error(function: () -> Any) {
     log(LogLevel.ERROR, null, function)
 }

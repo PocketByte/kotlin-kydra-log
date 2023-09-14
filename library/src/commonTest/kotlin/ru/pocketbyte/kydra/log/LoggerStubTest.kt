@@ -7,7 +7,7 @@ package ru.pocketbyte.kydra.log
 
 import kotlin.test.Test
 
-abstract class LoggerStubTest {
+class LoggerStubTest {
 
     @Test
     fun testFunction() {

@@ -5,11 +5,14 @@
 
 package ru.pocketbyte.kydra.log
 
-abstract class AbsLoggerWrapper: Logger {
+abstract class AbsLoggerWrapper: Logger() {
 
     abstract val logger: Logger
 
-    override fun log(level: LogLevel, tag: String?, message: Any) {
-        this.logger.log(level, tag, message)
+    override val filter: ((level: LogLevel, tag: String?) -> Boolean)?
+        get() = logger.filter
+
+    override fun doLog(level: LogLevel, tag: String?, message: Any) {
+        logger.doLog(level, tag, message)
     }
 }

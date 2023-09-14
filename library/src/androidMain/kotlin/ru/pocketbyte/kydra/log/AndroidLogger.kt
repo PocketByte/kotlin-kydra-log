@@ -12,7 +12,7 @@ import android.util.Log
  */
 open class AndroidLogger: AbsLogger() {
 
-    override fun log(level: LogLevel, tag: String?, string: String) {
+    override fun doLog(level: LogLevel, tag: String?, string: String) {
         when(level) {
             LogLevel.INFO -> Log.i(tag ?: "", string)
             LogLevel.DEBUG -> Log.d(tag ?: "", string)
@@ -21,7 +21,7 @@ open class AndroidLogger: AbsLogger() {
         }
     }
 
-    override fun log(level: LogLevel, tag: String?, exception: Throwable) {
+    override fun doLog(level: LogLevel, tag: String?, exception: Throwable) {
         when(level) {
             LogLevel.INFO -> Log.i(tag ?: "", "", exception)
             LogLevel.DEBUG -> Log.d(tag ?: "", "", exception)

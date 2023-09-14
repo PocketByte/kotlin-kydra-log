@@ -24,7 +24,7 @@ open class PrintLogger: AbsPrintLogger() {
     }
 
     override fun qualifiedName(exception: Throwable): String {
-        return exception::class.qualifiedName!!
+        return exception::class.qualifiedName ?: "unknown"
     }
 
     protected open fun timestamp(): String {

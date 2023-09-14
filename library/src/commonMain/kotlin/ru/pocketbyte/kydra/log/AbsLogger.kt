@@ -5,16 +5,15 @@
 
 package ru.pocketbyte.kydra.log
 
-abstract class AbsLogger: Logger {
+abstract class AbsLogger: Logger() {
 
-    override fun log(level: LogLevel, tag: String?, message: Any) {
+    override fun doLog(level: LogLevel, tag: String?, message: Any) {
         when(message) {
-            is Throwable -> log(level, tag, exception = message)
-            is LazyMessage -> log(level, tag, message = message.getMessage())
-            else -> log(level, tag, string = message.toString())
+            is Throwable -> doLog(level, tag, exception = message)
+            else -> doLog(level, tag, string = message.toString())
         }
     }
 
-    abstract fun log(level: LogLevel, tag: String?, string: String)
-    abstract fun log(level: LogLevel, tag: String?, exception: Throwable)
+    protected abstract fun doLog(level: LogLevel, tag: String?, string: String)
+    protected abstract fun doLog(level: LogLevel, tag: String?, exception: Throwable)
 }

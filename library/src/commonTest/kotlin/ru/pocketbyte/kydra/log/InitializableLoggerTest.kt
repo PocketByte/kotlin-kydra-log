@@ -10,7 +10,7 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertNotSame
 import kotlin.test.assertSame
 
-abstract class InitializableLoggerTest {
+class InitializableLoggerTest {
 
     @Test
     fun testInitialization() {
@@ -88,8 +88,8 @@ abstract class InitializableLoggerTest {
         }
     }
 
-    private class LoggerMock: Logger {
-        override fun log(level: LogLevel, tag: String?, message: Any) {
+    private class LoggerMock: Logger() {
+        override fun doLog(level: LogLevel, tag: String?, message: Any) {
             throw RuntimeException()
         }
     }

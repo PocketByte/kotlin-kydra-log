@@ -22,11 +22,11 @@ abstract class AbsPrintLogger: AbsLogger() {
      */
     protected abstract fun qualifiedName(exception: Throwable): String
 
-    override fun log(level: LogLevel, tag: String?, string: String) {
+    override fun doLog(level: LogLevel, tag: String?, string: String) {
         printLog(logToString(level, tag, string))
     }
 
-    override fun log(level: LogLevel, tag: String?, exception: Throwable) {
+    override fun doLog(level: LogLevel, tag: String?, exception: Throwable) {
         if (exception.message != null) {
             printLog(logToString(level, tag, "${qualifiedName(exception)}: " +
                     "${exception.message ?: ""}\n${stackTrace(exception)}"))

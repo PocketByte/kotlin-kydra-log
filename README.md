@@ -84,9 +84,9 @@ calss MyApplication: Application() {
 If you want to implement your own custom logger you should implement interface **`ru.pocketbyte.kydra.log.Logger`**:
 
 ```Kotlin
-class MyLogger: Logger {
+class MyLogger: Logger() {
 
-    override fun log(level: LogLevel, tag: String?, message: Any) {
+    override fun doLog(level: LogLevel, tag: String?, message: Any) {
         // Custom logging of message
         ...
     }

@@ -1,12 +1,8 @@
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 plugins {
     `kotlin-dsl`
     `maven-publish`
-}
-
-kotlinDslPluginOptions {
-    experimentalWarning.set(false)
 }

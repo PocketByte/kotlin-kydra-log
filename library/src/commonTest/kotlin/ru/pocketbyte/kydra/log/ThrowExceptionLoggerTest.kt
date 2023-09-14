@@ -7,7 +7,7 @@ package ru.pocketbyte.kydra.log
 
 import kotlin.test.*
 
-abstract class ThrowExceptionLoggerTest {
+class ThrowExceptionLoggerTest {
 
     @Test
     fun testConstantExceptionMessage() {

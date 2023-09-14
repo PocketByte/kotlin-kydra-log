@@ -7,7 +7,7 @@ package ru.pocketbyte.kydra.log
 
 class ThrowExceptionLogger(
         private val exceptionFactory: Factory
-): Logger {
+): Logger() {
 
     class Exception(
         val logLevel: LogLevel,
@@ -29,7 +29,7 @@ class ThrowExceptionLogger(
     constructor(exceptionMessage: String): this(RuntimeException(exceptionMessage))
     constructor(exception: Throwable): this(ConstantExceptionFactory(exception))
 
-    override fun log(level: LogLevel, tag: String?, message: Any) {
+    override fun doLog(level: LogLevel, tag: String?, message: Any) {
         throw exceptionFactory.exceptionFromMessage(level, tag, message)
     }
 

@@ -8,12 +8,11 @@ package ru.pocketbyte.kydra.log
 /**
  * Logger that do nothing. Even functions call.
  */
-class LoggerStub: Logger {
-    override fun log(level: LogLevel, tag: String?, message: Any) {
-        // Do nothing
-    }
+class LoggerStub: Logger() {
 
-    override fun log(level: LogLevel, tag: String?, function: () -> Any) {
+    override val filter: ((level: LogLevel, tag: String?) -> Boolean) = { _, _ -> false }
+
+    override fun doLog(level: LogLevel, tag: String?, message: Any) {
         // Do nothing
     }
 }

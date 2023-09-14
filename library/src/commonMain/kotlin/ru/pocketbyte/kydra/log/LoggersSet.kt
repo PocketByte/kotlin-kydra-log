@@ -14,20 +14,17 @@ package ru.pocketbyte.kydra.log
  */
 open class LoggersSet(
     private val loggers: Set<Logger>
-): AbsLogger() {
+): Logger() {
+
+    override val filter: (level: LogLevel, tag: String?) -> Boolean = { level, tag ->
+        loggers.find { it.filter?.invoke(level, tag) != false } != null
+    }
 
     constructor(vararg loggers: Logger): this(setOf(*loggers))
 
-    override fun log(level: LogLevel, tag: String?, string: String) {
+    override fun doLog(level: LogLevel, tag: String?, message: Any) {
         this.loggers.forEach {
-            it.log(level, tag, string)
+            it.log(level, tag, message)
         }
     }
-
-    override fun log(level: LogLevel, tag: String?, exception: Throwable) {
-        this.loggers.forEach {
-            it.log(level, tag, exception)
-        }
-    }
-
 }

@@ -11,7 +11,7 @@ package ru.pocketbyte.kydra.log
  * @property filter Filter function that defines which logs should be filtered
  */
 fun Logger.filtered(filter: (level: LogLevel, tag: String?) -> Boolean): Logger {
-    return FilteredLogger(this, filter)
+    return FilteredLoggerWrapper(this, filter)
 }
 
 
@@ -27,5 +27,5 @@ fun Logger.filtered(level: LogLevel? = null, tags: Set<String?>? = null): Logger
     if ((level == null || level == LogLevel.DEBUG) && tags.isNullOrEmpty())
         return this
 
-    return FilteredLogger(this, level, tags)
+    return FilteredLoggerWrapper(this, level, tags)
 }

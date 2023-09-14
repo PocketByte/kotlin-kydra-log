@@ -1,8 +1,5 @@
-import org.gradle.api.publish.maven.MavenPom
-import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
-import ru.pocketbyte.kotlin.gradle.plugin.mpp_publish.*
-import ru.pocketbyte.kotlin_mpp.plugin.publish.Publishing
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import ru.pocketbyte.kotlin.gradle.plugin.mpp_publish.upperFirstChar
 import ru.pocketbyte.kotlin_mpp.plugin.publish.registerPlatformDependentPublishingTasks
 
 plugins {
@@ -16,16 +13,23 @@ plugins {
 version = LibraryInfo.version
 group = LibraryInfo.group
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 android {
-    compileSdkVersion(AndroidSdk.compile)
-    buildToolsVersion(BuildVersion.androidTool)
+    compileSdk = AndroidSdk.compile
 
     defaultConfig {
-        minSdkVersion(AndroidSdk.min)
-        targetSdkVersion(AndroidSdk.target)
-        versionCode = 1
-        versionName = project.version.toString()
+        minSdk = AndroidSdk.min
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         getByName("release") {
             //
@@ -112,7 +116,7 @@ kotlin {
             dependsOn(jvmMain)
         }
 
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependsOn(jvmCommonTest)
             dependsOn(androidMain)
         }
@@ -122,7 +126,7 @@ kotlin {
 // =================================
 // JS Target
 kotlin {
-    js()
+    js(BOTH)
 
     sourceSets {
         val jsMain by getting {
@@ -328,6 +332,12 @@ kotlin {
         getByName("wasm32Test") {
             dependsOn(getByName("commonTest"))
         }
+    }
+}
+
+tasks.withType(KotlinCompile::class.java).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
