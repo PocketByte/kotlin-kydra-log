@@ -13,5 +13,5 @@ package ru.pocketbyte.kydra.log
  * Null if filter by Tag shouldn't be used.
  */
 fun InitializableLogger.initDefault(level: LogLevel? = null, tags: Set<String?>? = null) {
-    init(DefaultLogger.build(level, tags))
+    init(DefaultLoggerFactory.build().filtered(level, tags))
 }

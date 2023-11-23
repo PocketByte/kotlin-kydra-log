@@ -5,6 +5,8 @@
 
 package ru.pocketbyte.kydra.log
 
-expect object DefaultLogger {
+expect object DefaultLoggerFactory {
+    @Deprecated("Use 'build()' without parameters. To filter use extension 'filtered()'.")
     fun build(level: LogLevel? = null, tags: Set<String?>? = null): Logger
+    fun build(): Logger
 }
