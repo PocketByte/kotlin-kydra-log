@@ -1,18 +1,18 @@
 # Kotlin Kydra Log
 ![Maven Central](https://img.shields.io/maven-central/v/ru.pocketbyte.kydra/kydra-log) [![License](https://img.shields.io/badge/License-Apache/2.0-blue.svg)](LICENSE)
 
-Kotlin Kydra Log - Kotlin Multiplatform Library that allows to write logs in common module. The way how logs will written defines for each platform independently.
+Kotlin Kydra Log - Kotlin Multiplatform Library that allows to write logs in common module.
+The way how logs will written defines for each platform independently.
 
 Fully supported platforms:
 - Android and AndroidNative(Arm32, Arm64, X64, X86) using LogCat;
 - JavaScript using JS Console;
-- Apple based: iOS, MacOS, Watch and TV using NSLog.
+- Apple based: iOS, MacOS, Watch and TV using OSLog.
 
 Also, not well by using `println` with timestamp:
 - Java;
-- Linux based: X64, Arm64, Arm32Hfp, Mips32 and Mipsel32;
-- Windows X64 and X86;
-- WebAssembly without timestamp.
+- Linux based: X64, Arm64;
+- Windows X64;
 
 ### How to use:
 Add common library as dependency in common **`build.gradle`**:
@@ -22,7 +22,7 @@ repositories {
 }
 dependencies {
     ...
-    implementation 'ru.pocketbyte.kydra:kydra-log:1.1.8'
+    implementation 'ru.pocketbyte.kydra:kydra-log:2.0.1'
 }
 ```
 
@@ -39,7 +39,8 @@ If you would to log formatted string you should use kotlin String Templates:
 val count = 1
 KydraLog.info("Count is $count")
 ```
-To optimize logging with formatting you could use methods with function as parameter instead of string. It allow to skip filtered messages without calculating message string.
+To optimize logging with formatting you could use methods with function as parameter instead of
+string. It allow to skip filtered messages without calculating message string.
 ```Kotlin
 KydraLog.info { "Count is $count" }
 ```
@@ -65,10 +66,12 @@ Error log printed
 Logger say: Hello from Error
 ```
 ### Logger initialization:
-Any logging via not initialized KydraLog will call initialisation with default Logger. But if you want to initialize `KydraLog` with custom filtering you could use function `initDefault(level: LogLevel?, tags: Set<String?>?)`.
-For example, on Android platform can be used different `LogLevel` filtering depending on build type:
+Any logging via not initialized KydraLog will call initialisation with default Logger. But if you
+want to initialize `KydraLog` with custom filtering you could use function 
+`initDefault(level: LogLevel?, tags: Set<String?>?)`. For example, on Android platform can be used
+different `LogLevel` filtering depending on build type:
 ```Kotlin
-calss MyApplication: Application() {
+calss MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         if (!BuildConfig.DEBUG) {
@@ -78,10 +81,12 @@ calss MyApplication: Application() {
     }
 }
 ```
-**IMPORTANT NOTE**: Initialization can be called only once. Re-initialization will throw `IllegalStateException`. Any logging via not initialized KydraLog will call initialisation with default Logger.
+**IMPORTANT NOTE**: Initialization can be called only once. Re-initialization will throw
+`IllegalStateException`. Any logging via not initialized KydraLog will call initialisation with
+default Logger.
 
 ### Custom loggers:
-If you want to implement your own custom logger you should implement interface **`ru.pocketbyte.kydra.log.Logger`**:
+If you want to implement your own custom logger you should extend abstract class **`ru.pocketbyte.kydra.log.Logger`**:
 
 ```Kotlin
 class MyLogger: Logger() {
@@ -115,21 +120,14 @@ KydraLog.init(
     ).filtered(if(BuildConfig.DEBUG) LogLevel.DEBUG  else LogLevel.INFO)
 )
 ```
-**Note:** In example above, second filter applies to whole set instead of applying to `AndroidLogger` only. It helps to optimize logging with functions that was described in section "Logging with format", because `LoggersSet` calculate function and pass it's result into method `log(level, tag, message)` of wrapped loggers.
+**Note:** In example above, second filter applies to whole set instead of applying to
+`AndroidLogger` only.
 
 ### KydraLog class is not mandatory:
-You are not forced to use `KydraLog` object. It was designed to provide Plug and Play functionality. If you wish, you can instantiate `Logger` as variable and use it for logging. Or you can use Dependency Injection to provide `Logger` instance. To make sure that `KydraLog` is not used in your application you can init `KydraLog` with `ThrowExceptionLogger`:
-```Kotlin
-// BuildConfig is an example class from android platform.
-// You should use corresponded way to identify debug build for each platform independently.
-if (BuildConfig.DEBUG) {
-    KydraLog.init(ThrowExceptionLogger("KydraLog object is forbidden. Please use DI to get Logger instance."))
-} else {
-    // No need to crash Production Build
-    KydraLog.initDefault()
-}
-```
-It will let other developers to know that they should use another way to get an instance of `Logger`.
+You are not forced to use `KydraLog` object. It was designed to provide Plug and Play functionality.
+If you wish, you can instantiate `Logger` as variable and use it for logging. Or you can use 
+Dependency Injection to provide `Logger` instance. To get default console logger instance you could
+use `DefaultLoggerFactory.build()`.
 
 ## License
 
@@ -149,5 +147,3 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
-
