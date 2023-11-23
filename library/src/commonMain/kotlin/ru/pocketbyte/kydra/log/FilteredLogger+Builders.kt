@@ -29,3 +29,21 @@ fun Logger.filtered(level: LogLevel? = null, tags: Set<String?>? = null): Logger
 
     return FilteredLoggerWrapper(this, level, tags)
 }
+
+/**
+ * Returns Logger wrapped with FilteredLogger
+ *
+ * @param levelFiler Log level filter rule.
+ * Null if filter by LogLevel shouldn't be used.
+ * @param tagFilter Tag filter rule.
+ * Null if filter by Tag shouldn't be used.
+ */
+fun Logger.filtered(
+    levelFiler: ((LogLevel) -> Boolean)? = null,
+    tagFilter: ((String?) -> Boolean)? = null
+): Logger {
+    if (levelFiler == null && tagFilter == null)
+        return this
+
+    return FilteredLoggerWrapper(this, levelFiler, tagFilter)
+}

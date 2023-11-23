@@ -8,7 +8,7 @@
 //
 
 import UIKit
-import common_tv
+import KotlinCommon
 
 class ViewController: UIViewController {
     

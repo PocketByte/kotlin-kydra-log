@@ -11,7 +11,6 @@ import kotlin.experimental.ExperimentalNativeApi
 /**
  * Android Native implementation of Logger that writes logs using __android_log_print.
  */
-@OptIn(ExperimentalNativeApi::class)
 open class AndroidNativeLogger: AbsLogger() {
 
     override fun doLog(level: LogLevel, tag: String?, string: String) {
@@ -19,19 +18,6 @@ open class AndroidNativeLogger: AbsLogger() {
     }
 
     override fun doLog(level: LogLevel, tag: String?, exception: Throwable) {
-        if (exception.message != null) {
-            log(level, tag, "${qualifiedName(exception)}: " +
-                    "${exception.message ?: ""}\n${stackTrace(exception)}")
-        } else {
-            log(level, tag, "${qualifiedName(exception)}\n${stackTrace(exception)}")
-        }
-    }
-
-    open fun stackTrace(exception: Throwable): String {
-        return exception.getStackTrace().joinToString("\n")
-    }
-
-    open fun qualifiedName(exception: Throwable): String {
-        return exception::class.qualifiedName ?: "unknown"
+        doLog(level, tag, exception.stackTraceToString())
     }
 }

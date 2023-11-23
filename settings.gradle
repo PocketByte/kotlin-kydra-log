@@ -3,7 +3,6 @@ project(':kydra-log').projectDir = new File(settingsDir, './library/')
 
 // Common
 include ':example'
-project(':example').projectDir = new File(settingsDir, './example/')
 include ':example:common'
 include ':example:android'
 include ':example:js'

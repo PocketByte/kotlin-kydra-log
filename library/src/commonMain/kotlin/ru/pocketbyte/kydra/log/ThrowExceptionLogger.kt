@@ -6,7 +6,7 @@
 package ru.pocketbyte.kydra.log
 
 class ThrowExceptionLogger(
-        private val exceptionFactory: Factory
+    private val exceptionFactory: Factory
 ): Logger() {
 
     class Exception(

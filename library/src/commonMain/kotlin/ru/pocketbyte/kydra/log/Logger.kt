@@ -29,7 +29,7 @@ abstract class Logger {
      * @param tag Tag of the log record. Nullable
      * @param message Message to be written into log
      */
-    open fun log(level: LogLevel, tag: String?, message: Any) {
+    fun log(level: LogLevel, tag: String?, message: Any) {
         if (filter?.invoke(level, tag) != false) {
             doLog(level, tag, message)
         }

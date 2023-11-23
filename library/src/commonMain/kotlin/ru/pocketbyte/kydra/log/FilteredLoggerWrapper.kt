@@ -37,9 +37,29 @@ open class FilteredLoggerWrapper(
         tags: Set<String?>? = null
     ) : this(
         logger,
-        { pLevel: LogLevel, pTag: String? -> Boolean
-            (level == null || pLevel.priority >= level.priority)
-                    && (tags == null || tags.contains(pTag))
+        levelFiler = level
+            ?.let { { level: LogLevel ->  it.priority >= level.priority} },
+        tagFilter = tags
+            ?.let { { tag: String? -> it.contains(tag) } }
+    )
+
+    /**
+     * Creates filtered logger depends on provided log level and tag filers.
+     * @param logger The Logger that should be filtered.
+     * @param levelFiler Log level filter rule.
+     * Null if filter by LogLevel shouldn't be used.
+     * @param tagFilter Tag filter rule.
+     * Null if filter by Tag shouldn't be used.
+     */
+    constructor(
+        logger: Logger,
+        levelFiler: ((LogLevel) -> Boolean)? = null,
+        tagFilter: ((String?) -> Boolean)? = null
+    ) : this(
+        logger,
+        { level: LogLevel, tag: String? -> Boolean
+            (levelFiler == null || levelFiler(level))
+                    && (tagFilter == null || tagFilter(tag))
         }
     )
 }

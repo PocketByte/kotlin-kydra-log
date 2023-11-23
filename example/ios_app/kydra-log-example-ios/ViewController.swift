@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import common_ios
+import KotlinCommon
 
 class ViewController: UIViewController {
     

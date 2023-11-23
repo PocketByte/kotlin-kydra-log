@@ -6,7 +6,6 @@
 package ru.pocketbyte.kydra.log
 
 import kotlin.native.concurrent.AtomicReference
-import kotlin.native.concurrent.freeze
 
 actual abstract class InitializableLogger: AbsLoggerWrapper() {
 
@@ -18,7 +17,7 @@ actual abstract class InitializableLogger: AbsLoggerWrapper() {
     protected actual abstract fun onNeedToBeInitialized()
 
     actual open fun init(logger: Logger) {
-        if (!this.loggerRef.compareAndSet(null, logger.freeze()))
+        if (!this.loggerRef.compareAndSet(null, logger))
             throw IllegalStateException("Logger already initialized")
     }
 

@@ -9,7 +9,7 @@
 
 import WatchKit
 import Foundation
-import common_watch
+import KotlinCommon
 
 class InterfaceController: WKInterfaceController {
     

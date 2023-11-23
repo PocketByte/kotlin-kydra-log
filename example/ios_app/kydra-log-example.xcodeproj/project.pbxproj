@@ -14,17 +14,11 @@
 		C806BE592386A448006F2794 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C806BE582386A448006F2794 /* InterfaceController.swift */; };
 		C806BE5B2386A448006F2794 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C806BE5A2386A448006F2794 /* ExtensionDelegate.swift */; };
 		C806BE5D2386A449006F2794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C806BE5C2386A449006F2794 /* Assets.xcassets */; };
-		C806BE852386A9BA006F2794 /* common_watch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C806BE7B2386A6CB006F2794 /* common_watch.framework */; };
-		C806BE862386A9BA006F2794 /* common_watch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C806BE7B2386A6CB006F2794 /* common_watch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C806BEA82386B664006F2794 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C806BEA72386B664006F2794 /* AppDelegate.swift */; };
 		C806BEAA2386B664006F2794 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C806BEA92386B664006F2794 /* ViewController.swift */; };
 		C806BEAD2386B664006F2794 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C806BEAB2386B664006F2794 /* Main.storyboard */; };
 		C806BEAF2386B665006F2794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C806BEAE2386B665006F2794 /* Assets.xcassets */; };
 		C806BEB22386B665006F2794 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C806BEB02386B665006F2794 /* LaunchScreen.storyboard */; };
-		C806BEBA2386BA52006F2794 /* common_tv.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C806BE972386B5DF006F2794 /* common_tv.framework */; };
-		C806BEBB2386BA52006F2794 /* common_tv.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C806BE972386B5DF006F2794 /* common_tv.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C81FF93E21B5CCD200A94E03 /* common_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FA80E521973B0600C73A8E /* common_ios.framework */; };
-		C81FF93F21B5CCD200A94E03 /* common_ios.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C8FA80E521973B0600C73A8E /* common_ios.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C89A9D0520BDF9F500A19C77 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C89A9D0320BDF9F500A19C77 /* Localizable.strings */; };
 		C8A822BE20BAF801004C070F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8A822BC20BAF801004C070F /* Main.storyboard */; };
 		C8A822C020BAF802004C070F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A822BF20BAF802004C070F /* Assets.xcassets */; };
@@ -47,27 +41,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = C806BE522386A448006F2794;
 			remoteInfo = "kydra-log-example-watch WatchKit Extension";
-		};
-		C806BE872386A9BA006F2794 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C8A822AD20BAF801004C070F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C806BE7A2386A6CB006F2794;
-			remoteInfo = "watch-app-framework";
-		};
-		C806BEBC2386BA52006F2794 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C8A822AD20BAF801004C070F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C806BE962386B5DF006F2794;
-			remoteInfo = "tv-app-framework";
-		};
-		C81FF94021B5CCD200A94E03 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C8A822AD20BAF801004C070F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C8FA80E421973B0600C73A8E;
-			remoteInfo = "ios-framework";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -100,7 +73,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C806BE862386A9BA006F2794 /* common_watch.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -111,7 +83,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C806BEBB2386BA52006F2794 /* common_tv.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,7 +93,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C81FF93F21B5CCD200A94E03 /* common_ios.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,8 +110,6 @@
 		C806BE5A2386A448006F2794 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		C806BE5C2386A449006F2794 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C806BE5E2386A449006F2794 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C806BE7B2386A6CB006F2794 /* common_watch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = common_watch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C806BE972386B5DF006F2794 /* common_tv.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = common_tv.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C806BEA52386B664006F2794 /* kydra-log-example-tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kydra-log-example-tv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C806BEA72386B664006F2794 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C806BEA92386B664006F2794 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -157,7 +125,6 @@
 		C8A822C420BAF802004C070F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8A822CF20BC9B76004C070F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C8A822D120BCA023004C070F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C8FA80E521973B0600C73A8E /* common_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = common_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FA80E721973B0600C73A8E /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		C8FA80E821973B0600C73A8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8FA8113219AF7F600C73A8E /* example-common.iml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "example-common.iml"; sourceTree = "<group>"; };
@@ -175,7 +142,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C806BE852386A9BA006F2794 /* common_watch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,7 +156,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C806BEBA2386BA52006F2794 /* common_tv.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,7 +163,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C81FF93E21B5CCD200A94E03 /* common_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,12 +235,9 @@
 			isa = PBXGroup;
 			children = (
 				C8A822B520BAF801004C070F /* kydra-log-example-ios.app */,
-				C8FA80E521973B0600C73A8E /* common_ios.framework */,
 				C806BE412386A447006F2794 /* kydra-log-example-watch.app */,
 				C806BE442386A447006F2794 /* kydra-log-example-watch WatchKit App.app */,
 				C806BE532386A448006F2794 /* kydra-log-example-watch WatchKit Extension.appex */,
-				C806BE7B2386A6CB006F2794 /* common_watch.framework */,
-				C806BE972386B5DF006F2794 /* common_tv.framework */,
 				C806BEA52386B664006F2794 /* kydra-log-example-tv.app */,
 			);
 			name = Products;
@@ -532,6 +493,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C806BE672386A449006F2794 /* Build configuration list for PBXNativeTarget "kydra-log-example-watch WatchKit Extension" */;
 			buildPhases = (
+				C8F829082B0FE23E009D50AA /* ShellScript */,
 				C806BE4F2386A448006F2794 /* Sources */,
 				C806BE502386A448006F2794 /* Frameworks */,
 				C806BE512386A448006F2794 /* Resources */,
@@ -540,49 +502,17 @@
 			buildRules = (
 			);
 			dependencies = (
-				C806BE882386A9BA006F2794 /* PBXTargetDependency */,
 			);
 			name = "kydra-log-example-watch WatchKit Extension";
 			productName = "kydra-log-example-watch WatchKit Extension";
 			productReference = C806BE532386A448006F2794 /* kydra-log-example-watch WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		C806BE7A2386A6CB006F2794 /* common_watch */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C806BE802386A6CB006F2794 /* Build configuration list for PBXNativeTarget "common_watch" */;
-			buildPhases = (
-				C806BE832386A8BC006F2794 /* Build Binary From Kotlin Sources */,
-				C806BE842386A909006F2794 /* CopyFramevork */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = common_watch;
-			productName = "watch-app-framework";
-			productReference = C806BE7B2386A6CB006F2794 /* common_watch.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		C806BE962386B5DF006F2794 /* common_tv */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C806BE9C2386B5DF006F2794 /* Build configuration list for PBXNativeTarget "common_tv" */;
-			buildPhases = (
-				C806BE9F2386B60A006F2794 /* Build Binary From Kotlin Sources */,
-				C806BEA02386B628006F2794 /* CopyFramevork */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = common_tv;
-			productName = "tv-app-framework";
-			productReference = C806BE972386B5DF006F2794 /* common_tv.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		C806BEA42386B664006F2794 /* kydra-log-example-tv */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C806BEB42386B665006F2794 /* Build configuration list for PBXNativeTarget "kydra-log-example-tv" */;
 			buildPhases = (
+				C8F829072B0FE006009D50AA /* ShellScript */,
 				C806BEA12386B664006F2794 /* Sources */,
 				C806BEA22386B664006F2794 /* Frameworks */,
 				C806BEA32386B664006F2794 /* Resources */,
@@ -591,7 +521,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				C806BEBD2386BA52006F2794 /* PBXTargetDependency */,
 			);
 			name = "kydra-log-example-tv";
 			productName = "kydra-log-example-tv";
@@ -602,6 +531,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C8A822C720BAF802004C070F /* Build configuration list for PBXNativeTarget "kydra-log-example-ios" */;
 			buildPhases = (
+				C8F829052B0FA720009D50AA /* ShellScript */,
 				C8A822B120BAF801004C070F /* Sources */,
 				C8A822B220BAF801004C070F /* Frameworks */,
 				C8A822B320BAF801004C070F /* Resources */,
@@ -610,28 +540,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				C81FF94121B5CCD200A94E03 /* PBXTargetDependency */,
 			);
 			name = "kydra-log-example-ios";
 			productName = "locolaser-kotlin-multiplatform-example";
 			productReference = C8A822B520BAF801004C070F /* kydra-log-example-ios.app */;
 			productType = "com.apple.product-type.application";
-		};
-		C8FA80E421973B0600C73A8E /* common_ios */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C8FA80F021973B0600C73A8E /* Build configuration list for PBXNativeTarget "common_ios" */;
-			buildPhases = (
-				C8FA80F221973B1700C73A8E /* Build Binary From Kotlin Sources */,
-				C8FA80F321973BE200C73A8E /* CopyFramevork */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = common_ios;
-			productName = Common;
-			productReference = C8FA80E521973B0600C73A8E /* common_ios.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -652,20 +565,11 @@
 					C806BE522386A448006F2794 = {
 						CreatedOnToolsVersion = 11.2.1;
 					};
-					C806BE7A2386A6CB006F2794 = {
-						CreatedOnToolsVersion = 11.2.1;
-					};
-					C806BE962386B5DF006F2794 = {
-						CreatedOnToolsVersion = 11.2.1;
-					};
 					C806BEA42386B664006F2794 = {
 						CreatedOnToolsVersion = 11.2.1;
 					};
 					C8A822B420BAF801004C070F = {
 						CreatedOnToolsVersion = 9.3.1;
-					};
-					C8FA80E421973B0600C73A8E = {
-						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
@@ -687,9 +591,6 @@
 				C806BE402386A447006F2794 /* kydra-log-example-watch */,
 				C806BE432386A447006F2794 /* kydra-log-example-watch WatchKit App */,
 				C806BE522386A448006F2794 /* kydra-log-example-watch WatchKit Extension */,
-				C8FA80E421973B0600C73A8E /* common_ios */,
-				C806BE962386B5DF006F2794 /* common_tv */,
-				C806BE7A2386A6CB006F2794 /* common_watch */,
 			);
 		};
 /* End PBXProject section */
@@ -743,7 +644,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		C806BE832386A8BC006F2794 /* Build Binary From Kotlin Sources */ = {
+		C8F829052B0FA720009D50AA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -752,16 +653,15 @@
 			);
 			inputPaths = (
 			);
-			name = "Build Binary From Kotlin Sources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PRJ_DIR=\"$SRCROOT/../..\";\nTASK_TARGET=\"$(tr '[:lower:]' '[:upper:]' <<< ${KOTLIN_TARGET:0:1})${KOTLIN_TARGET:1}\"\n\n\"${PRJ_DIR}/gradlew\" -p \"${PRJ_DIR}/\" \":example:common:linkCommon_watch${CONFIGURATION}FrameworkWatch\" \\\n-Pkonan.configuration.build.dir=\"$CONFIGURATION_BUILD_DIR\" \\\n-Pkonan.debugging.symbols=\"$DEBUGGING_SYMBOLS\"             \\\n-Pkonan.optimizations.enable=\"$KONAN_ENABLE_OPTIMIZATIONS\"\n";
+			shellScript = "java -version\ncd \"$SRCROOT/../..\"\n./gradlew :example:common:embedAndSignAppleFrameworkForXcode\n";
 		};
-		C806BE842386A909006F2794 /* CopyFramevork */ = {
+		C8F829072B0FE006009D50AA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -770,16 +670,15 @@
 			);
 			inputPaths = (
 			);
-			name = CopyFramevork;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "BUILD_TYPE=\"$(tr '[:upper:]' '[:lower:]' <<< ${CONFIGURATION:0:1})${CONFIGURATION:1}\"\nSOURCE_DIR=\"$SRCROOT/../common/build/bin/watch/${PRODUCT_NAME}${BUILD_TYPE}Framework/\"\n\nmkdir -p \"$CONFIGURATION_BUILD_DIR\"\ncp -r \"${SOURCE_DIR}/.\" \"$CONFIGURATION_BUILD_DIR\"\n";
+			shellScript = "java -version\ncd \"$SRCROOT/../..\"\n./gradlew :example:common:embedAndSignAppleFrameworkForXcode\n";
 		};
-		C806BE9F2386B60A006F2794 /* Build Binary From Kotlin Sources */ = {
+		C8F829082B0FE23E009D50AA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -788,68 +687,13 @@
 			);
 			inputPaths = (
 			);
-			name = "Build Binary From Kotlin Sources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PRJ_DIR=\"$SRCROOT/../..\";\nTASK_TARGET=\"$(tr '[:lower:]' '[:upper:]' <<< ${KOTLIN_TARGET:0:1})${KOTLIN_TARGET:1}\"\n\n\"${PRJ_DIR}/gradlew\" -p \"${PRJ_DIR}/\" \":example:common:linkCommon_tv${CONFIGURATION}FrameworkTv\" \\\n-Pkonan.configuration.build.dir=\"$CONFIGURATION_BUILD_DIR\" \\\n-Pkonan.debugging.symbols=\"$DEBUGGING_SYMBOLS\"             \\\n-Pkonan.optimizations.enable=\"$KONAN_ENABLE_OPTIMIZATIONS\"\n";
-		};
-		C806BEA02386B628006F2794 /* CopyFramevork */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = CopyFramevork;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "BUILD_TYPE=\"$(tr '[:upper:]' '[:lower:]' <<< ${CONFIGURATION:0:1})${CONFIGURATION:1}\"\nSOURCE_DIR=\"$SRCROOT/../common/build/bin/tv/${PRODUCT_NAME}${BUILD_TYPE}Framework/\"\n\nmkdir -p \"$CONFIGURATION_BUILD_DIR\"\ncp -r \"${SOURCE_DIR}/.\" \"$CONFIGURATION_BUILD_DIR\"\n";
-		};
-		C8FA80F221973B1700C73A8E /* Build Binary From Kotlin Sources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Build Binary From Kotlin Sources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "PRJ_DIR=\"$SRCROOT/../..\";\nTASK_TARGET=\"$(tr '[:lower:]' '[:upper:]' <<< ${KOTLIN_TARGET:0:1})${KOTLIN_TARGET:1}\"\n\n\"${PRJ_DIR}/gradlew\" -p \"${PRJ_DIR}/\" \":example:common:linkCommon_ios${CONFIGURATION}FrameworkIos\" \\\n-Pkonan.configuration.build.dir=\"$CONFIGURATION_BUILD_DIR\" \\\n-Pkonan.debugging.symbols=\"$DEBUGGING_SYMBOLS\"             \\\n-Pkonan.optimizations.enable=\"$KONAN_ENABLE_OPTIMIZATIONS\"\n";
-		};
-		C8FA80F321973BE200C73A8E /* CopyFramevork */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = CopyFramevork;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "BUILD_TYPE=\"$(tr '[:upper:]' '[:lower:]' <<< ${CONFIGURATION:0:1})${CONFIGURATION:1}\"\nSOURCE_DIR=\"$SRCROOT/../common/build/bin/ios/${PRODUCT_NAME}${BUILD_TYPE}Framework/\"\n\nmkdir -p \"$CONFIGURATION_BUILD_DIR\"\ncp -r \"${SOURCE_DIR}/.\" \"$CONFIGURATION_BUILD_DIR\"\n";
+			shellScript = "java -version\ncd \"$SRCROOT/../..\"\n./gradlew :example:common:embedAndSignAppleFrameworkForXcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -893,21 +737,6 @@
 			isa = PBXTargetDependency;
 			target = C806BE522386A448006F2794 /* kydra-log-example-watch WatchKit Extension */;
 			targetProxy = C806BE552386A448006F2794 /* PBXContainerItemProxy */;
-		};
-		C806BE882386A9BA006F2794 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C806BE7A2386A6CB006F2794 /* common_watch */;
-			targetProxy = C806BE872386A9BA006F2794 /* PBXContainerItemProxy */;
-		};
-		C806BEBD2386BA52006F2794 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C806BE962386B5DF006F2794 /* common_tv */;
-			targetProxy = C806BEBC2386BA52006F2794 /* PBXContainerItemProxy */;
-		};
-		C81FF94121B5CCD200A94E03 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C8FA80E421973B0600C73A8E /* common_ios */;
-			targetProxy = C81FF94021B5CCD200A94E03 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -969,6 +798,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QYF24V9H2B;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -984,6 +814,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QYF24V9H2B;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.kydra-log-example-watch";
@@ -999,6 +830,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QYF24V9H2B;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				IBSC_MODULE = kydra_log_example_watch_WatchKit_Extension;
 				INFOPLIST_FILE = "kydra-log-example-watch WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1024,6 +856,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QYF24V9H2B;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				IBSC_MODULE = kydra_log_example_watch_WatchKit_Extension;
 				INFOPLIST_FILE = "kydra-log-example-watch WatchKit App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1047,6 +880,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QYF24V9H2B;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = "kydra-log-example-watch WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1071,6 +905,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QYF24V9H2B;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = "kydra-log-example-watch WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1088,136 +923,13 @@
 			};
 			name = Release;
 		};
-		C806BE812386A6CB006F2794 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = QYF24V9H2B;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Common/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.watch-app-framework";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 6.1;
-			};
-			name = Debug;
-		};
-		C806BE822386A6CB006F2794 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = QYF24V9H2B;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Common/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.watch-app-framework";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 6.1;
-			};
-			name = Release;
-		};
-		C806BE9D2386B5DF006F2794 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = QYF24V9H2B;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Common/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.tv-app-framework";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 13.2;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		C806BE9E2386B5DF006F2794 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = QYF24V9H2B;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Common/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "ru.pocketbyte.tv-app-framework";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = appletvos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 13.2;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		C806BEB52386B665006F2794 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QYF24V9H2B;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = "kydra-log-example-tv/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1240,6 +952,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QYF24V9H2B;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = "kydra-log-example-tv/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1375,6 +1088,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QYF24V9H2B;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = "kydra-log-example-ios/Info.plist";
 				KONAN_ENABLE_OPTIMIZATIONS = NO;
 				KONAN_TASK = "";
@@ -1400,6 +1114,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QYF24V9H2B;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
 				INFOPLIST_FILE = "kydra-log-example-ios/Info.plist";
 				KONAN_ENABLE_OPTIMIZATIONS = YES;
 				KONAN_TASK = "";
@@ -1413,69 +1128,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		C8FA80EE21973B0600C73A8E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = QYF24V9H2B;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Common/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				KOTLIN_TARGET = "";
-				"KOTLIN_TARGET[sdk=iphoneos*]" = ios_arm64;
-				"KOTLIN_TARGET[sdk=iphonesimulator*]" = ios_x64;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.pocketbyte.Common;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		C8FA80EF21973B0600C73A8E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = QYF24V9H2B;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Common/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				KOTLIN_TARGET = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.pocketbyte.Common;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1509,24 +1161,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C806BE802386A6CB006F2794 /* Build configuration list for PBXNativeTarget "common_watch" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C806BE812386A6CB006F2794 /* Debug */,
-				C806BE822386A6CB006F2794 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C806BE9C2386B5DF006F2794 /* Build configuration list for PBXNativeTarget "common_tv" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C806BE9D2386B5DF006F2794 /* Debug */,
-				C806BE9E2386B5DF006F2794 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C806BEB42386B665006F2794 /* Build configuration list for PBXNativeTarget "kydra-log-example-tv" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1550,15 +1184,6 @@
 			buildConfigurations = (
 				C8A822C820BAF802004C070F /* Debug */,
 				C8A822C920BAF802004C070F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C8FA80F021973B0600C73A8E /* Build configuration list for PBXNativeTarget "common_ios" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C8FA80EE21973B0600C73A8E /* Debug */,
-				C8FA80EF21973B0600C73A8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

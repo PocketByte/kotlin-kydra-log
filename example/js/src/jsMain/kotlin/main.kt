@@ -6,8 +6,8 @@
 import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.events.Event
 import ru.pocketbyte.kydralogexample.common.Common
-import kotlin.browser.document
-import kotlin.browser.window
+import kotlinx.browser.document
+import kotlinx.browser.window
 
 fun main(args: Array<String>) {
     window.onload = {

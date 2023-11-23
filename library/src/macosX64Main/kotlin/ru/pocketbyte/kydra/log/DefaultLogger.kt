@@ -7,6 +7,6 @@ package ru.pocketbyte.kydra.log
 
 actual object DefaultLogger {
     actual fun build(level: LogLevel?, tags: Set<String?>?): Logger {
-        return NSLogger().filtered(level, tags)
+        return AppleLogger().filtered(level, tags)
     }
 }

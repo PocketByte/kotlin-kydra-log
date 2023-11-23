@@ -1,6 +1,4 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import ru.pocketbyte.kotlin.gradle.plugin.mpp_publish.upperFirstChar
 
 plugins {
     id("com.android.library")
@@ -10,8 +8,8 @@ plugins {
     id("signing")
 }
 
-version = LibraryInfo.version
-group = LibraryInfo.group
+version = "2.0.0"
+group = "ru.pocketbyte.kydra"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -19,15 +17,24 @@ java {
 }
 
 android {
-    compileSdk = AndroidSdk.compile
+    compileSdk = properties["ANDROID_SDK_COMPILE"].toString().toInt()
+    namespace = group.toString()
 
     defaultConfig {
-        minSdk = AndroidSdk.min
+        minSdk = properties["ANDROID_SDK_MIN"].toString().toInt()
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        getByName("main") {
+            manifest.srcFile(
+                "${project.projectDir.absoluteFile}/src/androidMain/AndroidManifest.xml"
+            )
+        }
     }
 
     buildTypes {
@@ -51,7 +58,6 @@ kotlin {
         }
 
         val commonTest by getting {
-            dependsOn(commonMain)
             dependencies {
                 api("org.jetbrains.kotlin:kotlin-test")
                 api("org.jetbrains.kotlin:kotlin-test-junit")
@@ -126,7 +132,11 @@ kotlin {
 // =================================
 // JS Target
 kotlin {
-    js(IR)
+    js(IR) {
+        browser()
+        nodejs()
+        binaries.library()
+    }
 
     sourceSets {
         val jsMain by getting {
@@ -182,24 +192,23 @@ kotlin {
 }
 
 // =================================
-// Apple Targets
+// Apple Targets (macOS required)
 kotlin {
-    macosX64()   // macOS required
-    macosArm64() // macOS required
+    macosX64()
+    macosArm64()
 
-    iosX64()   // macOS required
-    iosArm64() // macOS required
-    iosSimulatorArm64() // macOS required
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
 
-    watchosArm32()       // macOS required
-    watchosArm64()       // macOS required
-    watchosX64()         // macOS required
-    watchosSimulatorArm64() // macOS required
-//    watchosDeviceArm64() // macOS required
+    watchosArm32()
+    watchosArm64()
+    watchosX64()
+    watchosSimulatorArm64()
 
-    tvosArm64() // macOS required
-    tvosX64()   // macOS required
-    tvosSimulatorArm64() // macOS required
+    tvosX64()
+    tvosArm64()
+    tvosSimulatorArm64()
 
     sourceSets {
         val macosX64Main by getting {
@@ -215,7 +224,6 @@ kotlin {
             getByName("watchosArm64Main"),
             getByName("watchosX64Main"),
             getByName("watchosSimulatorArm64Main"),
-//            getByName("watchosDeviceArm64Main"),
             getByName("tvosArm64Main"),
             getByName("tvosX64Main"),
             getByName("tvosSimulatorArm64Main")
@@ -237,7 +245,6 @@ kotlin {
             getByName("watchosArm64Test"),
             getByName("watchosX64Test"),
             getByName("watchosSimulatorArm64Test"),
-//            getByName("watchosDeviceArm64Test"),
             getByName("tvosArm64Test"),
             getByName("tvosX64Test"),
             getByName("tvosSimulatorArm64Test")
@@ -297,27 +304,24 @@ kotlin {
 }
 
 // =================================
-// Web Assembly targets
-kotlin {
-    wasm {
-        browser()
-    }
-
-    sourceSets {
-        getByName("wasmMain") {
-            dependsOn(getByName("commonMain"))
-        }
-        getByName("wasmTest") {
-            dependsOn(getByName("commonTest"))
-        }
-    }
-}
-
-tasks.withType(KotlinCompile::class.java).all {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
+// Web Assembly targets (NOT SUPPORTED. FOR NOW)
+//kotlin {
+//    @Suppress("OPT_IN_USAGE")
+//    wasm {
+//        browser()
+//        nodejs()
+//        d8()
+//    }
+//
+//    sourceSets {
+//        getByName("wasmMain") {
+//            dependsOn(getByName("commonMain"))
+//        }
+//        getByName("wasmTest") {
+//            dependsOn(getByName("commonTest"))
+//        }
+//    }
+//}
 
 val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
@@ -424,3 +428,11 @@ tasks.withType(Sign::class, configureAction = {
         this.dependsOn(signingTask)
     })
 })
+
+
+fun String.upperFirstChar(): String {
+    if (this[0].isLowerCase()) {
+        return this[0].uppercaseChar() + substring(1)
+    }
+    return this
+}

@@ -11,8 +11,8 @@ buildscript {
         maven("https://dl.bintray.com/kotlin/kotlin-eap")
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:${BuildVersion.androidGradle}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${BuildVersion.kotlin}")
+        classpath("com.android.tools.build:gradle:${properties["ANDROID_GRADLE"]}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${properties["KOTLIN_VERSION"]}")
         classpath("com.github.dcendents:android-maven-gradle-plugin:1.4.1")
     }
 }
@@ -25,6 +25,12 @@ allprojects {
         google()
         maven ("https://kotlin.bintray.com/kotlinx")
         maven ("https://dl.bintray.com/kotlin/kotlin-eap") // kotlin 1.2
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).all {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
     }
 }
 

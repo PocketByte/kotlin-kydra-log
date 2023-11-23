@@ -6,6 +6,7 @@
 
     <EditText
         android:id="@+id/txtMessage"
+        android:text="Hello Kydra Log"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
