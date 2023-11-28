@@ -22,7 +22,7 @@ repositories {
 }
 dependencies {
     ...
-    implementation 'ru.pocketbyte.kydra:kydra-log:2.0.1'
+    implementation 'ru.pocketbyte.kydra:kydra-log:2.0.2'
 }
 ```
 
