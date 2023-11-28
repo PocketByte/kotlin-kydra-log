@@ -38,7 +38,7 @@ open class FilteredLoggerWrapper(
     ) : this(
         logger,
         levelFiler = level
-            ?.let { { level: LogLevel ->  it.priority >= level.priority} },
+            ?.let { { level: LogLevel ->  level.priority >= it.priority} },
         tagFilter = tags
             ?.let { { tag: String? -> it.contains(tag) } }
     )

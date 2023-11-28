@@ -90,7 +90,7 @@ class InitializableLoggerTest {
 
     private class LoggerMock: Logger() {
         override fun doLog(level: LogLevel, tag: String?, message: Any) {
-            throw RuntimeException()
+            throw NotImplementedError()
         }
     }
 }

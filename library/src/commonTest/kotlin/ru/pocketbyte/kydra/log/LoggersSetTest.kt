@@ -13,8 +13,8 @@ class LoggersSetTest {
 
     @Test
     fun testLogMessage() {
-        val logger1 = LoggerImpl()
-        val logger2 = LoggerImpl()
+        val logger1 = TestLogger()
+        val logger2 = TestLogger()
         val loggerSet = LoggersSet(setOf(logger1, logger2))
 
         val level = LogLevel.DEBUG
@@ -24,7 +24,7 @@ class LoggersSetTest {
         assertNull(logger1.message)
         assertNull(logger2.message)
 
-        loggerSet.doLog(level, tag, message)
+        loggerSet.log(level, tag, message)
 
         assertEquals(level, logger1.level)
         assertEquals(level, logger2.level)
@@ -37,8 +37,8 @@ class LoggersSetTest {
 
     @Test
     fun testLogException() {
-        val logger1 = LoggerImpl()
-        val logger2 = LoggerImpl()
+        val logger1 = TestLogger()
+        val logger2 = TestLogger()
         val loggerSet = LoggersSet(setOf(logger1, logger2))
 
         val level = LogLevel.WARNING
@@ -48,7 +48,7 @@ class LoggersSetTest {
         assertNull(logger1.message)
         assertNull(logger2.message)
 
-        loggerSet.doLog(level, tag, exception)
+        loggerSet.log(level, tag, exception)
 
         assertEquals(level, logger1.level)
         assertEquals(level, logger2.level)
@@ -56,21 +56,5 @@ class LoggersSetTest {
         assertEquals(tag, logger2.tag)
         assertEquals(exception, logger1.message)
         assertEquals(exception, logger2.message)
-    }
-
-    private class LoggerImpl: Logger() {
-
-        var level: LogLevel? = null
-            private set
-        var tag: String? = null
-            private set
-        var message: Any? = null
-            private set
-
-        override fun doLog(level: LogLevel, tag: String?, message: Any) {
-            this.level = level
-            this.tag = tag
-            this.message = message
-        }
     }
 }
