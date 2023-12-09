@@ -14,7 +14,8 @@ Also, not well by using `println` with timestamp:
 - Linux based: X64, Arm64;
 - Windows X64;
 
-### How to use:
+### How to use
+
 Add common library as dependency in common **`build.gradle`**:
 ```gradle
 repositories {
@@ -33,7 +34,9 @@ KydraLog.debug("Debug log message")
 KydraLog.warn("Warning log message")
 KydraLog.error("Error log message")
 ```
-### Logging with format:
+
+### Logging with format
+
 If you would to log formatted string you should use kotlin String Templates:
 ```Kotlin
 val count = 1
@@ -65,7 +68,8 @@ In the logs will be printed following list of messages:
 Error log printed
 Logger say: Hello from Error
 ```
-### Logger initialization:
+### Logger initialization
+
 Any logging via not initialized KydraLog will call initialisation with default Logger. But if you
 want to initialize `KydraLog` with custom filtering you could use function 
 `initDefault(level: LogLevel?, tags: Set<String?>?)`. For example, on Android platform can be used
@@ -85,7 +89,8 @@ calss MyApplication : Application() {
 `IllegalStateException`. Any logging via not initialized KydraLog will call initialisation with
 default Logger.
 
-### Custom loggers:
+### Custom loggers
+
 If you want to implement your own custom logger you should extend abstract class **`ru.pocketbyte.kydra.log.Logger`**:
 
 ```Kotlin
@@ -123,11 +128,41 @@ KydraLog.init(
 **Note:** In example above, second filter applies to whole set instead of applying to
 `AndroidLogger` only.
 
-### KydraLog class is not mandatory:
+### KydraLog class is not mandatory
+
 You are not forced to use `KydraLog` object. It was designed to provide Plug and Play functionality.
 If you wish, you can instantiate `Logger` as variable and use it for logging. Or you can use 
 Dependency Injection to provide `Logger` instance. To get default console logger instance you could
 use `DefaultLoggerFactory.build()`.
+
+### Logger Toggle
+
+To be able to switch on/off logger at any time you could use `LoggerToggle` wrapper.
+
+```Kotlin
+val loggerToggle = LoggerToggle(myLogger)
+
+loggerToggle.info { "This log will be shown." }
+loggerToggle.enabled = false
+loggerToggle.info { "This log will NOT be shown." }
+```
+
+### Logger Tag Transform
+
+To override log tag or provide default tag you could use `withTag` or `withTagTransform` extensions.
+
+```Kotlin
+// fooLogger uses "Foo" tag as default
+val fooLogger = myLogger.withTag("Foo")
+fooLogger.info { "Hello Foo" }        // Log will be printed with tag "Foo"
+fooLogger.info("Bar") { "Hello Foo" } // Log will be printed with tag "Bar"
+
+
+// barLogger always uses "Bar" tag
+val barLogger = myLogger.withTagTransform { "Bar" }
+barLogger.info { "Hello Bar" }        // Log will be printed with tag "Bar"
+barLogger.info("Foo") { "Hello Bar" } // Log will be printed with tag "Bar"
+```
 
 ## License
 
