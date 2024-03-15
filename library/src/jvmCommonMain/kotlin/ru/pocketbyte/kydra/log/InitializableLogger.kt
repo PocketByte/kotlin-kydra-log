@@ -5,36 +5,23 @@
 
 package ru.pocketbyte.kydra.log
 
-import java.util.concurrent.locks.ReentrantLock
+import java.util.concurrent.atomic.AtomicReference
 
 actual abstract class InitializableLogger: AbsLoggerWrapper() {
 
-    actual override val logger
-        get() = getOrInitLogger()
+    actual override val logger: Logger
+        get() = loggerRef.get() ?: defaultLogger()
 
-    private var innerLogger: Logger? = null
-    private val lock = ReentrantLock()
+    actual val isInitialized: Boolean
+        get() = loggerRef.get() != null
 
-    protected actual abstract fun onNeedToBeInitialized()
+    private var loggerRef: AtomicReference<Logger?> = AtomicReference(null)
+
+    protected actual abstract fun defaultLogger(): Logger
 
     actual open fun init(logger: Logger) {
-        lock.lock()
-        try {
-            if (this.innerLogger != null)
-                throw IllegalStateException("Logger already initialized")
-            this.innerLogger = logger
-        } finally {
-            lock.unlock()
+        if (!this.loggerRef.compareAndSet(null, logger)) {
+            throw IllegalStateException("Logger already initialized")
         }
-    }
-
-    private fun getOrInitLogger(): Logger {
-        val logger = this.innerLogger
-        if (logger == null) {
-            onNeedToBeInitialized()
-            return this.innerLogger
-                ?: throw IllegalStateException("Logger need to be initialized before usage")
-        }
-        return logger
     }
 }

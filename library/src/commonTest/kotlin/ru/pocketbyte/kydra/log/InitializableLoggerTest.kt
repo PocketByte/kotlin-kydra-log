@@ -56,34 +56,19 @@ class InitializableLoggerTest {
         }
     }
 
-    @Test
-    fun testNoInitialization() {
-        val initializable = object : InitializableLogger() {
-            override fun onNeedToBeInitialized() {
-                // Do nothing
-            }
-        }
-
-        assertFailsWith(IllegalStateException::class) {
-            initializable.logger
-        }
-    }
-
 
     @Test
-    fun testAutoInitialization() {
+    fun testDefaultLoggerWithNoInitialization() {
         val logger = LoggerMock()
         val initializable = object : InitializableLogger() {
-            override fun onNeedToBeInitialized() {
-                init(logger)
-            }
+            override fun defaultLogger(): Logger = logger
         }
 
         assertSame(logger, initializable.logger)
     }
 
     private class InitializableLoggerImpl: InitializableLogger() {
-        override fun onNeedToBeInitialized() {
+        override fun defaultLogger(): Logger {
             throw RuntimeException()
         }
     }

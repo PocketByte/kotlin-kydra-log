@@ -15,3 +15,13 @@ package ru.pocketbyte.kydra.log
 fun InitializableLogger.initDefault(level: LogLevel? = null, tags: Set<String?>? = null) {
     init(DefaultLoggerFactory.build().filtered(level, tags))
 }
+
+/**
+ * Initialize InitializableLogger if it not initialized, otherwise ignore provided logger.
+ * @param logger Logger that should be user for logging
+ */
+fun InitializableLogger.initOrIgnore(logger: Logger) {
+    if (!isInitialized) {
+        init(logger)
+    }
+}

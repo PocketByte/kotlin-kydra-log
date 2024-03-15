@@ -7,7 +7,7 @@ package ru.pocketbyte.kydra.log
 
 /**
  * Global logger instance.
- * You should initialize it via [init] before usage.
+ * You should initialize it via [init] before usage, otherwise default logger will be used.
  */
 object KydraLog: InitializableLogger() {
 
@@ -19,8 +19,6 @@ object KydraLog: InitializableLogger() {
         super.init(logger)
     }
 
-    override fun onNeedToBeInitialized() {
-        initDefault()
-    }
+    override fun defaultLogger(): Logger = DefaultLogger
 
 }
