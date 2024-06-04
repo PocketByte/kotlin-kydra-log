@@ -10,7 +10,9 @@ package ru.pocketbyte.kydra.log
  *
  * @property filter Filter function that defines which logs should be filtered
  */
-fun Logger.filtered(filter: (level: LogLevel, tag: String?) -> Boolean): Logger {
+fun <T : Logger> T.filtered(
+    filter: (level: LogLevel, tag: String?) -> Boolean
+): FilteredLoggerWrapper<T> {
     return FilteredLoggerWrapper(this, filter)
 }
 
@@ -23,10 +25,10 @@ fun Logger.filtered(filter: (level: LogLevel, tag: String?) -> Boolean): Logger 
  * @param tags Set of tags that can be passed.
  * Null if filter by Tag shouldn't be used.
  */
-fun Logger.filtered(level: LogLevel? = null, tags: Set<String?>? = null): Logger {
-    if ((level == null || level == LogLevel.DEBUG) && tags.isNullOrEmpty())
-        return this
-
+fun <T : Logger> T.filtered(
+    level: LogLevel? = null,
+    tags: Set<String?>? = null
+): FilteredLoggerWrapper<T> {
     return FilteredLoggerWrapper(this, level, tags)
 }
 
@@ -38,12 +40,9 @@ fun Logger.filtered(level: LogLevel? = null, tags: Set<String?>? = null): Logger
  * @param tagFilter Tag filter rule.
  * Null if filter by Tag shouldn't be used.
  */
-fun Logger.filtered(
+fun <T : Logger> T.filtered(
     levelFiler: ((LogLevel) -> Boolean)? = null,
     tagFilter: ((String?) -> Boolean)? = null
-): Logger {
-    if (levelFiler == null && tagFilter == null)
-        return this
-
+): FilteredLoggerWrapper<T> {
     return FilteredLoggerWrapper(this, levelFiler, tagFilter)
 }

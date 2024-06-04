@@ -9,18 +9,19 @@ package ru.pocketbyte.kydra.log
  * Logger container.
  * You should initialize it via [init] before usage, otherwise default logger will be used.
  */
-expect abstract class InitializableLogger() : AbsLoggerWrapper {
+expect abstract class InitializableLogger<LoggerType: Logger>()
+    : AbsLoggerWrapper<LoggerType> {
 
-    override val logger: Logger
+    override val logger: LoggerType
 
     val isInitialized: Boolean
+
+    protected abstract val defaultLogger: LoggerType
 
     /**
      * Init Logger with provided Logger
      * @param logger Logger that should be user for logging
      */
-    open fun init(logger: Logger)
-
-    protected abstract fun defaultLogger(): Logger
+    open fun init(logger: LoggerType)
 
 }

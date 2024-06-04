@@ -5,19 +5,20 @@
 
 package ru.pocketbyte.kydra.log
 
-actual abstract class InitializableLogger: AbsLoggerWrapper() {
+actual abstract class InitializableLogger<LoggerType: Logger>
+    : AbsLoggerWrapper<LoggerType>() {
 
-    actual override val logger: Logger
-        get() = innerLogger ?: defaultLogger()
+    actual override val logger: LoggerType
+        get() = innerLogger ?: defaultLogger
 
     actual val isInitialized: Boolean
         get() = innerLogger != null
 
-    private var innerLogger: Logger? = null
+    protected actual abstract val defaultLogger: LoggerType
 
-    protected actual abstract fun defaultLogger(): Logger
+    private var innerLogger: LoggerType? = null
 
-    actual open fun init(logger: Logger) {
+    actual open fun init(logger: LoggerType) {
         if (innerLogger != null)
             throw IllegalStateException("Logger already initialized")
         innerLogger = logger

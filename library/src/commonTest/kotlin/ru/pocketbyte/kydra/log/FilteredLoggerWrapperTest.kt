@@ -8,8 +8,17 @@ package ru.pocketbyte.kydra.log
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlin.test.assertSame
 
 class FilteredLoggerWrapperTest {
+
+    @Test
+    fun testWrapper() {
+        val logger = TestLogger()
+        val loggerFilter = FilteredLoggerWrapper(logger) { _, _ -> true }
+
+        assertSame(logger, loggerFilter.logger)
+    }
 
     @Test
     fun testFilterAll() {

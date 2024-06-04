@@ -6,11 +6,11 @@
 package ru.pocketbyte.kydra.log
 
 /**
- * Logger wrapper implementation that allows to toggle logger enability.
+ * Logger wrapper implementation that allows to switch on/off logger.
  */
-class LoggerToggle(
-    override val logger: Logger
-) : AbsLoggerWrapper() {
+class LoggerToggle<LoggerType: Logger>(
+    override val logger: LoggerType
+) : AbsLoggerWrapper<LoggerType>() {
 
     /**
      * Logger enability. If false, all log messages will be skipped.

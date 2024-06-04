@@ -14,10 +14,10 @@ package ru.pocketbyte.kydra.log
  *
  * @constructor Creates filtered logger depends on provided filter function.
  */
-open class FilteredLoggerWrapper(
-    override val logger: Logger,
+open class FilteredLoggerWrapper<LoggerType: Logger>(
+    override val logger: LoggerType,
     filter: (level: LogLevel, tag: String?) -> Boolean
-) : AbsLoggerWrapper() {
+) : AbsLoggerWrapper<LoggerType>() {
 
     override val filter: (level: LogLevel, tag: String?) -> Boolean = { level, tag ->
         logger.filter?.invoke(level, tag) != false && filter.invoke(level, tag)
@@ -32,7 +32,7 @@ open class FilteredLoggerWrapper(
      * Null if filter by Tag shouldn't be used.
      */
     constructor(
-        logger: Logger,
+        logger: LoggerType,
         level: LogLevel? = null,
         tags: Set<String?>? = null
     ) : this(
@@ -52,7 +52,7 @@ open class FilteredLoggerWrapper(
      * Null if filter by Tag shouldn't be used.
      */
     constructor(
-        logger: Logger,
+        logger: LoggerType,
         levelFiler: ((LogLevel) -> Boolean)? = null,
         tagFilter: ((String?) -> Boolean)? = null
     ) : this(

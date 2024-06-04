@@ -11,30 +11,12 @@ package ru.pocketbyte.kydra.log
  * @param logger Logger to wrap
  * @param tagTransform Tag transformation logic
  */
-class LoggerTagTransform(
-    override val logger: Logger,
+class LoggerTagTransform<LoggerType: Logger>(
+    override val logger: LoggerType,
     private val tagTransform: (tag: String?) -> String?
-) : AbsLoggerWrapper() {
+) : AbsLoggerWrapper<LoggerType>() {
 
     override fun doLog(level: LogLevel, tag: String?, message: Any) {
         super.doLog(level, tagTransform(tag), message)
     }
-}
-
-/**
- * Wraps Logger with Logger that transforms tags by given logic.
- *
- * @param tagTransform Tag transformation logic
- */
-fun Logger.withTagTransform(tagTransform: (tag: String?) -> String?): Logger {
-    return LoggerTagTransform(this, tagTransform)
-}
-
-/**
- * Wraps Logger with Logger that uses defaultTag if provided tag is null.
- *
- * @param defaultTag Tag that should be used if provided tag is null.
- */
-fun Logger.withTag(defaultTag: String): Logger {
-    return LoggerTagTransform(this) { it ?: defaultTag }
 }

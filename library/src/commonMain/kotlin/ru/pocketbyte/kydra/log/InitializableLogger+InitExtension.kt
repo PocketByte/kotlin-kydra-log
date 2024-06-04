@@ -12,15 +12,15 @@ package ru.pocketbyte.kydra.log
  * @param tags Set of tags that can be passed.
  * Null if filter by Tag shouldn't be used.
  */
-fun InitializableLogger.initDefault(level: LogLevel? = null, tags: Set<String?>? = null) {
-    init(DefaultLoggerFactory.build().filtered(level, tags))
+fun InitializableLogger<Logger>.initDefault(level: LogLevel? = null, tags: Set<String?>? = null) {
+    init(DefaultLogger.filtered(level, tags))
 }
 
 /**
  * Initialize InitializableLogger if it not initialized, otherwise ignore provided logger.
  * @param logger Logger that should be user for logging
  */
-fun InitializableLogger.initOrIgnore(logger: Logger) {
+fun <T : Logger> InitializableLogger<T>.initOrIgnore(logger: T) {
     if (!isInitialized) {
         init(logger)
     }

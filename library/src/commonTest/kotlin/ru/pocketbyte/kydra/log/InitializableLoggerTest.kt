@@ -7,17 +7,15 @@ package ru.pocketbyte.kydra.log
 
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
-import kotlin.test.assertNotSame
+import kotlin.test.assertFalse
 import kotlin.test.assertSame
+import kotlin.test.assertTrue
 
 class InitializableLoggerTest {
 
     @Test
     fun testInitialization() {
         val logger1 = LoggerMock()
-        val logger2 = LoggerMock()
-
-        assertNotSame(logger1, logger2)
 
         val initializable1 = InitializableLoggerImpl()
         initializable1.init(logger1)
@@ -25,14 +23,9 @@ class InitializableLoggerTest {
         assertSame(logger1, initializable1.logger)
 
         val initializable2 = InitializableLoggerImpl()
-        initializable2.init(logger2)
+        initializable2.init(initializable1)
 
-        assertSame(logger2, initializable2.logger)
-
-        val initializable3 = InitializableLoggerImpl()
-        initializable3.init(initializable1)
-
-        assertSame(initializable1, initializable3.logger)
+        assertSame(initializable1, initializable2.logger)
     }
 
     @Test
@@ -60,17 +53,27 @@ class InitializableLoggerTest {
     @Test
     fun testDefaultLoggerWithNoInitialization() {
         val logger = LoggerMock()
-        val initializable = object : InitializableLogger() {
-            override fun defaultLogger(): Logger = logger
+        val initializable = object : InitializableLogger<Logger>() {
+            override val defaultLogger: Logger = logger
         }
 
         assertSame(logger, initializable.logger)
     }
 
-    private class InitializableLoggerImpl: InitializableLogger() {
-        override fun defaultLogger(): Logger {
-            throw RuntimeException()
-        }
+    @Test
+    fun testInitializationFlag() {
+        val logger = InitializableLoggerImpl()
+
+        assertFalse(logger.isInitialized)
+
+        logger.init(LoggerMock())
+
+        assertTrue(logger.isInitialized)
+    }
+
+    private class InitializableLoggerImpl: InitializableLogger<Logger>() {
+        override val defaultLogger: Logger
+            get() = throw RuntimeException()
     }
 
     private class LoggerMock: Logger() {

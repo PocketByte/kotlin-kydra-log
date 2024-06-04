@@ -8,9 +8,18 @@ package ru.pocketbyte.kydra.log
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlin.test.assertSame
 import kotlin.test.assertTrue
 
 class LoggerToggleTest {
+
+    @Test
+    fun testWrapper() {
+        val logger = TestLogger()
+        val loggerToggle = LoggerToggle(logger)
+
+        assertSame(logger, loggerToggle.logger)
+    }
 
     @Test
     fun testDefaultValue() {
