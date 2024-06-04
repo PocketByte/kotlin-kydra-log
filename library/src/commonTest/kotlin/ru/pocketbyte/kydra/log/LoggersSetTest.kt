@@ -15,7 +15,7 @@ class LoggersSetTest {
     fun testLogMessage() {
         val logger1 = TestLogger()
         val logger2 = TestLogger()
-        val loggerSet = LoggersSet(setOf(logger1, logger2))
+        val loggerSet = LoggersSet(logger1, logger2)
 
         val level = LogLevel.DEBUG
         val tag = "TEST_1"
