@@ -129,6 +129,33 @@ class JvmFilePrinterTest {
     }
 
     @Test
+    fun `Write in same file if there is new session and same date`() {
+        val mockDateProvider = MockDateProvider()
+        val dateProvider = { Date.from(Instant.ofEpochMilli(mockDateProvider.currentEpochMilliseconds)) }
+        val mockFs = MockFileSystemOperator(dateProvider)
+        val exceptedPostfix = SimpleDateFormat("HH-mm-ss").format(dateProvider())
+        runWith(
+            maxFileLength = 50,
+            maxFolderLength = 500,
+            mockFs,
+            dateProvider = dateProvider
+        ) {
+            this.print("String")
+        }
+        mockDateProvider.plus(2000L)
+        runWith(
+            maxFileLength = 50,
+            maxFolderLength = 500,
+            mockFs,
+            dateProvider = dateProvider
+        ) {
+            this.print("String")
+        }
+        assertEquals(1, mockFs.files.size)
+        assertTrue { mockFs.files.any { it.key.toString().contains(exceptedPostfix) } }
+    }
+
+    @Test
     fun `Always have at least one file in logs`() {
         val mockDateProvider = MockDateProvider()
         val dateProvider = { Date.from(Instant.ofEpochMilli(mockDateProvider.currentEpochMilliseconds)) }

@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
+import kotlin.io.path.name
 
 class JvmFilePrinter(
     private val maxSizeBytes: Long,
@@ -19,12 +20,21 @@ class JvmFilePrinter(
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     private val timeFormat = SimpleDateFormat("HH-mm-ss")
     private var currentLogDate: String = getCurrentDate()
-    private var currentLogPath: Path = getCurrentLogPath()
+    private var currentLogPath: Path = getInitialLogPath()
     private var writer: BufferedWriter? = null
 
     private fun getCurrentDate(): String = dateFormat.format(dateProvider())
 
     private fun getCurrentTime(): String = timeFormat.format(dateProvider())
+
+    private fun getInitialLogPath(): Path {
+        val logFiles = getSortedLogFiles()
+        return if (logFiles.isNotEmpty() && logFiles.last().name.contains(currentLogDate)) {
+            logFiles.last()
+        } else {
+            getCurrentLogPath()
+        }
+    }
 
     private fun getCurrentLogPath(): Path = logDirectory.resolve(
         "$LOG_FILE_NAME_PREFIX-${currentLogDate}_${getCurrentTime()}.log"
