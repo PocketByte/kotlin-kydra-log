@@ -75,7 +75,7 @@ want to initialize `KydraLog` with custom filtering you could use function
 `initDefault(level: LogLevel?, tags: Set<String?>?)`. For example, on Android platform can be used
 different `LogLevel` filtering depending on build type:
 ```Kotlin
-calss MyApplication : Application() {
+class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         if (!BuildConfig.DEBUG) {

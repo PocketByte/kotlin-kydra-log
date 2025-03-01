@@ -8,7 +8,7 @@ plugins {
     id("signing")
 }
 
-version = "2.1.0"
+version = "2.2.0"
 group = "ru.pocketbyte.kydra"
 
 java {
