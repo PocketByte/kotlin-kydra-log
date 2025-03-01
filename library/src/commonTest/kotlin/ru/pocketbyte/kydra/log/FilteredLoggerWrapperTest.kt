@@ -24,9 +24,11 @@ class FilteredLoggerWrapperTest {
     fun testFilterAll() {
         val logger = FilteredLoggerWrapper(TestLogger(), level = null, tags = null)
 
-        LogLevel.values().forEach { level ->
-            assertEquals(true, logger.filter(level, null),
-                    "Level ${level.name} not satisfied but should")
+        LogLevel.entries.forEach { level ->
+            assertEquals(
+                true, logger.filter(level, null),
+                "Level ${level.name} not satisfied but should"
+            )
         }
 
         assertEquals(true, logger.filter(LogLevel.INFO, "TAG"))
@@ -111,20 +113,22 @@ class FilteredLoggerWrapperTest {
 
     @Test
     fun testLevelFilter() {
-        LogLevel.values().forEach { expectLevel ->
-            LogLevel.values().forEach { level ->
+        LogLevel.entries.forEach { expectLevel ->
+            LogLevel.entries.forEach { level ->
                 val logger = TestLogger()
                 val filteredLogger = FilteredLoggerWrapper(logger, expectLevel)
 
                 val message = "Level: ${level.name}"
-                filteredLogger.log(level, null, message)
+                filteredLogger.log(level, null) { message }
 
                 if (expectLevel.priority <= level.priority)
                     assertEquals(message, logger.message, "Called wrong method")
                 else
-                    assertNull(logger.message,
-                            "Level ${level.name} satisfied " +
-                                    "for filtering by ${expectLevel.name} but shouldn't")
+                    assertNull(
+                        logger.message,
+                        "Level ${level.name} satisfied " +
+                                "for filtering by ${expectLevel.name} but shouldn't"
+                    )
             }
         }
     }
@@ -136,17 +140,17 @@ class FilteredLoggerWrapperTest {
 
         var logger = TestLogger()
         var filteredLogger = FilteredLoggerWrapper(logger, tags = setOf(gudTag))
-        filteredLogger.log(LogLevel.DEBUG, gudTag, "some message")
+        filteredLogger.log(LogLevel.DEBUG, gudTag) { "some message" }
         assertEquals("some message", logger.message)
 
         logger = TestLogger()
         filteredLogger = FilteredLoggerWrapper(logger, tags = setOf(gudTag))
-        filteredLogger.log(LogLevel.DEBUG, badTag, "some debug message")
+        filteredLogger.log(LogLevel.DEBUG, badTag) { "some debug message" }
         assertNull(logger.message)
 
         logger = TestLogger()
         filteredLogger = FilteredLoggerWrapper(logger, tags = setOf(gudTag))
-        filteredLogger.log(LogLevel.DEBUG, null, "some message")
+        filteredLogger.log(LogLevel.DEBUG, null) { "some message" }
         assertNull(logger.message)
     }
 }

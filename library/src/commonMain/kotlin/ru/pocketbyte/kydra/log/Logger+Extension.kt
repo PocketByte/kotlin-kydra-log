@@ -10,8 +10,13 @@ package ru.pocketbyte.kydra.log
  * @param level Log level
  * @param message Message to be written into log
  */
+@Deprecated(
+    message = "Use log(LogLevel, () -> Any) instead.",
+    replaceWith = ReplaceWith("log(level) { message }"),
+    level = DeprecationLevel.ERROR
+)
 fun Logger.log(level: LogLevel, message: Any) {
-    log(level, null, message)
+    log(level, null) { message }
 }
 
 /**
@@ -30,16 +35,26 @@ inline fun Logger.log(level: LogLevel, function: () -> Any) {
  * @param tag Tag of the log record. Nullable
  * @param message Message to be written into log.
  */
+@Deprecated(
+    message = "Use info(String?, () -> Any) instead.",
+    replaceWith = ReplaceWith("info(tag) { message }"),
+    level = DeprecationLevel.ERROR
+)
 fun Logger.info(tag: String?, message: Any) {
-    log(LogLevel.INFO, tag, message)
+    log(LogLevel.INFO, tag) { message }
 }
 
 /**
  * Writes log with INFO log level and empty tag.
  * @param message Message to be written into log.
  */
+@Deprecated(
+    message = "Use info(() -> Any) instead.",
+    replaceWith = ReplaceWith("info { message }"),
+    level = DeprecationLevel.ERROR
+)
 fun Logger.info(message: Any) {
-    log(LogLevel.INFO, null, message)
+    log(LogLevel.INFO, null) { message }
 }
 
 /**
@@ -66,16 +81,26 @@ inline fun Logger.info(function: () -> Any) {
  * @param tag Tag of the log record. Nullable
  * @param message Message to be written into log.
  */
+@Deprecated(
+    message = "Use debug(String?, () -> Any) instead.",
+    replaceWith = ReplaceWith("debug(tag) { message }"),
+    level = DeprecationLevel.ERROR
+)
 fun Logger.debug(tag: String?, message: Any) {
-    log(LogLevel.DEBUG, tag, message)
+    log(LogLevel.DEBUG, tag) { message }
 }
 
 /**
  * Writes log with DEBUG log level and empty tag.
  * @param message Message to be written into log.
  */
+@Deprecated(
+    message = "Use debug(() -> Any) instead.",
+    replaceWith = ReplaceWith("debug { message }"),
+    level = DeprecationLevel.ERROR
+)
 fun Logger.debug(message: Any) {
-    log(LogLevel.DEBUG, null, message)
+    log(LogLevel.DEBUG, null) { message }
 }
 
 /**
@@ -102,16 +127,26 @@ inline fun Logger.debug(function: () -> Any) {
  * @param tag Tag of the log record. Nullable
  * @param message Message to be written into log.
  */
+@Deprecated(
+    message = "Use warn(String?, () -> Any) instead.",
+    replaceWith = ReplaceWith("warn(tag) { message }"),
+    level = DeprecationLevel.ERROR
+)
 fun Logger.warn(tag: String?, message: Any) {
-    log(LogLevel.WARNING, tag, message)
+    log(LogLevel.WARNING, tag) { message }
 }
 
 /**
  * Writes log with WARNING log level and empty tag.
  * @param message Message to be written into log.
  */
+@Deprecated(
+    message = "Use warn(() -> Any) instead.",
+    replaceWith = ReplaceWith("warn { message }"),
+    level = DeprecationLevel.ERROR
+)
 fun Logger.warn(message: Any) {
-    log(LogLevel.WARNING, null, message)
+    log(LogLevel.WARNING, null) { message }
 }
 
 /**
@@ -138,16 +173,26 @@ inline fun Logger.warn(function: () -> Any) {
  * @param tag Tag of the log record. Nullable
  * @param message Message to be written into log.
  */
+@Deprecated(
+    message = "Use error(String?, () -> Any) instead.",
+    replaceWith = ReplaceWith("error(tag) { message }"),
+    level = DeprecationLevel.ERROR
+)
 fun Logger.error(tag: String?, message: Any) {
-    log(LogLevel.ERROR, tag, message)
+    log(LogLevel.ERROR, tag) { message }
 }
 
 /**
  * Writes log with ERROR log level and empty tag.
  * @param message Message to be written into log.
  */
+@Deprecated(
+    message = "Use error(() -> Any) instead.",
+    replaceWith = ReplaceWith("error { message }"),
+    level = DeprecationLevel.ERROR
+)
 fun Logger.error(message: Any) {
-    log(LogLevel.ERROR, null, message)
+    log(LogLevel.ERROR, null) { message }
 }
 
 /**

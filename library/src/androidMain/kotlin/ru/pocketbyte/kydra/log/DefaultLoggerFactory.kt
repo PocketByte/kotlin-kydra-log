@@ -11,6 +11,10 @@ actual object DefaultLoggerFactory {
     }
 
     actual fun build(): Logger {
+        return create()
+    }
+
+    actual fun create(): Logger {
         return AndroidLogger()
     }
 }

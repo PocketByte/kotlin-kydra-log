@@ -36,7 +36,7 @@ class LoggerToggleTest {
         assertNull(logger.message)
 
         loggerToggle.enabled = true
-        loggerToggle.info(message)
+        loggerToggle.info { message }
 
         assertEquals(message, logger.message)
     }
@@ -51,6 +51,6 @@ class LoggerToggleTest {
         val loggerToggle = LoggerToggle(logger)
 
         loggerToggle.enabled = false
-        loggerToggle.info("Hello Logger!")
+        loggerToggle.info { "Hello Logger!" }
     }
 }

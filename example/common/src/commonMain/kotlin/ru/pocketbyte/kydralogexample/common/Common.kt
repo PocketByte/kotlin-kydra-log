@@ -29,9 +29,9 @@ object Common {
 
     private fun printLog(level: LogLevel, message: String, stackTrace: Boolean) {
         if (stackTrace)
-            KydraLog.log(level, LOG_TAG, RuntimeException(message))
+            KydraLog.log(level, LOG_TAG) { RuntimeException(message) }
         else
-            KydraLog.log(level, LOG_TAG, message)
+            KydraLog.log(level, LOG_TAG) { message }
     }
 
 }

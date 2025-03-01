@@ -8,7 +8,7 @@ plugins {
 version = "0.1.1"
 group = "ru.pocketbyte.kydralogexample.common_lib"
 
-val sampleLoggerVersion = "2.0.0"
+val sampleLoggerVersion = "2.1.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8

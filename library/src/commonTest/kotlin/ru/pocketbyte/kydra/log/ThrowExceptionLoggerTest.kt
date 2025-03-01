@@ -15,7 +15,7 @@ class ThrowExceptionLoggerTest {
         val logger = ThrowExceptionLogger(exception)
 
         try {
-            logger.log(LogLevel.ERROR, null, "Hello message")
+            logger.log(LogLevel.ERROR, null) { "Hello message" }
         } catch (e: Exception) {
             assertSame(exception, e)
             return
@@ -43,7 +43,7 @@ class ThrowExceptionLoggerTest {
         val logger = ThrowExceptionLogger(exception)
 
         try {
-            logger.log(LogLevel.ERROR, null, IllegalStateException())
+            logger.log(LogLevel.ERROR, null) { IllegalStateException() }
         } catch (e: Exception) {
             assertSame(exception, e)
             return
@@ -58,7 +58,7 @@ class ThrowExceptionLoggerTest {
 
 
         try {
-            logger.log(LogLevel.ERROR, null, "Hello message")
+            logger.log(LogLevel.ERROR, null) { "Hello message" }
         } catch (e: Exception) {
             assertEquals(message, e.message)
             return
@@ -86,7 +86,7 @@ class ThrowExceptionLoggerTest {
         val logger = ThrowExceptionLogger(message)
 
         try {
-            logger.log(LogLevel.ERROR, null, IllegalStateException())
+            logger.log(LogLevel.ERROR, null) { IllegalStateException() }
         } catch (e: Exception) {
             assertEquals(message, e.message)
             return
@@ -105,7 +105,7 @@ class ThrowExceptionLoggerTest {
     private fun testDefaultFactoryMessage(level: LogLevel, tag: String?, message: String) {
         val logger = ThrowExceptionLogger()
         try {
-            logger.log(level, tag, message)
+            logger.log(level, tag) { message }
         } catch (e: ThrowExceptionLogger.Exception) {
             assertEquals(level, e.logLevel)
             assertEquals(tag, e.logTag)
@@ -149,7 +149,7 @@ class ThrowExceptionLoggerTest {
     private fun testDefaultFactoryException(level: LogLevel, tag: String?, exception: Throwable) {
         val logger = ThrowExceptionLogger()
         try {
-            logger.log(level, tag, exception)
+            logger.log(level, tag) { exception }
         } catch (e: ThrowExceptionLogger.Exception) {
             assertEquals(level, e.logLevel)
             assertEquals(tag, e.logTag)
@@ -175,7 +175,7 @@ class ThrowExceptionLoggerTest {
 
         var exception: Throwable? = null
         try {
-            logger.log(LogLevel.DEBUG, "?/Ta", "MSG")
+            logger.log(LogLevel.DEBUG, "?/Ta") { "MSG" }
         } catch (e: Throwable) {
             exception = e
         }

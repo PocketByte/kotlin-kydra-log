@@ -27,7 +27,7 @@ open class LoggersSet(
 
     override fun doLog(level: LogLevel, tag: String?, message: Any) {
         this.loggers.forEach {
-            it.log(level, tag, message)
+            it.log(level, tag) { message }
         }
     }
 }

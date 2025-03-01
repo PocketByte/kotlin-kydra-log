@@ -29,8 +29,13 @@ abstract class Logger {
      * @param tag Tag of the log record. Nullable
      * @param message Message to be written into log
      */
+    @Deprecated(
+        message = "Will be removed in future releases. Use log(LogLevel, String?, () -> Any) instead.",
+        replaceWith = ReplaceWith("log(level, tag) { message }"),
+        level = DeprecationLevel.ERROR
+    )
     fun log(level: LogLevel, tag: String?, message: Any) {
-        log(level, tag, message, omitFilter = false)
+        log(level, tag) { message }
     }
 
     /**
@@ -41,7 +46,7 @@ abstract class Logger {
      */
     inline fun log(level: LogLevel, tag: String?, function: () -> Any) {
         if (filter?.invoke(level, tag) != false) {
-            log(level, tag, function(), omitFilter = true)
+            callDoLog(level, tag, function())
         }
     }
 
@@ -53,9 +58,21 @@ abstract class Logger {
      * @param message Message to be written into log
      * @param omitFilter If true, filtering will be skipped.
      */
+    @Deprecated(
+        message = "Don't use this method. It was created for internal purposes.",
+        replaceWith = ReplaceWith("log(level, tag) { message }"),
+        level = DeprecationLevel.ERROR
+    )
     fun log(level: LogLevel, tag: String?, message: Any, omitFilter: Boolean) {
         if (omitFilter || filter?.invoke(level, tag) != false) {
             doLog(level, tag, message)
         }
     }
+
+    /**
+     * Not for public use!!!
+     */
+    @PublishedApi
+    internal fun callDoLog(level: LogLevel, tag: String?, message: Any) =
+        doLog(level, tag, message)
 }

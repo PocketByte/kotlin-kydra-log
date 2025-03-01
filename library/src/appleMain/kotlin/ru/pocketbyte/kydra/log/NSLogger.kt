@@ -10,7 +10,11 @@ import platform.Foundation.*
 /**
  * iOS implementation of Logger that writes logs using NSLog.
  */
-@Deprecated("Use AppleLogger instead")
+@Deprecated(
+    message = "Use AppleLogger instead",
+    replaceWith = ReplaceWith("AppleLogger()"),
+    level = DeprecationLevel.ERROR
+)
 open class NSLogger: PrintLogger() {
 
     override fun printLog(message: String) {

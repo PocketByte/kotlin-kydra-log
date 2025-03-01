@@ -24,7 +24,7 @@ class LoggersSetTest {
         assertNull(logger1.message)
         assertNull(logger2.message)
 
-        loggerSet.log(level, tag, message)
+        loggerSet.log(level, tag) { message }
 
         assertEquals(level, logger1.level)
         assertEquals(level, logger2.level)
@@ -48,7 +48,7 @@ class LoggersSetTest {
         assertNull(logger1.message)
         assertNull(logger2.message)
 
-        loggerSet.log(level, tag, exception)
+        loggerSet.log(level, tag) { exception }
 
         assertEquals(level, logger1.level)
         assertEquals(level, logger2.level)

@@ -13,6 +13,6 @@ abstract class AbsLoggerWrapper<LoggerType: Logger>: Logger() {
         get() = logger.filter
 
     override fun doLog(level: LogLevel, tag: String?, message: Any) {
-        logger.log(level, tag, message, omitFilter = true)
+        logger.callDoLog(level, tag, message)
     }
 }

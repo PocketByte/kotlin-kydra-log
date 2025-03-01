@@ -24,7 +24,7 @@ class LoggerTagTransformTest {
         val tag = "TEST_1"
         val message = "Some message!"
 
-        loggerTransform.log(level, tag, message)
+        loggerTransform.log(level, tag) { message }
 
         assertEquals(level, loggerTransform.logger.level)
         assertEquals("TEST_1-tagPostfix", loggerTransform.logger.tag)
@@ -39,7 +39,7 @@ class LoggerTagTransformTest {
         val tag = "TEST_1"
         val message = "Some message!"
 
-        loggerTransform.log(level, tag, message)
+        loggerTransform.log(level, tag) { message }
 
         assertEquals(level, loggerTransform.logger.level)
         assertEquals(tag, loggerTransform.logger.tag)
@@ -54,7 +54,7 @@ class LoggerTagTransformTest {
         val tag = null
         val message = "Some message!"
 
-        loggerTransform.log(level, tag, message)
+        loggerTransform.log(level, tag) { message }
 
         assertEquals(level, loggerTransform.logger.level)
         assertEquals("default", loggerTransform.logger.tag)

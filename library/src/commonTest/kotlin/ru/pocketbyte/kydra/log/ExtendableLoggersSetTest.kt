@@ -19,7 +19,7 @@ class ExtendableLoggersSetTest {
         assertNull(logger1.message)
         assertNull(logger2.message)
 
-        loggerSet.log(level, tag, message)
+        loggerSet.log(level, tag) { message }
 
         assertEquals(level, logger1.level)
         assertEquals(tag, logger1.tag)
@@ -34,7 +34,7 @@ class ExtendableLoggersSetTest {
         message = "Another message!"
 
         loggerSet.addLogger(logger2)
-        loggerSet.log(level, tag, message)
+        loggerSet.log(level, tag) { message }
 
         assertEquals(level, logger1.level)
         assertEquals(level, logger2.level)
