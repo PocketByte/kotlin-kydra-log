@@ -13,7 +13,7 @@ package ru.pocketbyte.kydra.log
 @Deprecated(
     message = "Use log(LogLevel, () -> Any) instead.",
     replaceWith = ReplaceWith("log(level) { message }"),
-    level = DeprecationLevel.ERROR
+    level = DeprecationLevel.WARNING
 )
 fun Logger.log(level: LogLevel, message: Any) {
     log(level, null) { message }
@@ -38,7 +38,7 @@ inline fun Logger.log(level: LogLevel, function: () -> Any) {
 @Deprecated(
     message = "Use info(String?, () -> Any) instead.",
     replaceWith = ReplaceWith("info(tag) { message }"),
-    level = DeprecationLevel.ERROR
+    level = DeprecationLevel.WARNING
 )
 fun Logger.info(tag: String?, message: Any) {
     log(LogLevel.INFO, tag) { message }
@@ -51,7 +51,7 @@ fun Logger.info(tag: String?, message: Any) {
 @Deprecated(
     message = "Use info(() -> Any) instead.",
     replaceWith = ReplaceWith("info { message }"),
-    level = DeprecationLevel.ERROR
+    level = DeprecationLevel.WARNING
 )
 fun Logger.info(message: Any) {
     log(LogLevel.INFO, null) { message }
@@ -84,7 +84,7 @@ inline fun Logger.info(function: () -> Any) {
 @Deprecated(
     message = "Use debug(String?, () -> Any) instead.",
     replaceWith = ReplaceWith("debug(tag) { message }"),
-    level = DeprecationLevel.ERROR
+    level = DeprecationLevel.WARNING
 )
 fun Logger.debug(tag: String?, message: Any) {
     log(LogLevel.DEBUG, tag) { message }
@@ -97,7 +97,7 @@ fun Logger.debug(tag: String?, message: Any) {
 @Deprecated(
     message = "Use debug(() -> Any) instead.",
     replaceWith = ReplaceWith("debug { message }"),
-    level = DeprecationLevel.ERROR
+    level = DeprecationLevel.WARNING
 )
 fun Logger.debug(message: Any) {
     log(LogLevel.DEBUG, null) { message }
@@ -130,7 +130,7 @@ inline fun Logger.debug(function: () -> Any) {
 @Deprecated(
     message = "Use warn(String?, () -> Any) instead.",
     replaceWith = ReplaceWith("warn(tag) { message }"),
-    level = DeprecationLevel.ERROR
+    level = DeprecationLevel.WARNING
 )
 fun Logger.warn(tag: String?, message: Any) {
     log(LogLevel.WARNING, tag) { message }
@@ -143,7 +143,7 @@ fun Logger.warn(tag: String?, message: Any) {
 @Deprecated(
     message = "Use warn(() -> Any) instead.",
     replaceWith = ReplaceWith("warn { message }"),
-    level = DeprecationLevel.ERROR
+    level = DeprecationLevel.WARNING
 )
 fun Logger.warn(message: Any) {
     log(LogLevel.WARNING, null) { message }
@@ -176,7 +176,7 @@ inline fun Logger.warn(function: () -> Any) {
 @Deprecated(
     message = "Use error(String?, () -> Any) instead.",
     replaceWith = ReplaceWith("error(tag) { message }"),
-    level = DeprecationLevel.ERROR
+    level = DeprecationLevel.WARNING
 )
 fun Logger.error(tag: String?, message: Any) {
     log(LogLevel.ERROR, tag) { message }
@@ -189,7 +189,7 @@ fun Logger.error(tag: String?, message: Any) {
 @Deprecated(
     message = "Use error(() -> Any) instead.",
     replaceWith = ReplaceWith("error { message }"),
-    level = DeprecationLevel.ERROR
+    level = DeprecationLevel.WARNING
 )
 fun Logger.error(message: Any) {
     log(LogLevel.ERROR, null) { message }

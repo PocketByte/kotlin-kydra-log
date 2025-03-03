@@ -16,7 +16,7 @@ expect object DefaultLoggerFactory {
     @Deprecated(
         message = "Use create() instead.",
         replaceWith = ReplaceWith("create()"),
-        level = DeprecationLevel.ERROR
+        level = DeprecationLevel.WARNING
     )
     fun build(): Logger
 

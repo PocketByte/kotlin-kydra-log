@@ -32,7 +32,7 @@ abstract class Logger {
     @Deprecated(
         message = "Will be removed in future releases. Use log(LogLevel, String?, () -> Any) instead.",
         replaceWith = ReplaceWith("log(level, tag) { message }"),
-        level = DeprecationLevel.ERROR
+        level = DeprecationLevel.WARNING
     )
     fun log(level: LogLevel, tag: String?, message: Any) {
         log(level, tag) { message }
