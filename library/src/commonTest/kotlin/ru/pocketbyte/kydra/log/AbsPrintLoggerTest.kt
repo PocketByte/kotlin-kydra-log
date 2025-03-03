@@ -56,6 +56,7 @@ class AbsPrintLoggerTest {
                 "<Exception StackTrace>", logger.logMessage)
     }
 
+    @Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
     private class AbsPrintLoggerMock: AbsPrintLogger() {
 
         var logMessage: String? = null

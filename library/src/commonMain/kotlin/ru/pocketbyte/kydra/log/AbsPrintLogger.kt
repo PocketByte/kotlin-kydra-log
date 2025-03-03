@@ -8,18 +8,37 @@ package ru.pocketbyte.kydra.log
 /**
  * Base implementation of PrintLogger.
  */
+@Deprecated(
+    "To implement custom print loggers use SimplePrintLogger instead.",
+    level = DeprecationLevel.WARNING
+)
 abstract class AbsPrintLogger: AbsLogger() {
 
+    @Deprecated(
+        "Do not override this method. " +
+                "To implement custom PrintLogger use SimplePrintLogger.",
+        level = DeprecationLevel.WARNING
+    )
     protected abstract fun printLog(message: String)
 
     /**
      * Gets stack trace string from Throwable
      */
+    @Deprecated(
+        "Do not override this method. " +
+                "To implement custom PrintLogger use SimplePrintLogger.",
+        level = DeprecationLevel.WARNING
+    )
     protected abstract fun stackTrace(exception: Throwable): String
 
     /**
      * Gets qualified name from Throwable
      */
+    @Deprecated(
+        "Do not override this method. " +
+                "To implement custom PrintLogger use SimplePrintLogger.",
+        level = DeprecationLevel.WARNING
+    )
     protected abstract fun qualifiedName(exception: Throwable): String
 
     override fun doLog(level: LogLevel, tag: String?, string: String) {
@@ -35,6 +54,11 @@ abstract class AbsPrintLogger: AbsLogger() {
         }
     }
 
+    @Deprecated(
+        "Do not override this method. " +
+                "To implement custom PrintLogger use SimplePrintLogger.",
+        level = DeprecationLevel.WARNING
+    )
     protected open fun logToString(level: LogLevel, tag: String?, message: String): String {
         val builder = StringBuilder()
 
