@@ -1,4 +1,4 @@
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.print
 
 import java.io.BufferedWriter
 import java.nio.charset.StandardCharsets
@@ -9,7 +9,7 @@ import java.nio.file.Path
 import java.nio.file.attribute.FileTime
 import kotlin.streams.asSequence
 
-class NioFileSystemOperator : FileSystemOperator {
+internal class NioFileSystemOperator : FileSystemOperator {
     override fun createDirectories(dir: Path): Path = Files.createDirectories(dir)
 
     override fun newBufferedWriter(path: Path, options: Set<OpenOption>): BufferedWriter =

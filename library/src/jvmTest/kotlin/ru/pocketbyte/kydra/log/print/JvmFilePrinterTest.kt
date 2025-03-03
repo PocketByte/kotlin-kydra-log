@@ -1,4 +1,4 @@
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.print
 
 import java.nio.file.Path
 import java.text.SimpleDateFormat

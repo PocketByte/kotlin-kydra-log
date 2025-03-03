@@ -1,4 +1,4 @@
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.print
 
 import java.io.BufferedWriter
 import java.nio.file.Path
@@ -9,13 +9,20 @@ import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 import kotlin.io.path.name
 
-class JvmFilePrinter(
+class JvmFilePrinter internal constructor(
     private val maxSizeBytes: Long,
     private val maxFolderSizeBytes: Long,
     private val logDirectory: Path,
-    private val fsOperator: FileSystemOperator = NioFileSystemOperator(),
-    private val dateProvider: () -> Date = { Date() },
+    private val fsOperator: FileSystemOperator,
+    private val dateProvider: () -> Date,
 ) : Printer {
+
+    constructor(
+        maxSizeBytes: Long,
+        maxFolderSizeBytes: Long,
+        logDirectory: Path,
+    ) : this(maxSizeBytes, maxFolderSizeBytes, logDirectory, NioFileSystemOperator(), { Date() })
+
     private val lock = ReentrantLock()
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     private val timeFormat = SimpleDateFormat("HH-mm-ss")

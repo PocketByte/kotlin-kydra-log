@@ -1,4 +1,4 @@
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.print
 
 import java.io.BufferedWriter
 import java.nio.file.CopyOption
@@ -6,7 +6,7 @@ import java.nio.file.OpenOption
 import java.nio.file.Path
 import java.nio.file.attribute.FileTime
 
-interface FileSystemOperator {
+internal interface FileSystemOperator {
     fun createDirectories(dir: Path): Path
     fun newBufferedWriter(path: Path, options: Set<OpenOption>): BufferedWriter
     fun listFiles(dir: Path): Sequence<Path>

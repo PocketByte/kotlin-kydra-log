@@ -1,4 +1,6 @@
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.print
+
+import ru.pocketbyte.kydra.log.LogLevel
 
 interface LogMessageFormatter {
 

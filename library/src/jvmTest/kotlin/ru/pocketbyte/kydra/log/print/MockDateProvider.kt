@@ -1,4 +1,4 @@
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.print
 
 import kotlin.time.Duration
 import kotlin.time.DurationUnit

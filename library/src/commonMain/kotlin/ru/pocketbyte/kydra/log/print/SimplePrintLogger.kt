@@ -1,4 +1,7 @@
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.print
+
+import ru.pocketbyte.kydra.log.LogLevel
+import ru.pocketbyte.kydra.log.Logger
 
 open class SimplePrintLogger(
     private val printer: Printer,
