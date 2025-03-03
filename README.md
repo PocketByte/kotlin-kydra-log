@@ -23,16 +23,16 @@ repositories {
 }
 dependencies {
     ...
-    implementation 'ru.pocketbyte.kydra:kydra-log:2.0.2'
+    implementation 'ru.pocketbyte.kydra:kydra-log:2.2.0'
 }
 ```
 
 Then you able to use KydraLog in common code:
 ```Kotlin
-KydraLog.info("Info log message")
-KydraLog.debug("Debug log message")
-KydraLog.warn("Warning log message")
-KydraLog.error("Error log message")
+KydraLog.info { "Info log message" }
+KydraLog.debug { "Debug log message" }
+KydraLog.warn { "Warning log message" }
+KydraLog.error { "Error log message" }
 ```
 
 ### Logging with format
@@ -40,34 +40,9 @@ KydraLog.error("Error log message")
 If you would to log formatted string you should use kotlin String Templates:
 ```Kotlin
 val count = 1
-KydraLog.info("Count is $count")
-```
-To optimize logging with formatting you could use methods with function as parameter instead of
-string. It allow to skip filtered messages without calculating message string.
-```Kotlin
 KydraLog.info { "Count is $count" }
 ```
-Here is the complex example that demonstrate logging of function.
-```Kotlin
-// Messages with level priority that lower than INFO will be filtered
-KydraLog.initDefault(level= LogLevel.INFO)
 
-var loggerMessage = "Hello"
-KydraLog.error {
-    loggerMessage = "Hello from Error"
-    "Error log printed"
-}
-KydraLog.debug {
-    loggerMessage = "Hello from Debug"
-    "Debug log printed"
-}
-KydraLog.info { "Logger say: $loggerMessage" }
-```
-In the logs will be printed following list of messages:
-```
-Error log printed
-Logger say: Hello from Error
-```
 ### Logger initialization
 
 Any logging via not initialized KydraLog will call initialisation with default Logger. But if you
@@ -116,7 +91,7 @@ To apply filter on your custom logger you could use operator `filtered`:
 KydraLog.init(MyLogger().filtered(LogLevel.ERROR, setOf("API_CORE", "API_SOCKET")))
 ```
 
-To utilize several loggers at the same time could be used `LoggersSet`:
+To utilize several loggers at the same time you could use `LoggersSet`:
 ```Kotlin
 KydraLog.init(
     LoggersSet(
@@ -130,10 +105,10 @@ KydraLog.init(
 
 ### KydraLog class is not mandatory
 
-You are not forced to use `KydraLog` object. It was designed to provide Plug and Play functionality.
+You are not forced to use `KydraLog` object. It was designed to provide Plug & Play functionality.
 If you wish, you can instantiate `Logger` as variable and use it for logging. Or you can use 
 Dependency Injection to provide `Logger` instance. To get default console logger instance you could
-use `DefaultLoggerFactory.build()`.
+use `DefaultLoggerFactory.create()`.
 
 ### Logger Toggle
 
