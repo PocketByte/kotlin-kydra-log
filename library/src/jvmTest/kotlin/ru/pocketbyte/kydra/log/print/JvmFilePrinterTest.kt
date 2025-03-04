@@ -188,6 +188,24 @@ class JvmFilePrinterTest {
         assertEquals(0, mockFs.files.size)
     }
 
+    @Test
+    fun `Create new file if current file was deleted by outer power`() {
+        val mockDateProvider = MockDateProvider()
+        val dateProvider = { Date.from(Instant.ofEpochMilli(mockDateProvider.currentEpochMilliseconds)) }
+        val mockFs = MockFileSystemOperator(dateProvider)
+        runWith(
+            maxFileLength = 10,
+            maxFolderLength = 20,
+            mockFs,
+            dateProvider = dateProvider
+        ) {
+            this.print("Test")
+            mockFs.files.clear()
+            this.print("Test")
+        }
+        assertEquals(1, mockFs.files.size)
+    }
+
     private fun runWith(
         maxFileLength: Long,
         maxFolderLength: Long,

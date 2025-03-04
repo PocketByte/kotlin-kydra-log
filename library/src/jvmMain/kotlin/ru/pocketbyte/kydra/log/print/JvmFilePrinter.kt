@@ -90,8 +90,13 @@ class JvmFilePrinter internal constructor(
             currentLogDate = today
             rotateFile()
         }
-        if (fsOperator.exists(currentLogPath) && fsOperator.size(currentLogPath) >= maxSizeBytes) {
+        val exists = fsOperator.exists(currentLogPath)
+        if (exists && fsOperator.size(currentLogPath) >= maxSizeBytes) {
             rotateFile()
+        }
+        if (exists.not()) {
+            writer?.close()
+            writer = null
         }
     }
 
