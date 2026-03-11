@@ -44,7 +44,7 @@ abstract class Logger {
      * @param tag Tag of the log record. Nullable
      * @param function Function that returns message to be written into log
      */
-    inline fun log(level: LogLevel, tag: String?, function: () -> Any) {
+    inline fun log(level: LogLevel, tag: String?, crossinline function: () -> Any) {
         if (filter?.invoke(level, tag) != false) {
             callDoLog(level, tag, function())
         }
