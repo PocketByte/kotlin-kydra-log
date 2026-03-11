@@ -26,6 +26,8 @@ Thumbs.db
 .classpath
 .project
 
+# Kotlin
+.kotlin
 # Android Studio
 .idea
 #.idea/workspace.xml - remove # and delete .idea if it better suit your needs.

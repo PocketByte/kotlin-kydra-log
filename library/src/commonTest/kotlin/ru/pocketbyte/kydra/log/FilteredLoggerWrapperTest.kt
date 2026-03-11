@@ -17,7 +17,15 @@ class FilteredLoggerWrapperTest {
         val logger = TestLogger()
         val loggerFilter = FilteredLoggerWrapper(logger) { _, _ -> true }
 
-        assertSame(logger, loggerFilter.logger)
+        val level = LogLevel.WARNING
+        val tag = "TEST_1"
+        val message = "Some message!"
+
+        loggerFilter.log(level, tag) { message }
+
+        assertEquals(level, logger.level)
+        assertEquals(tag, logger.tag)
+        assertEquals(message, logger.message)
     }
 
     @Test

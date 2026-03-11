@@ -7,16 +7,9 @@ import kotlin.test.assertSame
 class LoggerTagTransformTest {
 
     @Test
-    fun testWrapper() {
-        val logger = TestLogger()
-        val loggerTagTransform = LoggerTagTransform(logger) { it }
-
-        assertSame(logger, loggerTagTransform.logger)
-    }
-
-    @Test
     fun testTagTransform() {
-        val loggerTransform = LoggerTagTransform(TestLogger()) {
+        val logger = TestLogger()
+        val loggerTransform = LoggerTagTransform(logger) {
             "$it-tagPostfix"
         }
 
@@ -26,14 +19,15 @@ class LoggerTagTransformTest {
 
         loggerTransform.log(level, tag) { message }
 
-        assertEquals(level, loggerTransform.logger.level)
-        assertEquals("TEST_1-tagPostfix", loggerTransform.logger.tag)
-        assertEquals(message, loggerTransform.logger.message)
+        assertEquals(level, logger.level)
+        assertEquals("TEST_1-tagPostfix", logger.tag)
+        assertEquals(message, logger.message)
     }
 
     @Test
     fun testWithTagTagNotChanged() {
-        val loggerTransform = TestLogger().withTag("default")
+        val logger = TestLogger()
+        val loggerTransform = logger.withTag("default")
 
         val level = LogLevel.WARNING
         val tag = "TEST_1"
@@ -41,14 +35,15 @@ class LoggerTagTransformTest {
 
         loggerTransform.log(level, tag) { message }
 
-        assertEquals(level, loggerTransform.logger.level)
-        assertEquals(tag, loggerTransform.logger.tag)
-        assertEquals(message, loggerTransform.logger.message)
+        assertEquals(level, logger.level)
+        assertEquals(tag, logger.tag)
+        assertEquals(message, logger.message)
     }
 
     @Test
     fun testWithTagTagChanged() {
-        val loggerTransform = TestLogger().withTag("default")
+        val logger = TestLogger()
+        val loggerTransform = logger.withTag("default")
 
         val level = LogLevel.WARNING
         val tag = null
@@ -56,9 +51,8 @@ class LoggerTagTransformTest {
 
         loggerTransform.log(level, tag) { message }
 
-        assertEquals(level, loggerTransform.logger.level)
-        assertEquals("default", loggerTransform.logger.tag)
-        assertEquals(message, loggerTransform.logger.message)
+        assertEquals(level, logger.level)
+        assertEquals("default", logger.tag)
+        assertEquals(message, logger.message)
     }
-
 }

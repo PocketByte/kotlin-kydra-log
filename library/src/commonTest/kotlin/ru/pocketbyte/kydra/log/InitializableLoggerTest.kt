@@ -6,6 +6,7 @@
 package ru.pocketbyte.kydra.log
 
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertSame
@@ -15,17 +16,20 @@ class InitializableLoggerTest {
 
     @Test
     fun testInitialization() {
-        val logger1 = LoggerMock()
+        val logger = TestLogger()
 
-        val initializable1 = InitializableLoggerImpl()
-        initializable1.init(logger1)
+        val initializable = InitializableLoggerImpl()
+        initializable.init(logger)
 
-        assertSame(logger1, initializable1.logger)
+        val level = LogLevel.INFO
+        val tag = "TEST_2"
+        val message = "Some test message!"
 
-        val initializable2 = InitializableLoggerImpl()
-        initializable2.init(initializable1)
+        initializable.log(level, tag) { message }
 
-        assertSame(initializable1, initializable2.logger)
+        assertEquals(level, logger.level)
+        assertEquals(tag, logger.tag)
+        assertEquals(message, logger.message)
     }
 
     @Test
@@ -52,12 +56,21 @@ class InitializableLoggerTest {
 
     @Test
     fun testDefaultLoggerWithNoInitialization() {
-        val logger = LoggerMock()
+        val logger = TestLogger()
         val initializable = object : InitializableLogger<Logger>() {
             override val defaultLogger: Logger = logger
         }
 
-        assertSame(logger, initializable.logger)
+
+        val level = LogLevel.ERROR
+        val tag = "TEST_3"
+        val message = "Some message 3!"
+
+        initializable.log(level, tag) { message }
+
+        assertEquals(level, logger.level)
+        assertEquals(tag, logger.tag)
+        assertEquals(message, logger.message)
     }
 
     @Test

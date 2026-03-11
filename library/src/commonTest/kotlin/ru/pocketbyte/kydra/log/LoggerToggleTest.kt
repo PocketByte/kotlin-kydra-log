@@ -14,14 +14,6 @@ import kotlin.test.assertTrue
 class LoggerToggleTest {
 
     @Test
-    fun testWrapper() {
-        val logger = TestLogger()
-        val loggerToggle = LoggerToggle(logger)
-
-        assertSame(logger, loggerToggle.logger)
-    }
-
-    @Test
     fun testDefaultValue() {
         val loggerToggle = LoggerToggle(TestLogger())
         assertTrue(loggerToggle.enabled)
