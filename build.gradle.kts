@@ -26,12 +26,6 @@ allprojects {
         maven ("https://kotlin.bintray.com/kotlinx")
         maven ("https://dl.bintray.com/kotlin/kotlin-eap") // kotlin 1.2
     }
-
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).all {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
-    }
 }
 
 tasks.register("cleanProject").configure {

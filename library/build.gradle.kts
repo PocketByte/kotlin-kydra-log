@@ -12,8 +12,8 @@ version = "2.2.0"
 group = "ru.pocketbyte.kydra"
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 android {
@@ -25,8 +25,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     sourceSets {
@@ -64,7 +64,6 @@ kotlin {
         commonTest {
             dependencies {
                 api("org.jetbrains.kotlin:kotlin-test")
-                api("org.jetbrains.kotlin:kotlin-test-junit")
             }
         }
 
@@ -121,6 +120,7 @@ kotlin {
             dependsOn(jvmCommonTest)
         }
     }
+    jvmToolchain(11)
 }
 
 // =================================
