@@ -7,7 +7,7 @@ package ru.pocketbyte.kydra.log
 
 abstract class AbsLoggerWrapper<LoggerType: Logger>: Logger() {
 
-    abstract val logger: LoggerType
+    protected abstract val logger: LoggerType
 
     override val filter: ((level: LogLevel, tag: String?) -> Boolean)?
         get() = logger.filter
