@@ -5,6 +5,8 @@
 
 package ru.pocketbyte.kydra.log
 
+import android.util.Log
+
 actual object DefaultLoggerFactory {
     actual fun build(level: LogLevel?, tags: Set<String?>?): Logger {
         return build().filtered(level, tags)
@@ -15,6 +17,11 @@ actual object DefaultLoggerFactory {
     }
 
     actual fun create(): Logger {
+        try {
+            Log.isLoggable(null, Log.INFO)
+        } catch (_: Exception) {
+            return PrintLogger()
+        }
         return AndroidLogger()
     }
 }
