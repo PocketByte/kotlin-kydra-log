@@ -1,3 +1,19 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+    }
+}
+
 include ':kydra-log'
 project(':kydra-log').projectDir = new File(settingsDir, './library/')
 

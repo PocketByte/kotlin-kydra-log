@@ -69,22 +69,22 @@ kotlin {
         // Main Source Sets
         commonMain {
             dependencies {
-                api("org.jetbrains.kotlin:kotlin-stdlib-common")
+                api(libs.kotlin.stdlib.common)
                 api("ru.pocketbyte.kydra:kydra-log:$sampleLoggerVersion")
             }
         }
 
         androidMain {
             dependencies {
-                api("org.jetbrains.kotlin:kotlin-stdlib")
-                api("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+                api(libs.kotlin.stdlib)
+                api(libs.kotlin.stdlib.jdk8)
             }
         }
 
         jsMain {
             dependencies {
-                api("org.jetbrains.kotlin:kotlin-stdlib")
-                api("org.jetbrains.kotlin:kotlin-stdlib-js")
+                api(libs.kotlin.stdlib)
+                api(libs.kotlin.stdlib.js)
             }
         }
     }

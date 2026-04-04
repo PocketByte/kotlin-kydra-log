@@ -53,7 +53,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api("org.jetbrains.kotlin:kotlin-stdlib-common")
+                api(libs.kotlin.stdlib.common)
             }
         }
 
@@ -63,7 +63,7 @@ kotlin {
 
         commonTest {
             dependencies {
-                api("org.jetbrains.kotlin:kotlin-test")
+                api(libs.kotlin.test)
             }
         }
 
@@ -85,22 +85,22 @@ kotlin {
         val jvmCommonMain by creating {
             dependsOn(commonMain.get())
             dependencies {
-                api("org.jetbrains.kotlin:kotlin-stdlib")
+                api(libs.kotlin.stdlib)
             }
         }
 
         jvmMain {
             dependsOn(jvmCommonMain)
             dependencies {
-                api("org.jetbrains.kotlin:kotlin-stdlib")
+                api(libs.kotlin.stdlib)
             }
         }
 
         androidMain {
             dependsOn(jvmCommonMain)
             dependencies {
-                api("org.jetbrains.kotlin:kotlin-stdlib")
-                api("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+                api(libs.kotlin.stdlib)
+                api(libs.kotlin.stdlib.jdk8)
             }
         }
 
@@ -135,15 +135,15 @@ kotlin {
     sourceSets {
         jsMain {
             dependencies {
-                api("org.jetbrains.kotlin:kotlin-stdlib")
-                api("org.jetbrains.kotlin:kotlin-stdlib-js")
+                api(libs.kotlin.stdlib)
+                api(libs.kotlin.stdlib.js)
             }
         }
 
         jsTest {
             dependencies {
-                api("org.jetbrains.kotlin:kotlin-test")
-                api("org.jetbrains.kotlin:kotlin-test-js")
+                api(libs.kotlin.test)
+                api(libs.kotlin.test.js)
             }
         }
     }

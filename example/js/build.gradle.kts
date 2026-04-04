@@ -16,7 +16,7 @@ kotlin {
         }
         jsMain {
             dependencies {
-                implementation("org.jetbrains.kotlin:kotlin-stdlib-js")
+                implementation(libs.kotlin.stdlib.js)
             }
         }
     }

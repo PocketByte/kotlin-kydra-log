@@ -37,8 +37,8 @@ android {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7")
-    implementation("com.android.support.constraint:constraint-layout:2.0.4")
+    implementation(libs.kotlin.stdlib.jdk7)
+    implementation(libs.android.constraint.layout)
 
     implementation(project(":example:common"))
     implementation("ru.pocketbyte.kydra:kydra-log")

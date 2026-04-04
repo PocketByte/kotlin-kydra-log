@@ -1,31 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://maven.google.com")
-        maven("https://plugins.gradle.org/m2/")
-
-        // kotlin 1.3
-        maven("https://kotlin.bintray.com/kotlinx")
-        maven("https://dl.bintray.com/kotlin/kotlin-eap")
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle:${properties["ANDROID_GRADLE"]}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${properties["KOTLIN_VERSION"]}")
-        classpath("com.github.dcendents:android-maven-gradle-plugin:1.4.1")
-    }
-}
-
-
-allprojects {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        google()
-        maven ("https://kotlin.bintray.com/kotlinx")
-        maven ("https://dl.bintray.com/kotlin/kotlin-eap") // kotlin 1.2
-    }
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.kotlin.android) apply false
 }
 
 tasks.register("cleanProject").configure {
