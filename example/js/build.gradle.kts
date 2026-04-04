@@ -16,7 +16,7 @@ kotlin {
         }
         jsMain {
             dependencies {
-                implementation(libs.kotlin.stdlib.js)
+                implementation(libs.kotlin.stdlib)
             }
         }
     }

@@ -19,9 +19,16 @@ open class LoggersSet(
     val isEmpty: Boolean
         get() = loggers.isEmpty()
 
-    override val filter: (level: LogLevel, tag: String?) -> Boolean = { level, tag ->
+    private val combinedFilter: (level: LogLevel, tag: String?) -> Boolean = { level, tag ->
         loggers.find { it.filter?.invoke(level, tag) != false } != null
     }
+
+    override val filter: ((level: LogLevel, tag: String?) -> Boolean)? get() =
+        if (loggers.all { it.filter == null }) {
+            null
+        } else {
+            combinedFilter
+        }
 
     constructor(vararg loggers: Logger): this(setOf(*loggers))
 

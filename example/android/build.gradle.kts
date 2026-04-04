@@ -37,7 +37,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.kotlin.stdlib.jdk7)
+    implementation(libs.kotlin.stdlib)
     implementation(libs.android.constraint.layout)
 
     implementation(project(":example:common"))

@@ -22,6 +22,10 @@ fun InitializableLogger<Logger>.initDefault(level: LogLevel? = null, tags: Set<S
  */
 fun <T : Logger> InitializableLogger<T>.initOrIgnore(logger: T) {
     if (!isInitialized) {
-        init(logger)
+        try {
+            init(logger)
+        } catch (_: IllegalStateException) {
+            // Already initialized by another thread — ignore
+        }
     }
 }

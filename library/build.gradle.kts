@@ -53,7 +53,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                api(libs.kotlin.stdlib.common)
+                api(libs.kotlin.stdlib)
             }
         }
 
@@ -100,7 +100,6 @@ kotlin {
             dependsOn(jvmCommonMain)
             dependencies {
                 api(libs.kotlin.stdlib)
-                api(libs.kotlin.stdlib.jdk8)
             }
         }
 
@@ -136,7 +135,6 @@ kotlin {
         jsMain {
             dependencies {
                 api(libs.kotlin.stdlib)
-                api(libs.kotlin.stdlib.js)
             }
         }
 

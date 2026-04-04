@@ -69,7 +69,7 @@ kotlin {
         // Main Source Sets
         commonMain {
             dependencies {
-                api(libs.kotlin.stdlib.common)
+                api(libs.kotlin.stdlib)
                 api("ru.pocketbyte.kydra:kydra-log:$sampleLoggerVersion")
             }
         }
@@ -77,14 +77,12 @@ kotlin {
         androidMain {
             dependencies {
                 api(libs.kotlin.stdlib)
-                api(libs.kotlin.stdlib.jdk8)
             }
         }
 
         jsMain {
             dependencies {
                 api(libs.kotlin.stdlib)
-                api(libs.kotlin.stdlib.js)
             }
         }
     }

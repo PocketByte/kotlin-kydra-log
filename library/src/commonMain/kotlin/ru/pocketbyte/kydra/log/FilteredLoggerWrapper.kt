@@ -57,7 +57,7 @@ open class FilteredLoggerWrapper<LoggerType: Logger>(
         tagFilter: ((String?) -> Boolean)? = null
     ) : this(
         logger,
-        { level: LogLevel, tag: String? -> Boolean
+        { level: LogLevel, tag: String? ->
             (levelFiler == null || levelFiler(level))
                     && (tagFilter == null || tagFilter(tag))
         }

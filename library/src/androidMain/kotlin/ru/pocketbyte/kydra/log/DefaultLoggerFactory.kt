@@ -18,6 +18,9 @@ actual object DefaultLoggerFactory {
 
     actual fun create(): Logger {
         try {
+            // Log.isLoggable throws in non-Android JVM environments
+            // (e.g. unit tests without Robolectric).
+            // Use it as a probe to detect the Android runtime.
             Log.isLoggable(null, Log.INFO)
         } catch (_: Exception) {
             return PrintLogger()
