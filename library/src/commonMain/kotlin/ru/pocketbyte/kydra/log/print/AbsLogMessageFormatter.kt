@@ -1,6 +1,7 @@
 package ru.pocketbyte.kydra.log.print
 
 import ru.pocketbyte.kydra.log.LogLevel
+import ru.pocketbyte.kydra.log.ThrowableWithMessage
 
 abstract class AbsLogMessageFormatter : LogMessageFormatter{
 
@@ -29,11 +30,19 @@ abstract class AbsLogMessageFormatter : LogMessageFormatter{
     }
 
     protected open fun StringBuilder.appendMessage(message: Any): StringBuilder {
-        return if (message is Throwable) {
-            appendThrowable(message)
-        } else {
-            append(message.toString())
+        return when (message) {
+            is ThrowableWithMessage -> appendThrowable(message)
+            is Throwable -> appendThrowable(message)
+            else -> append(message.toString())
         }
+    }
+
+    protected open fun StringBuilder.appendThrowable(
+        throwableWithMessage: ThrowableWithMessage
+    ): StringBuilder {
+        append(throwableWithMessage.message)
+        append("\n")
+        return appendThrowable(throwableWithMessage.throwable)
     }
 
     protected open fun StringBuilder.appendLogLevel(level: LogLevel): StringBuilder {

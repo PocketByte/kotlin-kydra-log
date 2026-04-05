@@ -8,12 +8,7 @@ plugins {
 version = "0.1.1"
 group = "ru.pocketbyte.kydralogexample.common_lib"
 
-val sampleLoggerVersion = "2.2.0"
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
+val sampleLoggerVersion = "2.2.2"
 
 android {
     compileSdk = properties["ANDROID_SDK_COMPILE"].toString().toInt()
@@ -24,8 +19,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     sourceSets {
@@ -46,6 +41,7 @@ android {
 
 kotlin {
     androidTarget()
+    jvmToolchain(11)
 
     js(IR) {
         browser()

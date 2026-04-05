@@ -28,10 +28,19 @@ object Common {
     }
 
     private fun printLog(level: LogLevel, message: String, stackTrace: Boolean) {
-        if (stackTrace)
-            KydraLog.log(level, LOG_TAG) { RuntimeException(message) }
-        else
+        if (stackTrace) {
+            KydraLog.log(level, LOG_TAG) {
+                RuntimeException("KydraLog exception").let {
+                    if (message.isBlank()) {
+                        it
+                    } else {
+                        it withMessage message
+                    }
+                }
+            }
+        } else {
             KydraLog.log(level, LOG_TAG) { message }
+        }
     }
 
 }

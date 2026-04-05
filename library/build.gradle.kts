@@ -83,6 +83,8 @@ kotlin {
         publishLibraryVariants("release", "debug")
     }
 
+    jvmToolchain(11)
+
     sourceSets {
         val jvmCommonMain by creating {
             dependsOn(commonMain.get())

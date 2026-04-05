@@ -20,23 +20,36 @@ open class JsLogger : AbsLogger() {
     }
 
     override fun doLog(level: LogLevel, tag: String?, exception: Throwable) {
-        val logMessage = if (tag?.isNotEmpty() == true) "$tag: " else ""
+        doLogThrowable(level, tag, null, exception)
+    }
 
+    override fun doLog(level: LogLevel, tag: String?, throwableWithMessage: ThrowableWithMessage) {
+        doLogThrowable(level, tag, throwableWithMessage.message, throwableWithMessage.throwable)
+    }
+
+    private fun doLogThrowable(
+        level: LogLevel,
+        tag: String?,
+        string: String?,
+        exception: Throwable
+    ) {
         when(level) {
-            LogLevel.INFO -> console.info(logMessage, exception)
-            LogLevel.DEBUG -> console.log("DEBUG/$logMessage", exception)
-            LogLevel.WARNING -> console.warn(logMessage, exception)
-            LogLevel.ERROR ->console.error(logMessage, exception)
+            LogLevel.INFO -> console.info(logToString(tag, string), exception)
+            LogLevel.DEBUG -> console.log("DEBUG/${logToString(tag, string)}", exception)
+            LogLevel.WARNING -> console.warn(logToString(tag, string), exception)
+            LogLevel.ERROR -> console.error(logToString(tag, string), exception)
         }
     }
 
-    protected open fun logToString(tag: String?, message: String): String {
+    protected open fun logToString(tag: String?, message: String?): String {
         val builder = StringBuilder()
 
         if (tag?.isNotEmpty() == true)
             builder.append(tag).append(": ")
 
-        builder.append(message)
+        if (message?.isNotEmpty() == true) {
+            builder.append(message)
+        }
 
         return builder.toString()
     }

@@ -13,21 +13,28 @@ import android.util.Log
 open class AndroidLogger: AbsLogger() {
 
     override fun doLog(level: LogLevel, tag: String?, string: String) {
-        when(level) {
-            LogLevel.INFO -> Log.i(tag ?: "", string)
-            LogLevel.DEBUG -> Log.d(tag ?: "", string)
-            LogLevel.WARNING -> Log.w(tag ?: "", string)
-            LogLevel.ERROR -> Log.e(tag ?: "", string)
-        }
+        doLogInternal(level, tag, string, null)
     }
 
     override fun doLog(level: LogLevel, tag: String?, exception: Throwable) {
-        when(level) {
-            LogLevel.INFO -> Log.i(tag ?: "", "", exception)
-            LogLevel.DEBUG -> Log.d(tag ?: "", "", exception)
-            LogLevel.WARNING -> Log.w(tag ?: "", "", exception)
-            LogLevel.ERROR -> Log.e(tag ?: "", "", exception)
-        }
+        doLogInternal(level, tag, null, exception)
     }
 
+    override fun doLog(level: LogLevel, tag: String?, throwableWithMessage: ThrowableWithMessage) {
+        doLogInternal(level, tag, throwableWithMessage.message, throwableWithMessage.throwable)
+    }
+
+    private fun doLogInternal(
+        level: LogLevel,
+        tag: String?,
+        string: String?,
+        exception: Throwable?
+    ) {
+        when(level) {
+            LogLevel.INFO -> Log.i(tag, string, exception)
+            LogLevel.DEBUG -> Log.d(tag, string, exception)
+            LogLevel.WARNING -> Log.w(tag, string, exception)
+            LogLevel.ERROR -> Log.e(tag, string, exception)
+        }
+    }
 }

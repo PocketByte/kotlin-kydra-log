@@ -9,6 +9,7 @@ abstract class AbsLogger: Logger() {
 
     override fun doLog(level: LogLevel, tag: String?, message: Any) {
         when(message) {
+            is ThrowableWithMessage -> doLog(level, tag, message)
             is Throwable -> doLog(level, tag, exception = message)
             else -> doLog(level, tag, string = message.toString())
         }
@@ -16,4 +17,8 @@ abstract class AbsLogger: Logger() {
 
     protected abstract fun doLog(level: LogLevel, tag: String?, string: String)
     protected abstract fun doLog(level: LogLevel, tag: String?, exception: Throwable)
+
+    protected open fun doLog(level: LogLevel, tag: String?, throwableWithMessage: ThrowableWithMessage) {
+        doLog(level, tag, string = throwableWithMessage.toString())
+    }
 }
