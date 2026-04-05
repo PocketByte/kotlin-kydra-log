@@ -5,29 +5,25 @@
 
 package ru.pocketbyte.kydra.log
 
-import kotlin.native.concurrent.AtomicReference
+import kotlin.concurrent.atomics.AtomicReference
+import kotlin.concurrent.atomics.ExperimentalAtomicApi
 
-actual abstract class InitializableLogger: AbsLoggerWrapper() {
+@OptIn(ExperimentalAtomicApi::class)
+actual abstract class InitializableLogger<LoggerType: Logger>
+    : AbsLoggerWrapper<LoggerType>() {
 
-    actual override val logger
-        get() = getOrInitLogger()
+    actual override val logger: LoggerType
+        get() = loggerRef.load() ?: defaultLogger
 
-    private var loggerRef: AtomicReference<Logger?> = AtomicReference(null)
+    actual val isInitialized: Boolean
+        get() = loggerRef.load() != null
 
-    protected actual abstract fun onNeedToBeInitialized()
+    private var loggerRef: AtomicReference<LoggerType?> = AtomicReference(null)
 
-    actual open fun init(logger: Logger) {
+    protected actual abstract val defaultLogger: LoggerType
+
+    actual open fun init(logger: LoggerType) {
         if (!this.loggerRef.compareAndSet(null, logger))
             throw IllegalStateException("Logger already initialized")
-    }
-
-    private fun getOrInitLogger(): Logger {
-        val logger = this.loggerRef.value
-        if (logger == null) {
-            onNeedToBeInitialized()
-            return this.loggerRef.value
-                ?: throw IllegalStateException("Logger need to be initialized before usage")
-        }
-        return logger
     }
 }

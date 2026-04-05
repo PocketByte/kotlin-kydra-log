@@ -5,20 +5,8 @@
 
 package ru.pocketbyte.kydra.log
 
-import kotlin.experimental.ExperimentalNativeApi
+import ru.pocketbyte.kydra.log.print.SimplePrintLogger
+import ru.pocketbyte.kydra.log.print.SimplePrinter
+import ru.pocketbyte.kydra.log.print.WasmLogMessageFormatter
 
-@OptIn(ExperimentalNativeApi::class)
-open class WasmLogger: AbsPrintLogger() {
-
-    override fun printLog(message: String) {
-        println(message)
-    }
-
-    override fun stackTrace(exception: Throwable): String {
-        return exception.getStackTrace().joinToString("\n")
-    }
-
-    override fun qualifiedName(exception: Throwable): String {
-        return exception::class.qualifiedName ?: "unknown"
-    }
-}
+open class WasmLogger : SimplePrintLogger(SimplePrinter(), WasmLogMessageFormatter())

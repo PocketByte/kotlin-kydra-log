@@ -1,4 +1,6 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinAndroidTarget
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinJsTargetDsl
+import org.jetbrains.kotlin.gradle.targets.js.dsl.KotlinWasmTargetDsl
 
 plugins {
     id("com.android.library")
@@ -47,9 +49,10 @@ android {
     }
 }
 
-// =================================
-// Common Source Sets
 kotlin {
+    // =================================
+    // Common Source Sets
+
     sourceSets {
         commonMain {
             dependencies {
@@ -71,11 +74,10 @@ kotlin {
             dependsOn(commonTest.get())
         }
     }
-}
 
-// =================================
-// JVM based targets
-kotlin {
+    // =================================
+    // JVM based targets
+
     jvm()
     androidTarget {
         publishLibraryVariants("release", "debug")
@@ -120,16 +122,17 @@ kotlin {
         }
     }
     jvmToolchain(11)
-}
 
-// =================================
-// JS Target
-kotlin {
-    js(IR) {
+    // =================================
+    // JS Target
+
+    val jsConfigure: KotlinJsTargetDsl.() -> Unit = {
         browser()
         nodejs()
         binaries.library()
     }
+
+    js(IR, jsConfigure)
 
     sourceSets {
         jsMain {
@@ -145,12 +148,11 @@ kotlin {
             }
         }
     }
-}
 
-// =================================
-// Android Native Targets
-kotlin {
-    val targets = arrayOf(
+    // =================================
+    // Android Native Targets
+
+    val androidNativeTargets = arrayOf(
         androidNativeArm32(),
         androidNativeArm64(),
         androidNativeX64(),
@@ -161,7 +163,7 @@ kotlin {
         androidNativeMain {
             dependsOn(nativeMain.get())
 
-            targets.forEach {
+            androidNativeTargets.forEach {
                 getByName("${it.name}Main").dependsOn(this)
             }
         }
@@ -169,17 +171,16 @@ kotlin {
         androidNativeTest {
             dependsOn(nativeTest.get())
 
-            targets.forEach {
+            androidNativeTargets.forEach {
                 getByName("${it.name}Test").dependsOn(this)
             }
         }
     }
-}
 
-// =================================
-// Apple Targets (macOS required)
-kotlin {
-    val targets = arrayOf(
+    // =================================
+    // Apple Targets (macOS required)
+
+    val appleTargets = arrayOf(
         macosX64(),
         macosArm64(),
 
@@ -201,7 +202,7 @@ kotlin {
         appleMain {
             dependsOn(nativeMain.get())
 
-            targets.forEach {
+            appleTargets.forEach {
                 getByName("${it.name}Main").dependsOn(this)
             }
         }
@@ -209,17 +210,16 @@ kotlin {
         appleTest {
             dependsOn(nativeTest.get())
 
-            targets.forEach {
+            appleTargets.forEach {
                 getByName("${it.name}Test").dependsOn(this)
             }
         }
     }
-}
 
-// =================================
-// Linux targets
-kotlin {
-    val targets = arrayOf(
+    // =================================
+    // Linux targets
+
+    val linuxTargets = arrayOf(
         linuxX64(),
         linuxArm64()
     )
@@ -228,7 +228,7 @@ kotlin {
         linuxMain {
             dependsOn(nativeMain.get())
 
-            targets.forEach {
+            linuxTargets.forEach {
                 getByName("${it.name}Main").dependsOn(this)
             }
         }
@@ -236,62 +236,65 @@ kotlin {
         linuxTest {
             dependsOn(nativeTest.get())
 
-            targets.forEach {
+            linuxTargets.forEach {
                 getByName("${it.name}Test").dependsOn(this)
             }
         }
     }
-}
 
-// =================================
-// Windows targets
-kotlin {
-    val targets = arrayOf(
+    // =================================
+    // Windows targets
+
+    val wingwTargets = arrayOf(
         mingwX64()
     )
 
     sourceSets {
         linuxMain {
-            targets.forEach {
+            wingwTargets.forEach {
                 getByName("${it.name}Main").dependsOn(this)
             }
         }
 
         linuxTest {
-            targets.forEach {
+            wingwTargets.forEach {
+                getByName("${it.name}Test").dependsOn(this)
+            }
+        }
+    }
+
+    // =================================
+    // Web Assembly targets
+
+    val wasmTargets = arrayOf<KotlinWasmTargetDsl>(
+        wasmJs {
+            jsConfigure()
+            d8()
+        },
+        wasmWasi {
+            nodejs()
+        }
+    )
+
+    sourceSets {
+
+        val wasmMain by creating {
+            dependsOn(commonMain.get())
+
+            wasmTargets.forEach {
+                getByName("${it.name}Main").dependsOn(this)
+            }
+        }
+
+        val wasmTest by creating {
+            dependsOn(commonTest.get())
+
+            wasmTargets.forEach {
                 getByName("${it.name}Test").dependsOn(this)
             }
         }
     }
 }
-
-// =================================
-// Web Assembly targets (NOT SUPPORTED. FOR NOW)
-//@Suppress("OPT_IN_USAGE")
-//kotlin {
-//    val targets = arrayOf(
-//        wasmJs(),
-//        wasmWasi()
-//    )
-//
-//    sourceSets {
-//        val wasmMain by creating {
-//            dependsOn(commonMain.get())
-//
-//            targets.forEach {
-//                getByName("${it.name}Main").dependsOn(this)
-//            }
-//        }
-//
-//        val wasmTest by creating {
-//            dependsOn(commonTest.get())
-//
-//            targets.forEach {
-//                getByName("${it.name}Test").dependsOn(this)
-//            }
-//        }
-//    }
-//}
 
 val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
