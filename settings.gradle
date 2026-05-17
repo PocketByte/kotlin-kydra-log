@@ -14,8 +14,11 @@ dependencyResolutionManagement {
     }
 }
 
+include ':kydra-log-manual'
+project(':kydra-log-manual').projectDir = new File(settingsDir, './library/')
+
 include ':kydra-log'
-project(':kydra-log').projectDir = new File(settingsDir, './library/')
+project(':kydra-log').projectDir = new File(settingsDir, './plug-and-play/')
 
 // Common
 include ':example'

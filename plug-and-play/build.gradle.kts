@@ -57,6 +57,7 @@ kotlin {
         commonMain {
             dependencies {
                 api(libs.kotlin.stdlib)
+                api(project(":kydra-log-manual"))
             }
         }
 
@@ -326,10 +327,10 @@ signing {
 fun configurePomDefault(pom: MavenPom, targetName: String?) {
     pom.apply {
         if (targetName != null) {
-            name.set("Kotlin Kydra Log for manual DI (${targetName})")
-            description.set("Kydra Log implementation (manual DI) for target \'${targetName}\'")
+            name.set("Kotlin Kydra Log (${targetName})")
+            description.set("Kydra Log implementation for target \'${targetName}\'")
         } else {
-            name.set("Kotlin Kydra Log for manual DI")
+            name.set("Kotlin Kydra Log")
             description.set("Kotlin Kydra Log - Kotlin Multiplatform Library that allows to write logs in common module. The way how logs will written defines for each platform independently.")
         }
         url.set("https://github.com/PocketByte/kotlin-kydra-log")

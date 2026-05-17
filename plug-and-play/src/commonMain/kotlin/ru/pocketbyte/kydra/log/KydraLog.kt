@@ -11,7 +11,9 @@ package ru.pocketbyte.kydra.log
  */
 object KydraLog: InitializableLogger<Logger>() {
 
-    override val defaultLogger: Logger = DefaultLogger
+    override val defaultLogger: Logger by lazy {
+        DefaultLoggerFactory.create()
+    }
 
     /**
      * Init KydraLog instance with provided Logger
