@@ -7,6 +7,8 @@ constraint-layout = "2.0.4"
 kotlin-stdlib             = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib",        version.ref = "kotlin" }
 kotlin-test               = { group = "org.jetbrains.kotlin", name = "kotlin-test",          version.ref = "kotlin" }
 kotlin-test-js            = { group = "org.jetbrains.kotlin", name = "kotlin-test-js",       version.ref = "kotlin" }
+kotlin-gradle-plugin      = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+android-gradle-plugin     = { group = "com.android.tools.build", name = "gradle",            version.ref = "android-gradle" }
 android-constraint-layout = { group = "com.android.support.constraint", name = "constraint-layout", version.ref = "constraint-layout" }
 
 [plugins]
