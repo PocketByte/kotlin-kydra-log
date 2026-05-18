@@ -7,16 +7,9 @@ package ru.pocketbyte.kydra.log
 
 expect object DefaultLoggerFactory {
     @Deprecated(
-        message = "Use 'create()' without parameters. To filter use extension 'filtered()'.",
-        replaceWith = ReplaceWith("create().filtered(level, tags)"),
-        level = DeprecationLevel.ERROR
-    )
-    fun build(level: LogLevel? = null, tags: Set<String?>? = null): Logger
-
-    @Deprecated(
         message = "Use create() instead.",
         replaceWith = ReplaceWith("create()"),
-        level = DeprecationLevel.WARNING
+        level = DeprecationLevel.ERROR
     )
     fun build(): Logger
 

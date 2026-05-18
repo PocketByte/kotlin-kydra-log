@@ -32,7 +32,7 @@ abstract class Logger {
     @Deprecated(
         message = "Will be removed in future releases. Use log(LogLevel, String?, () -> Any) instead.",
         replaceWith = ReplaceWith("log(level, tag) { message }"),
-        level = DeprecationLevel.WARNING
+        level = DeprecationLevel.ERROR
     )
     fun log(level: LogLevel, tag: String?, message: Any) {
         log(level, tag) { message }
@@ -47,25 +47,6 @@ abstract class Logger {
     inline fun log(level: LogLevel, tag: String?, crossinline function: () -> Any) {
         if (filter?.invoke(level, tag) != false) {
             callDoLog(level, tag, function())
-        }
-    }
-
-    /**
-     * Writes log with provided level and tag, using logger filter to skip some messages.
-     *
-     * @param level Log level
-     * @param tag Tag of the log record. Nullable
-     * @param message Message to be written into log
-     * @param omitFilter If true, filtering will be skipped.
-     */
-    @Deprecated(
-        message = "Don't use this method. It was created for internal purposes.",
-        replaceWith = ReplaceWith("log(level, tag) { message }"),
-        level = DeprecationLevel.ERROR
-    )
-    fun log(level: LogLevel, tag: String?, message: Any, omitFilter: Boolean) {
-        if (omitFilter || filter?.invoke(level, tag) != false) {
-            doLog(level, tag, message)
         }
     }
 

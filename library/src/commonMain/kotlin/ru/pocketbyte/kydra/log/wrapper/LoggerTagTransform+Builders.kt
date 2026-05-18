@@ -21,7 +21,8 @@ fun <T : Logger> T.withTagTransform(
  */
 @Deprecated(
     "Use withTag(prefix, default, postfix) instead.",
-    ReplaceWith("withTag(default = defaultTag)")
+    ReplaceWith("withTag(default = defaultTag)"),
+    level = DeprecationLevel.ERROR
 )
 fun <T : Logger> T.withTag(defaultTag: String): LoggerTagTransform<T> {
     return LoggerTagTransform(this) { it ?: defaultTag }
