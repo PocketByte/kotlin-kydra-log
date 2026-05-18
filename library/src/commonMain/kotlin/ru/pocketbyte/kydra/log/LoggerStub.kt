@@ -6,10 +6,16 @@
 package ru.pocketbyte.kydra.log
 
 /**
- * Logger that do nothing. Even functions call.
+ * A no-op logger that silently discards all log records.
+ * Because [filter] always returns `false`, message-producing lambdas passed to [Logger.log]
+ * are never evaluated.
  */
 class LoggerStub: Logger() {
 
+    /**
+     * Always returns `false`, causing all log records to be discarded
+     * before [doLog] is called.
+     */
     override val filter: ((level: LogLevel, tag: String?) -> Boolean) = { _, _ -> false }
 
     override fun doLog(level: LogLevel, tag: String?, message: Any) {

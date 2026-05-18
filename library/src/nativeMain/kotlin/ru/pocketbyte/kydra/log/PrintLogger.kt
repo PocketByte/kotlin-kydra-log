@@ -9,6 +9,10 @@ import ru.pocketbyte.kydra.log.print.NativeLogMessageFormatter
 import ru.pocketbyte.kydra.log.print.SimplePrintLogger
 import ru.pocketbyte.kydra.log.print.SimplePrinter
 
+/**
+ * Kotlin/Native implementation of [Logger] that formats log records using [NativeLogMessageFormatter]
+ * and writes them to standard output via [println].
+ */
 open class PrintLogger: SimplePrintLogger(
     printer = SimplePrinter(),
     logMessageFormatter = NativeLogMessageFormatter()

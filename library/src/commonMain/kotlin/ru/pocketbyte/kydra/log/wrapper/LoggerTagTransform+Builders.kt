@@ -4,9 +4,11 @@ import ru.pocketbyte.kydra.log.Logger
 
 
 /**
- * Wraps Logger with Logger that transforms tags by given logic.
+ * Wraps this logger in a [LoggerTagTransform] that applies [tagTransform] to the tag
+ * of every log record.
  *
- * @param tagTransform Tag transformation logic
+ * @param tagTransform Function that receives the original tag and returns the transformed tag.
+ * May return `null` to clear the tag.
  */
 fun <T : Logger> T.withTagTransform(
     tagTransform: (tag: String?) -> String?
@@ -15,9 +17,9 @@ fun <T : Logger> T.withTagTransform(
 }
 
 /**
- * Wraps Logger with Logger that uses defaultTag if provided tag is null.
+ * Wraps this logger in a [LoggerTagTransform] that substitutes [defaultTag] when the tag is null.
  *
- * @param defaultTag Tag that should be used if provided tag is null.
+ * @param defaultTag Tag to use when the log record's tag is null.
  */
 @Deprecated(
     "Use withTag(prefix, default, postfix) instead.",
@@ -29,15 +31,15 @@ fun <T : Logger> T.withTag(defaultTag: String): LoggerTagTransform<T> {
 }
 
 /**
- * Wraps Logger with Logger that transforms tags by applying an optional prefix, default value,
- * and/or postfix.
+ * Wraps this logger in a [LoggerTagTransform] that transforms tags by applying an optional
+ * prefix, default value, and/or postfix.
  *
  * If the tag is null and [default] is also null, the tag remains null. Otherwise, the resolved tag
  * is assembled as `"$prefix$tag$postfix"`, omitting any component that is null.
  *
- * @param prefix String prepended to the tag. Null means no prefix.
- * @param default Fallback tag used when the provided tag is null. Null means tags are not replaced.
- * @param postfix String appended to the tag. Null means no postfix.
+ * @param prefix String prepended to the tag. `null` means no prefix.
+ * @param default Fallback tag used when the log record's tag is null. `null` means no substitution.
+ * @param postfix String appended to the tag. `null` means no postfix.
  */
 fun <T : Logger> T.withTag(
     prefix: String? = null,

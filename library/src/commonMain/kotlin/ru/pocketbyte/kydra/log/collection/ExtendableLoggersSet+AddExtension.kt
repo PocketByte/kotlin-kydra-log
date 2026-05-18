@@ -5,11 +5,9 @@ import ru.pocketbyte.kydra.log.LogLevel
 import ru.pocketbyte.kydra.log.wrapper.filtered
 
 /**
- * Add default Logger with provided filters.
- * @param level Minimum log level that can be passed.
- * Null if filter by LogLevel shouldn't be used.
- * @param tags Set of tags that can be passed.
- * Null if filter by Tag shouldn't be used.
+ * Adds the default platform logger to this set, optionally wrapped in a filter.
+ * @param level Minimum log level to pass through. `null` to disable level filtering.
+ * @param tags Set of tags to pass through. `null` to disable tag filtering.
  */
 fun ExtendableLoggersSet.addDefault(level: LogLevel? = null, tags: Set<String?>? = null) {
     addLogger(

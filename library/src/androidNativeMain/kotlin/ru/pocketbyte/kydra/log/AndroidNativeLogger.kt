@@ -9,7 +9,8 @@ import platform.android.*
 import kotlin.experimental.ExperimentalNativeApi
 
 /**
- * Android Native implementation of Logger that writes logs using __android_log_print.
+ * Kotlin/Native implementation of [Logger] for Android NDK.
+ * Writes log records via `__android_log_print` from the Android logging library.
  */
 open class AndroidNativeLogger: AbsLogger() {
 
@@ -20,4 +21,12 @@ open class AndroidNativeLogger: AbsLogger() {
     override fun doLog(level: LogLevel, tag: String?, exception: Throwable) {
         doLog(level, tag, exception.stackTraceToString())
     }
+
+    private val LogLevel.native: android_LogPriority
+        get() = when (this) {
+            LogLevel.DEBUG -> ANDROID_LOG_DEBUG
+            LogLevel.INFO -> ANDROID_LOG_INFO
+            LogLevel.WARNING -> ANDROID_LOG_WARN
+            LogLevel.ERROR -> ANDROID_LOG_ERROR
+        }
 }

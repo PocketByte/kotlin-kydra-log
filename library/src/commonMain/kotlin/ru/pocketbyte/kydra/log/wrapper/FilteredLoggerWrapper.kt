@@ -9,13 +9,14 @@ import ru.pocketbyte.kydra.log.LogLevel
 import ru.pocketbyte.kydra.log.Logger
 
 /**
- * The Logger implementation that wraps another logger
- * and only passes events that satisfy the filter.
+ * A logger wrapper that forwards log records to the wrapped logger
+ * only if they satisfy the given filter.
  *
- * @property logger The Logger that should be filtered.
- * @property filter Filter function that defines which logs should be filtered
+ * @property logger The logger to which passing records are forwarded.
+ * @property filter Returns `true` if a record with the given level and tag should be forwarded,
+ * or `false` to suppress it. Also incorporates the wrapped logger's own filter.
  *
- * @constructor Creates filtered logger depends on provided filter function.
+ * @constructor Creates a filtered logger using the provided filter function.
  */
 open class FilteredLoggerWrapper<LoggerType: Logger>(
     override val logger: LoggerType,
@@ -27,12 +28,10 @@ open class FilteredLoggerWrapper<LoggerType: Logger>(
     }
 
     /**
-     * Creates filtered logger depends on provided log level and set of tags.
-     * @param logger The Logger that should be filtered.
-     * @param level Minimum log level that can be passed.
-     * Null if filter by LogLevel shouldn't be used.
-     * @param tags Set of tags that can be passed.
-     * Null if filter by Tag shouldn't be used.
+     * Creates a filtered logger using the provided minimum log level and set of allowed tags.
+     * @param logger The logger to which passing records are forwarded.
+     * @param level Minimum log level to pass through. `null` to disable level filtering.
+     * @param tags Set of tags to pass through. `null` to disable tag filtering.
      */
     constructor(
         logger: LoggerType,
@@ -40,28 +39,26 @@ open class FilteredLoggerWrapper<LoggerType: Logger>(
         tags: Set<String?>? = null
     ) : this(
         logger,
-        levelFiler = level
+        levelFilter = level
             ?.let { { level: LogLevel ->  level.priority >= it.priority} },
         tagFilter = tags
             ?.let { { tag: String? -> it.contains(tag) } }
     )
 
     /**
-     * Creates filtered logger depends on provided log level and tag filers.
-     * @param logger The Logger that should be filtered.
-     * @param levelFiler Log level filter rule.
-     * Null if filter by LogLevel shouldn't be used.
-     * @param tagFilter Tag filter rule.
-     * Null if filter by Tag shouldn't be used.
+     * Creates a filtered logger using the provided level and tag filter predicates.
+     * @param logger The logger to which passing records are forwarded.
+     * @param levelFilter Log level filter predicate. `null` to disable level filtering.
+     * @param tagFilter Tag filter predicate. `null` to disable tag filtering.
      */
     constructor(
         logger: LoggerType,
-        levelFiler: ((LogLevel) -> Boolean)? = null,
+        levelFilter: ((LogLevel) -> Boolean)? = null,
         tagFilter: ((String?) -> Boolean)? = null
     ) : this(
         logger,
         { level: LogLevel, tag: String? ->
-            (levelFiler == null || levelFiler(level))
+            (levelFilter == null || levelFilter(level))
                     && (tagFilter == null || tagFilter(tag))
         }
     )

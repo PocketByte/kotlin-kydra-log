@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1] - in progress
+
+### Documentation
+
+- Conducted a full audit and rewrite of the KDoc documentation across the entire public API, covering everything from core classes to platform-specific implementations, while fixing grammar issues, inaccuracies, and missing documentation.
+- Fixed typo in parameter name: `levelFiler` → `levelFilter` in `FilteredLoggerWrapper` and `FilteredLogger+Builders.kt`.
+
 ## [3.0.0] - 2026-05-18
 
 ### Breaking Changes

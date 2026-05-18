@@ -6,7 +6,8 @@
 package ru.pocketbyte.kydra.log
 
 /**
- * JavaScript implementation of Logger that writes logs using Console.
+ * JavaScript implementation of [Logger] that writes log records to the browser or Node.js console.
+ * Each log level is mapped to the corresponding console method.
  */
 open class JsLogger : AbsLogger() {
 
@@ -41,6 +42,13 @@ open class JsLogger : AbsLogger() {
         }
     }
 
+    /**
+     * Formats [tag] and [message] into a single string of the form `tag: message`.
+     * Either component is omitted if null or empty. Override to customize the format.
+     * @param tag Tag of the log record. Nullable
+     * @param message Text message of the log record. Nullable
+     * @return The formatted string
+     */
     protected open fun logToString(tag: String?, message: String?): String {
         val builder = StringBuilder()
 

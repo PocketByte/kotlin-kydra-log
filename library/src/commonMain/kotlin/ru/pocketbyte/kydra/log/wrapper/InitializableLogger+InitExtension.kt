@@ -10,19 +10,18 @@ import ru.pocketbyte.kydra.log.LogLevel
 import ru.pocketbyte.kydra.log.Logger
 
 /**
- * Initialize InitializableLogger with default Logger and provided filters.
- * @param level Minimum log level that can be passed.
- * Null if filter by LogLevel shouldn't be used.
- * @param tags Set of tags that can be passed.
- * Null if filter by Tag shouldn't be used.
+ * Initializes this logger with the default platform logger wrapped in a filter.
+ * @param level Minimum log level to pass through. `null` to disable level filtering.
+ * @param tags Set of tags to pass through. `null` to disable tag filtering.
  */
 fun InitializableLogger<Logger>.initDefault(level: LogLevel? = null, tags: Set<String?>? = null) {
     init(DefaultLogger.filtered(level, tags))
 }
 
 /**
- * Initialize InitializableLogger if it not initialized, otherwise ignore provided logger.
- * @param logger Logger that should be user for logging
+ * Initializes this logger with the provided [logger] if it has not been initialized yet.
+ * If already initialized, the call is silently ignored.
+ * @param logger The logger to use for logging
  */
 fun <T : Logger> InitializableLogger<T>.initOrIgnore(logger: T) {
     if (!isInitialized) {

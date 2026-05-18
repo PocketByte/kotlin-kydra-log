@@ -6,7 +6,7 @@
 package ru.pocketbyte.kydra.log
 
 /**
- * Writes log with provided level and empty tag.
+ * Writes a log record with the provided level and a null tag.
  * @param level Log level
  * @param message Message to be written into log
  */
@@ -20,7 +20,7 @@ fun Logger.log(level: LogLevel, message: Any) {
 }
 
 /**
- * Writes log with provided level and empty tag.
+ * Writes a log record with the provided level and a null tag.
  * @param level Log level
  * @param function Function that returns message to be written into log
  */
@@ -31,9 +31,9 @@ inline fun Logger.log(level: LogLevel, crossinline function: () -> Any) {
 //================================================================
 //== LogLevel.INFO ===============================================
 /**
- * Writes log with INFO log level and provided tag.
+ * Writes a log record with INFO level and the provided tag.
  * @param tag Tag of the log record. Nullable
- * @param message Message to be written into log.
+ * @param message Message to be written into log
  */
 @Deprecated(
     message = "Use info(String?, () -> Any) instead.",
@@ -45,8 +45,8 @@ fun Logger.info(tag: String?, message: Any) {
 }
 
 /**
- * Writes log with INFO log level and empty tag.
- * @param message Message to be written into log.
+ * Writes a log record with INFO level and a null tag.
+ * @param message Message to be written into log
  */
 @Deprecated(
     message = "Use info(() -> Any) instead.",
@@ -58,7 +58,7 @@ fun Logger.info(message: Any) {
 }
 
 /**
- * Writes log with INFO log level and provided tag.
+ * Writes a log record with INFO level and the provided tag.
  * @param tag Tag of the log record. Nullable
  * @param function Function that returns message to be written into log
  */
@@ -67,7 +67,7 @@ inline fun Logger.info(tag: String?, crossinline function: () -> Any) {
 }
 
 /**
- * Writes log with INFO log level and empty tag.
+ * Writes a log record with INFO level and a null tag.
  * @param function Function that returns message to be written into log
  */
 inline fun Logger.info(crossinline function: () -> Any) {
@@ -77,9 +77,9 @@ inline fun Logger.info(crossinline function: () -> Any) {
 //================================================================
 //== LogLevel.DEBUG ==============================================
 /**
- * Writes log with DEBUG log level and provided tag.
+ * Writes a log record with DEBUG level and the provided tag.
  * @param tag Tag of the log record. Nullable
- * @param message Message to be written into log.
+ * @param message Message to be written into log
  */
 @Deprecated(
     message = "Use debug(String?, () -> Any) instead.",
@@ -91,8 +91,8 @@ fun Logger.debug(tag: String?, message: Any) {
 }
 
 /**
- * Writes log with DEBUG log level and empty tag.
- * @param message Message to be written into log.
+ * Writes a log record with DEBUG level and a null tag.
+ * @param message Message to be written into log
  */
 @Deprecated(
     message = "Use debug(() -> Any) instead.",
@@ -104,7 +104,7 @@ fun Logger.debug(message: Any) {
 }
 
 /**
- * Writes log with DEBUG log level and provided tag.
+ * Writes a log record with DEBUG level and the provided tag.
  * @param tag Tag of the log record. Nullable
  * @param function Function that returns message to be written into log
  */
@@ -113,7 +113,7 @@ inline fun Logger.debug(tag: String?, crossinline function: () -> Any) {
 }
 
 /**
- * Writes log with DEBUG log level and empty tag.
+ * Writes a log record with DEBUG level and a null tag.
  * @param function Function that returns message to be written into log
  */
 inline fun Logger.debug(crossinline function: () -> Any) {
@@ -123,9 +123,9 @@ inline fun Logger.debug(crossinline function: () -> Any) {
 //================================================================
 //== LogLevel.WARNING ============================================
 /**
- * Writes log with WARNING log level and provided tag.
+ * Writes a log record with WARNING level and the provided tag.
  * @param tag Tag of the log record. Nullable
- * @param message Message to be written into log.
+ * @param message Message to be written into log
  */
 @Deprecated(
     message = "Use warn(String?, () -> Any) instead.",
@@ -137,8 +137,8 @@ fun Logger.warn(tag: String?, message: Any) {
 }
 
 /**
- * Writes log with WARNING log level and empty tag.
- * @param message Message to be written into log.
+ * Writes a log record with WARNING level and a null tag.
+ * @param message Message to be written into log
  */
 @Deprecated(
     message = "Use warn(() -> Any) instead.",
@@ -150,7 +150,7 @@ fun Logger.warn(message: Any) {
 }
 
 /**
- * Writes log with WARNING log level and provided tag.
+ * Writes a log record with WARNING level and the provided tag.
  * @param tag Tag of the log record. Nullable
  * @param function Function that returns message to be written into log
  */
@@ -159,7 +159,7 @@ inline fun Logger.warn(tag: String?, crossinline function: () -> Any) {
 }
 
 /**
- * Writes log with WARNING log level and empty tag.
+ * Writes a log record with WARNING level and a null tag.
  * @param function Function that returns message to be written into log
  */
 inline fun Logger.warn(crossinline function: () -> Any) {
@@ -169,9 +169,9 @@ inline fun Logger.warn(crossinline function: () -> Any) {
 //================================================================
 //== LogLevel.ERROR ==============================================
 /**
- * Writes log with ERROR log level and provided tag.
+ * Writes a log record with ERROR level and the provided tag.
  * @param tag Tag of the log record. Nullable
- * @param message Message to be written into log.
+ * @param message Message to be written into log
  */
 @Deprecated(
     message = "Use error(String?, () -> Any) instead.",
@@ -183,8 +183,8 @@ fun Logger.error(tag: String?, message: Any) {
 }
 
 /**
- * Writes log with ERROR log level and empty tag.
- * @param message Message to be written into log.
+ * Writes a log record with ERROR level and a null tag.
+ * @param message Message to be written into log
  */
 @Deprecated(
     message = "Use error(() -> Any) instead.",
@@ -196,7 +196,7 @@ fun Logger.error(message: Any) {
 }
 
 /**
- * Writes log with ERROR log level and provided tag.
+ * Writes a log record with ERROR level and the provided tag.
  * @param tag Tag of the log record. Nullable
  * @param function Function that returns message to be written into log
  */
@@ -205,7 +205,7 @@ inline fun Logger.error(tag: String?, crossinline function: () -> Any) {
 }
 
 /**
- * Writes log with ERROR log level and empty tag.
+ * Writes a log record with ERROR level and a null tag.
  * @param function Function that returns message to be written into log
  */
 inline fun Logger.error(crossinline function: () -> Any) {

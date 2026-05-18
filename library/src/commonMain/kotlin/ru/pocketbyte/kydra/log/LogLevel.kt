@@ -6,29 +6,34 @@
 package ru.pocketbyte.kydra.log
 
 /**
- * The Level of Logging.
+ * Severity level of a log record.
  *
- * @property priority Priority of the Level.
+ * Levels are ordered by increasing severity: [DEBUG] < [INFO] < [WARNING] < [ERROR].
+ * The [priority] value reflects this order and can be used to implement threshold filtering.
  */
-enum class LogLevel(val priority: Int) {
+enum class LogLevel(
+    /** Numeric severity value. Higher values indicate greater severity. */
+    val priority: Int
+) {
 
     /**
-     * Debug Log Level. Should be shown only for debugging.
+     * Verbose information useful during development and debugging.
+     * Should not be enabled in production builds.
      */
     DEBUG(1),
 
     /**
-     * Information Log Level.
+     * General informational messages about normal application flow.
      */
     INFO(2),
 
     /**
-     * Warning Log Level. Should be used to log some warnings.
+     * Potentially harmful situations that do not prevent the application from functioning.
      */
     WARNING(3),
 
     /**
-     * Error Log Level. Should be used to log some errors.
+     * Errors that indicate a failure in the current operation or an unexpected condition.
      */
     ERROR(4)
 }

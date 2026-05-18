@@ -9,17 +9,21 @@ import ru.pocketbyte.kydra.log.LogLevel
 import ru.pocketbyte.kydra.log.Logger
 
 /**
- * Logger wrapper implementation that allows to switch on/off logger.
+ * A logger wrapper that can be dynamically enabled or disabled.
+ * When disabled, all log records are suppressed without being forwarded to the wrapped logger.
  */
 class LoggerToggle<LoggerType: Logger>(
+    /** The logger to which records are forwarded when this toggle is enabled. */
     override val logger: LoggerType
 ) : AbsLoggerWrapper<LoggerType>() {
 
     /**
-     * Logger enability. If false, all log messages will be skipped.
+     * Controls whether log records are forwarded to the wrapped logger.
+     * Set to `false` to suppress all records; `true` to resume logging.
      */
     var enabled: Boolean = true
 
+    /** Returns `false` when [enabled] is `false`, suppressing all log records. */
     override val filter = { level: LogLevel, tag: String? ->
         enabled && logger.filter?.invoke(level, tag) != false
     }

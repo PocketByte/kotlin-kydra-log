@@ -16,6 +16,10 @@ import platform.darwin.__dso_handle
 import platform.darwin._os_log_internal
 import platform.darwin.os_log_t
 
+/**
+ * Apple platform implementation of [Logger] that writes log records via the unified logging system (`os_log`).
+ * @param logT The `os_log_t` object identifying the log destination. Defaults to `OS_LOG_DEFAULT`.
+ */
 @OptIn(ExperimentalForeignApi::class)
 open class AppleLogger(
     private val logT: os_log_t = OS_LOG_DEFAULT

@@ -10,6 +10,10 @@ import ru.pocketbyte.kydra.log.print.SimplePrintLogger
 import ru.pocketbyte.kydra.log.print.SimplePrinter
 
 /**
- * JVM implementation of Logger that writes logs using println.
+ * JVM implementation of [Logger] that formats log records using [JvmLogMessageFormatter]
+ * and writes them to standard output via [println].
  */
-open class PrintLogger: SimplePrintLogger(SimplePrinter(), JvmLogMessageFormatter())
+open class PrintLogger: SimplePrintLogger(
+    printer = SimplePrinter(),
+    logMessageFormatter = JvmLogMessageFormatter()
+)

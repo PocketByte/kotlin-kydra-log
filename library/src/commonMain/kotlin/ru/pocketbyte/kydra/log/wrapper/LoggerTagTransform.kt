@@ -9,10 +9,12 @@ import ru.pocketbyte.kydra.log.LogLevel
 import ru.pocketbyte.kydra.log.Logger
 
 /**
- * Logger wrapper that overrides log tags.
+ * A logger wrapper that applies a transformation to the tag of every log record
+ * before forwarding it to the wrapped logger.
  *
  * @param logger Logger to wrap
- * @param tagTransform Tag transformation logic
+ * @param tagTransform Function that receives the original tag and returns the transformed tag.
+ * May return `null` to clear the tag.
  */
 class LoggerTagTransform<LoggerType: Logger>(
     override val logger: LoggerType,
@@ -32,6 +34,12 @@ class LoggerTagTransform<LoggerType: Logger>(
         logger.filter?.invoke(level, tagTransform(tag)) ?: false
     }
 
+    /**
+     * Applies [tagTransform] to [tag] and forwards the record to the wrapped logger.
+     * @param level Log level
+     * @param tag Original tag of the log record. Nullable
+     * @param message Message to be written into log
+     */
     override fun doLog(level: LogLevel, tag: String?, message: Any) {
         super.doLog(level, tagTransform(tag), message)
     }

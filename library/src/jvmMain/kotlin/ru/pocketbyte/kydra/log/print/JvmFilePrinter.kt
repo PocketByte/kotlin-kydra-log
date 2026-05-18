@@ -9,6 +9,13 @@ import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 import kotlin.io.path.name
 
+/**
+ * A [Printer] implementation that writes log records to rotating files in a directory.
+ *
+ * A new log file is created when the current file exceeds [maxSizeBytes] or when the date changes.
+ * The oldest files are deleted when the total directory size approaches [maxFolderSizeBytes].
+ * All writes are thread-safe.
+ */
 class JvmFilePrinter internal constructor(
     private val maxSizeBytes: Long,
     private val maxFolderSizeBytes: Long,
@@ -17,6 +24,12 @@ class JvmFilePrinter internal constructor(
     private val dateProvider: () -> Date,
 ) : Printer {
 
+    /**
+     * Creates a file printer that writes to rotating log files in [logDirectory].
+     * @param maxSizeBytes Maximum size of a single log file in bytes before rotation occurs
+     * @param maxFolderSizeBytes Maximum total size of all log files in bytes before old files are deleted
+     * @param logDirectory Path to the directory where log files are stored
+     */
     constructor(
         maxSizeBytes: Long,
         maxFolderSizeBytes: Long,
@@ -54,6 +67,12 @@ class JvmFilePrinter internal constructor(
         Runtime.getRuntime().addShutdownHook(Thread { writer?.close() })
     }
 
+    /**
+     * Writes [message] to the current log file, rotating the file if needed.
+     * This method is thread-safe. Errors during writing are printed to stderr
+     * and the current writer is closed and reset.
+     * @param message The formatted log string to write
+     */
     override fun print(message: String) {
         lock.withLock {
             try {

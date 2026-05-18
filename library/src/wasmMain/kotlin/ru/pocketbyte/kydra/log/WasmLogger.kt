@@ -9,4 +9,11 @@ import ru.pocketbyte.kydra.log.print.SimplePrintLogger
 import ru.pocketbyte.kydra.log.print.SimplePrinter
 import ru.pocketbyte.kydra.log.print.WasmLogMessageFormatter
 
-open class WasmLogger : SimplePrintLogger(SimplePrinter(), WasmLogMessageFormatter())
+/**
+ * WebAssembly implementation of [Logger] that formats log records using [WasmLogMessageFormatter]
+ * and writes them to standard output via [println].
+ */
+open class WasmLogger : SimplePrintLogger(
+    printer = SimplePrinter(),
+    logMessageFormatter = WasmLogMessageFormatter()
+)

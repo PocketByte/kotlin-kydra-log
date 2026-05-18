@@ -8,8 +8,9 @@ package ru.pocketbyte.kydra.log
 import ru.pocketbyte.kydra.log.wrapper.InitializableLogger
 
 /**
- * Global logger instance.
- * You should initialize it via [init] before usage, otherwise default logger will be used.
+ * Global singleton logger for plug-and-play usage.
+ * Before [init] is called, log records are forwarded to the default platform logger
+ * created by [DefaultLoggerFactory].
  */
 object KydraLog: InitializableLogger<Logger>() {
 
@@ -18,8 +19,9 @@ object KydraLog: InitializableLogger<Logger>() {
     }
 
     /**
-     * Init KydraLog instance with provided Logger
-     * @param logger Logger that should be user for logging
+     * Sets the active logger for this global instance.
+     * @param logger The logger to use for logging
+     * @throws IllegalStateException if the logger has already been initialized
      */
     override fun init(logger: Logger) {
         super.init(logger)

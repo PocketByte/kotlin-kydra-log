@@ -8,7 +8,7 @@ package ru.pocketbyte.kydra.log
 import android.util.Log
 
 /**
- * Android implementation of Logger that writes logs using LogCat.
+ * Android implementation of [Logger] that writes log records to Logcat.
  */
 open class AndroidLogger: AbsLogger() {
 

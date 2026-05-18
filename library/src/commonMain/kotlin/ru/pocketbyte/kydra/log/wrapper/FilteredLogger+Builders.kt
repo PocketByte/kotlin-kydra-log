@@ -9,9 +9,10 @@ import ru.pocketbyte.kydra.log.LogLevel
 import ru.pocketbyte.kydra.log.Logger
 
 /**
- * Returns Logger wrapped with FilteredLogger
+ * Wraps this logger in a [FilteredLoggerWrapper] using the provided filter function.
  *
- * @property filter Filter function that defines which logs should be filtered
+ * @param filter Returns `true` if a record with the given level and tag should be forwarded,
+ * or `false` to suppress it.
  */
 fun <T : Logger> T.filtered(
     filter: (level: LogLevel, tag: String?) -> Boolean
@@ -19,14 +20,12 @@ fun <T : Logger> T.filtered(
     return FilteredLoggerWrapper(this, filter)
 }
 
-
 /**
- * Returns Logger wrapped with FilteredLogger
+ * Wraps this logger in a [FilteredLoggerWrapper] using the provided minimum log level
+ * and set of allowed tags.
  *
- * @param level Minimum log level that can be passed.
- * Null if filter by LogLevel shouldn't be used.
- * @param tags Set of tags that can be passed.
- * Null if filter by Tag shouldn't be used.
+ * @param level Minimum log level to pass through. `null` to disable level filtering.
+ * @param tags Set of tags to pass through. `null` to disable tag filtering.
  */
 fun <T : Logger> T.filtered(
     level: LogLevel? = null,
@@ -36,16 +35,14 @@ fun <T : Logger> T.filtered(
 }
 
 /**
- * Returns Logger wrapped with FilteredLogger
+ * Wraps this logger in a [FilteredLoggerWrapper] using the provided level and tag filter predicates.
  *
- * @param levelFiler Log level filter rule.
- * Null if filter by LogLevel shouldn't be used.
- * @param tagFilter Tag filter rule.
- * Null if filter by Tag shouldn't be used.
+ * @param levelFilter Log level filter predicate. `null` to disable level filtering.
+ * @param tagFilter Tag filter predicate. `null` to disable tag filtering.
  */
 fun <T : Logger> T.filtered(
-    levelFiler: ((LogLevel) -> Boolean)? = null,
+    levelFilter: ((LogLevel) -> Boolean)? = null,
     tagFilter: ((String?) -> Boolean)? = null
 ): FilteredLoggerWrapper<T> {
-    return FilteredLoggerWrapper(this, levelFiler, tagFilter)
+    return FilteredLoggerWrapper(this, levelFilter, tagFilter)
 }
