@@ -5,6 +5,8 @@
 
 package ru.pocketbyte.kydra.log
 
+import kotlin.js.JsName
+
 /**
  * Base Logger class.
  */
@@ -54,6 +56,7 @@ abstract class Logger {
      * Not for public use!!!
      */
     @PublishedApi
+    @JsName("callDoLog")
     internal fun callDoLog(level: LogLevel, tag: String?, message: Any) =
         doLog(level, tag, message)
 }
