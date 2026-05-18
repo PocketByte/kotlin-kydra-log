@@ -1,0 +1,8 @@
+{
+  "name": "kydra-log",
+  "description": "Skill for using the Kotlin Kydra Log multiplatform logging library correctly. Covers kydra-log 3.x",
+  "author": {
+    "name": "Denis Shurygin",
+    "email": "mail@pocketbyte.ru"
+  }
+}
