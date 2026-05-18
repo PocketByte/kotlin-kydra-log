@@ -1,18 +1,24 @@
 # Kotlin Kydra Log
-![Maven Central](https://img.shields.io/maven-central/v/ru.pocketbyte.kydra/kydra-log) [![License](https://img.shields.io/badge/License-Apache/2.0-blue.svg)](LICENSE)
+![Maven Central](https://img.shields.io/maven-central/v/ru.pocketbyte.kydra/kydra-log) [![License](https://img.shields.io/badge/License-Apache/2.0-blue.svg)](LICENSE) [![Claude Code Skill](https://img.shields.io/badge/Claude_Code-Skill-D97757)](https://github.com/PocketByte/kotlin-kydra-log/blob/master/.claude/skills/kydra-log/SKILL.md)
 
 Kotlin Kydra Log - Kotlin Multiplatform Library that allows to write logs in common module.
-The way how logs will written defines for each platform independently.
+The way logs are written is defined for each platform independently.
 
-Fully supported platforms:
-- Android and AndroidNative(Arm32, Arm64, X64, X86) using LogCat;
-- JavaScript using JS Console;
-- Apple based: iOS, MacOS, Watch and TV using OSLog.
+### Supported Targets
 
-Also, not well by using `println` with timestamp:
-- Java;
-- Linux based: X64, Arm64;
-- Windows X64;
+| Platform | Targets | Logger |
+|----------|---------|--------|
+| Android | `android` | LogCat |
+| Android Native | `androidNativeArm32`, `androidNativeArm64`, `androidNativeX64`, `androidNativeX86` | LogCat |
+| iOS | `iosArm64`, `iosX64`, `iosSimulatorArm64` | OSLog |
+| macOS | `macosX64`, `macosArm64` | OSLog |
+| watchOS | `watchosArm32`, `watchosArm64`, `watchosX64`, `watchosSimulatorArm64` | OSLog |
+| tvOS | `tvosArm64`, `tvosX64`, `tvosSimulatorArm64` | OSLog |
+| JavaScript | `js` (IR, browser + Node.js) | JS Console |
+| Wasm | `wasmJs` (browser + Node.js), `wasmWasi` (Node.js) | `println` with timestamp |
+| JVM | `jvm` | `println` with timestamp |
+| Linux | `linuxX64`, `linuxArm64` | `println` with timestamp |
+| Windows | `mingwX64` | `println` with timestamp |
 
 ### How to use
 
@@ -27,18 +33,32 @@ dependencies {
 }
 ```
 
+Or in **`build.gradle.kts`** (Kotlin DSL):
+```kotlin
+repositories {
+    mavenCentral()
+}
+dependencies {
+    // other dependencies
+    implementation("ru.pocketbyte.kydra:kydra-log:3.0.0")
+}
+```
+
 Then you able to use KydraLog in common code:
-```Kotlin
+```kotlin
 KydraLog.info { "Info log message" }
 KydraLog.debug { "Debug log message" }
 KydraLog.warn { "Warning log message" }
 KydraLog.error { "Error log message" }
+
+// Optionally provide a tag as the first argument
+KydraLog.info("MyTag") { "Info log message with tag" }
 ```
 
 ### Logging with format
 
-If you would to log formatted string you should use kotlin String Templates:
-```Kotlin
+If you want to log a formatted string, you should use Kotlin String Templates:
+```kotlin
 val count = 1
 KydraLog.info { "Count is $count" }
 ```
@@ -49,7 +69,7 @@ Any logging via not initialized KydraLog will call initialisation with default L
 want to initialize `KydraLog` with custom filtering you could use function 
 `initDefault(level: LogLevel?, tags: Set<String?>?)`. For example, on Android platform can be used
 different `LogLevel` filtering depending on build type:
-```Kotlin
+```kotlin
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
@@ -68,7 +88,7 @@ default Logger.
 
 If you want to implement your own custom logger you should extend abstract class **`ru.pocketbyte.kydra.log.Logger`**:
 
-```Kotlin
+```kotlin
 class MyLogger: Logger() {
 
     override fun doLog(level: LogLevel, tag: String?, message: Any) {
@@ -77,22 +97,22 @@ class MyLogger: Logger() {
     }
 }
 ```
-Also you can use abstract class **`ru.pocketbyte.kydra.log.AbsLogger`**.
+You can also use the abstract class **`ru.pocketbyte.kydra.log.AbsLogger`**.
 This class splits log function into 2 functions with string and exception as a message parameter.
 
 Then you should init KydraLog with your logger:
 
-```Kotlin
+```kotlin
 KydraLog.init(MyLogger())
 ```
 To apply filter on your custom logger you could use operator `filtered`:
-```Kotlin
-// Will loged only error logs with tags "API_CORE" and "API_SOCKET"
+```kotlin
+// Will log only error logs with tags "API_CORE" and "API_SOCKET"
 KydraLog.init(MyLogger().filtered(LogLevel.ERROR, setOf("API_CORE", "API_SOCKET")))
 ```
 
 To utilize several loggers at the same time you could use `LoggersSet`:
-```Kotlin
+```kotlin
 KydraLog.init(
     LoggersSet(
         AndroidLogger(),
@@ -114,7 +134,7 @@ use `DefaultLoggerFactory.create()`.
 
 To be able to switch on/off logger at any time you could use `LoggerToggle` wrapper.
 
-```Kotlin
+```kotlin
 val loggerToggle = LoggerToggle(myLogger)
 
 loggerToggle.info { "This log will be shown." }
@@ -126,7 +146,7 @@ loggerToggle.info { "This log will NOT be shown." }
 
 To override log tag or provide default tag you could use `withTag` or `withTagTransform` extensions.
 
-```Kotlin
+```kotlin
 // fooLogger uses "Foo" tag as default
 val fooLogger = myLogger.withTag(default = "Foo")
 fooLogger.info { "Hello Foo" }        // Log will be printed with tag "Foo"
