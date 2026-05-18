@@ -8,7 +8,7 @@ plugins {
 version = "0.1.1"
 group = "ru.pocketbyte.kydralogexample.common_lib"
 
-val sampleLoggerVersion = "2.2.2"
+val sampleLoggerVersion = "3.0.0"
 
 android {
     compileSdk = properties["ANDROID_SDK_COMPILE"].toString().toInt()
