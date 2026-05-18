@@ -19,6 +19,19 @@ class LoggerTagTransform<LoggerType: Logger>(
     private val tagTransform: (tag: String?) -> String?
 ) : AbsLoggerWrapper<LoggerType>() {
 
+    /**
+     * Delegates to the wrapped logger's filter, but applies [tagTransform] to the tag first.
+     * This ensures that the filter sees the same tag that will be used in [doLog],
+     * so filtering and logging are consistent.
+     * Returns `null` if the wrapped logger has no filter.
+     */
+    override val filter: ((level: LogLevel, tag: String?) -> Boolean)?
+        get() = if (logger.filter != null) innerFilter else null
+
+    private val innerFilter: ((level: LogLevel, tag: String?) -> Boolean) = { level, tag ->
+        logger.filter?.invoke(level, tagTransform(tag)) ?: false
+    }
+
     override fun doLog(level: LogLevel, tag: String?, message: Any) {
         super.doLog(level, tagTransform(tag), message)
     }

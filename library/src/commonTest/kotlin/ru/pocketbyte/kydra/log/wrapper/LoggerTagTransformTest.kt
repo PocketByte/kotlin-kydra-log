@@ -4,6 +4,7 @@ import ru.pocketbyte.kydra.log.LogLevel
 import ru.pocketbyte.kydra.log.TestLogger
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class LoggerTagTransformTest {
 
@@ -125,5 +126,44 @@ class LoggerTagTransformTest {
         loggerTransform.log(LogLevel.DEBUG, null) { "" }
 
         assertEquals("pre-default-post", logger.tag)
+    }
+
+    @Test
+    fun testFilterIsNullWhenInnerLoggerHasNoFilter() {
+        val tagTransform = LoggerTagTransform(TestLogger()) { "PREFIX_$it" }
+        assertNull(tagTransform.filter)
+    }
+
+    @Test
+    fun testFilterTransformsTagBeforeCheck() {
+        val innerLogger = FilteredLoggerWrapper(TestLogger(), tags = setOf("PREFIX_TAG"))
+        val tagTransform = LoggerTagTransform(innerLogger) { "PREFIX_$it" }
+
+        assertEquals(true, tagTransform.filter?.invoke(LogLevel.DEBUG, "TAG"))
+        assertEquals(false, tagTransform.filter?.invoke(LogLevel.DEBUG, "OTHER"))
+    }
+
+    @Test
+    fun testFilterTransformsNullTagBeforeCheck() {
+        val innerLogger = FilteredLoggerWrapper(TestLogger(), tags = setOf("DEFAULT"))
+        val tagTransform = LoggerTagTransform(innerLogger) { it ?: "DEFAULT" }
+
+        assertEquals(true, tagTransform.filter?.invoke(LogLevel.DEBUG, null))
+        assertEquals(false, tagTransform.filter?.invoke(LogLevel.DEBUG, "OTHER"))
+    }
+
+    @Test
+    fun testFilterAppliedOnLog() {
+        val innerTestLogger = TestLogger()
+        val innerLogger = FilteredLoggerWrapper(innerTestLogger, tags = setOf("PREFIX_TAG"))
+        val tagTransform = LoggerTagTransform(innerLogger) { "PREFIX_$it" }
+
+        tagTransform.log(LogLevel.DEBUG, "TAG") { "accepted" }
+        assertEquals("PREFIX_TAG", innerTestLogger.tag)
+        assertEquals("accepted", innerTestLogger.message)
+
+        tagTransform.log(LogLevel.DEBUG, "OTHER") { "rejected" }
+        assertEquals("PREFIX_TAG", innerTestLogger.tag)
+        assertEquals("accepted", innerTestLogger.message)
     }
 }
