@@ -1,4 +1,8 @@
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.collection
+
+import ru.pocketbyte.kydra.log.DefaultLogger
+import ru.pocketbyte.kydra.log.LogLevel
+import ru.pocketbyte.kydra.log.wrapper.filtered
 
 /**
  * Add default Logger with provided filters.

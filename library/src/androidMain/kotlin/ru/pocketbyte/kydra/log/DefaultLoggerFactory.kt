@@ -6,6 +6,7 @@
 package ru.pocketbyte.kydra.log
 
 import android.util.Log
+import ru.pocketbyte.kydra.log.wrapper.filtered
 
 actual object DefaultLoggerFactory {
     actual fun build(level: LogLevel?, tags: Set<String?>?): Logger {

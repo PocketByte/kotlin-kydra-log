@@ -1,9 +1,7 @@
-/*
- * Copyright © 2022 Denis Shurygin. All rights reserved.
- * Licensed under the Apache License, Version 2.0
- */
+package ru.pocketbyte.kydra.log.collection
 
-package ru.pocketbyte.kydra.log
+import ru.pocketbyte.kydra.log.LogLevel
+import ru.pocketbyte.kydra.log.Logger
 
 /**
  * The set of loggers wrapped into single Logger object.
@@ -13,8 +11,10 @@ package ru.pocketbyte.kydra.log
  * @constructor Creates Loggers set.
  */
 open class LoggersSet(
-    private val loggers: Set<Logger>
+    loggers: Set<Logger>
 ): Logger() {
+
+    protected open val loggers: Set<Logger> = loggers.toSet()
 
     val isEmpty: Boolean
         get() = loggers.isEmpty()

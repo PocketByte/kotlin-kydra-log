@@ -5,6 +5,8 @@
 
 package ru.pocketbyte.kydra.log
 
+import ru.pocketbyte.kydra.log.wrapper.filtered
+
 actual object DefaultLoggerFactory {
     actual fun build(level: LogLevel?, tags: Set<String?>?): Logger {
         return build().filtered(level, tags)

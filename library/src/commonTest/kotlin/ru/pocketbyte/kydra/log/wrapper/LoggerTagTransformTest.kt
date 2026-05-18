@@ -1,5 +1,7 @@
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.wrapper
 
+import ru.pocketbyte.kydra.log.LogLevel
+import ru.pocketbyte.kydra.log.TestLogger
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

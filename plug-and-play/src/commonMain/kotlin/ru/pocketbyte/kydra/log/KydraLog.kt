@@ -5,6 +5,8 @@
 
 package ru.pocketbyte.kydra.log
 
+import ru.pocketbyte.kydra.log.wrapper.InitializableLogger
+
 /**
  * Global logger instance.
  * You should initialize it via [init] before usage, otherwise default logger will be used.

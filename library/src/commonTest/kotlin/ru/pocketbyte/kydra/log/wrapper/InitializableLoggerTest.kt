@@ -3,13 +3,15 @@
  * Licensed under the Apache License, Version 2.0
  */
 
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.wrapper
 
+import ru.pocketbyte.kydra.log.LogLevel
+import ru.pocketbyte.kydra.log.Logger
+import ru.pocketbyte.kydra.log.TestLogger
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
-import kotlin.test.assertSame
 import kotlin.test.assertTrue
 
 class InitializableLoggerTest {

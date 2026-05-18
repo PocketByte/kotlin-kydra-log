@@ -1,4 +1,6 @@
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.collection
+
+import ru.pocketbyte.kydra.log.Logger
 
 /**
  * The set of loggers wrapped into single Logger object with opportunity to extend provided set
@@ -9,12 +11,14 @@ package ru.pocketbyte.kydra.log
  * @constructor Creates Extendable Loggers set.
  */
 open class ExtendableLoggersSet private constructor(
-    private val mutableSet: MutableSet<Logger>
-) : LoggersSet(mutableSet) {
+    loggers: Set<Logger>
+) : LoggersSet(loggers) {
+
+    override val loggers: MutableSet<Logger> = loggers.toMutableSet()
 
     constructor(vararg loggers: Logger): this(mutableSetOf(*loggers))
 
     fun addLogger(logger: Logger) {
-        mutableSet.add(logger)
+        loggers.add(logger)
     }
 }

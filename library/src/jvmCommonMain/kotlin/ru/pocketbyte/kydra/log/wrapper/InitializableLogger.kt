@@ -1,20 +1,16 @@
-/*
- * Copyright © 2022 Denis Shurygin. All rights reserved.
- * Licensed under the Apache License, Version 2.0
- */
+package ru.pocketbyte.kydra.log.wrapper
 
-package ru.pocketbyte.kydra.log
-
-import kotlin.concurrent.AtomicReference
+import ru.pocketbyte.kydra.log.Logger
+import java.util.concurrent.atomic.AtomicReference
 
 actual abstract class InitializableLogger<LoggerType: Logger>
     : AbsLoggerWrapper<LoggerType>() {
 
     actual override val logger: LoggerType
-        get() = loggerRef.value ?: defaultLogger
+        get() = loggerRef.get() ?: defaultLogger
 
     actual val isInitialized: Boolean
-        get() = loggerRef.value != null
+        get() = loggerRef.get() != null
 
     protected actual abstract val defaultLogger: LoggerType
 

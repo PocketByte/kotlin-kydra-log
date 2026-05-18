@@ -3,7 +3,10 @@
  * Licensed under the Apache License, Version 2.0
  */
 
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.wrapper
+
+import ru.pocketbyte.kydra.log.LogLevel
+import ru.pocketbyte.kydra.log.Logger
 
 abstract class AbsLoggerWrapper<LoggerType: Logger>: Logger() {
 

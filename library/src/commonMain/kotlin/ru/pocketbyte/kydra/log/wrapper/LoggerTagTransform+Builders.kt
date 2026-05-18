@@ -1,5 +1,6 @@
-package ru.pocketbyte.kydra.log
+package ru.pocketbyte.kydra.log.wrapper
 
+import ru.pocketbyte.kydra.log.Logger
 
 
 /**
