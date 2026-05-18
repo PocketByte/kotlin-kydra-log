@@ -1,5 +1,6 @@
 plugins {
     id("kydra-multiplatform")
+    id("com.gradleup.nmcp")
     id("kydra-publish")
 }
 

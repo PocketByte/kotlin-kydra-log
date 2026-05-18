@@ -12,19 +12,6 @@ val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "Sonatype"
-            url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2")
-            credentials {
-                username = project.findProperty("sonatype.publish.user")?.toString() ?: ""
-                password = project.findProperty("sonatype.publish.password")?.toString() ?: ""
-            }
-        }
-    }
-}
-
 signing {
     sign(publishing.publications)
 }

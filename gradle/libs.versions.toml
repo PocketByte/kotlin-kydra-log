@@ -2,6 +2,7 @@
 kotlin            = "2.3.10"
 android-gradle    = "8.13.0"
 constraint-layout = "2.0.4"
+nmcp              = "1.4.4"
 
 [libraries]
 kotlin-stdlib             = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib",        version.ref = "kotlin" }
@@ -16,3 +17,5 @@ android-application  = { id = "com.android.application",           version.ref =
 android-library      = { id = "com.android.library",               version.ref = "android-gradle" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-android       = { id = "org.jetbrains.kotlin.android",       version.ref = "kotlin" }
+nmcp                 = { id = "com.gradleup.nmcp",                  version.ref = "nmcp" }
+nmcp-aggregation     = { id = "com.gradleup.nmcp.aggregation",      version.ref = "nmcp" }
