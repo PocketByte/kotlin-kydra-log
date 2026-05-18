@@ -22,6 +22,8 @@ The way logs are written is defined for each platform independently.
 
 ### How to use
 
+> Migrating from an older version? See the [Migration Guide to 3.0.0](docs/migration-3.0.0.md).
+
 Add common library as dependency in common **`build.gradle`**:
 ```gradle
 repositories {
