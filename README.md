@@ -23,7 +23,7 @@ repositories {
 }
 dependencies {
     ...
-    implementation 'ru.pocketbyte.kydra:kydra-log:2.2.0'
+    implementation 'ru.pocketbyte.kydra:kydra-log:3.0.0'
 }
 ```
 
@@ -128,7 +128,7 @@ To override log tag or provide default tag you could use `withTag` or `withTagTr
 
 ```Kotlin
 // fooLogger uses "Foo" tag as default
-val fooLogger = myLogger.withTag("Foo")
+val fooLogger = myLogger.withTag(default = "Foo")
 fooLogger.info { "Hello Foo" }        // Log will be printed with tag "Foo"
 fooLogger.info("Bar") { "Hello Foo" } // Log will be printed with tag "Bar"
 
